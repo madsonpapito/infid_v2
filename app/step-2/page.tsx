@@ -178,7 +178,7 @@ function DatingScannerContent() {
   // --- COUNTRY DATA IMPORTED ---
 
   // Multi-Input States
-  const [activeInputTab, setActiveInputTab] = useState<'photo' | 'instagram' | 'whatsapp'>('photo')
+  const [activeInputTab, setActiveInputTab] = useState<'photo' | 'instagram' | 'whatsapp'>('instagram')
   const [instagramUsername, setInstagramUsername] = useState('')
   const [whatsappNumber, setWhatsappNumber] = useState('')
   const [countrySearch, setCountrySearch] = useState('')
@@ -430,8 +430,8 @@ function DatingScannerContent() {
 
         {/* Tabs */}
         <div className="flex bg-slate-900 p-1 rounded-lg border border-slate-800">
-          <button onClick={() => { setActiveInputTab('photo'); setErrorMessage(null); }} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded-md transition-all ${activeInputTab === 'photo' ? 'bg-slate-700 text-white shadow' : 'text-slate-500 hover:text-slate-300'}`}>Photo Upload</button>
           <button onClick={() => { setActiveInputTab('instagram'); setErrorMessage(null); }} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded-md transition-all ${activeInputTab === 'instagram' ? 'bg-slate-700 text-white shadow' : 'text-slate-500 hover:text-slate-300'}`}>Instagram</button>
+          <button onClick={() => { setActiveInputTab('photo'); setErrorMessage(null); }} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded-md transition-all ${activeInputTab === 'photo' ? 'bg-slate-700 text-white shadow' : 'text-slate-500 hover:text-slate-300'}`}>Photo Upload</button>
           <button onClick={() => { setActiveInputTab('whatsapp'); setErrorMessage(null); }} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded-md transition-all ${activeInputTab === 'whatsapp' ? 'bg-emerald-900/30 text-emerald-400 border border-emerald-500/30 shadow' : 'text-slate-500 hover:text-slate-300'}`}>WhatsApp</button>
         </div>
 
@@ -667,39 +667,128 @@ function DatingScannerContent() {
 
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-8 px-4">
-        {/* Radar Animation */}
-        <div className="relative w-48 h-48">
-          <div className="absolute inset-0 border border-slate-700 rounded-full"></div>
-          <div className="absolute inset-[20%] border border-slate-700/50 rounded-full"></div>
-          <div className="absolute inset-[40%] border border-slate-700/30 rounded-full"></div>
-
-          <div className="absolute top-1/2 left-1/2 w-full h-1/2 bg-gradient-to-t from-cyan-500/20 to-transparent origin-top animate-radar-spin rounded-t-full"></div>
-
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-cyan-500 rounded-full shadow-[0_0_10px_cyan]"></div>
-        </div>
-
-        <div className="text-center space-y-2">
-          <h2 className="text-xl font-bold text-white uppercase tracking-widest">Scanning Deep Web</h2>
-          <p className="text-cyan-400 font-mono text-sm">
-            {scanPhase === 1 && "Accessing Tinder API..."}
-            {scanPhase === 2 && "Running Facial Recognition..."}
-            {scanPhase === 3 && "Triangulating GPS Data..."}
-            {scanPhase === 4 && "Decrypting Private Logs..."}
-            {scanPhase === 5 && "Compiling Evidence..."}
-          </p>
-        </div>
-
-        {/* Steps */}
-        <div className="w-full max-w-xs space-y-3">
-          {[1, 2, 3, 4, 5].map((s) => (
-            <div key={s} className={`flex items-center gap-3 text-xs transition-colors ${scanPhase >= s ? 'text-emerald-400' : 'text-slate-600'}`}>
-              <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${scanPhase >= s ? 'bg-emerald-500/20 border-emerald-500' : 'border-slate-700'}`}>
-                {scanPhase >= s && <CheckCircle2 className="w-3 h-3" />}
+        {activeInputTab === 'instagram' ? (
+          /* ---- INSTAGRAM SCAN VIEW ---- */
+          <div className="w-full max-w-sm mx-auto space-y-6 animate-fade-in">
+            {/* Profile Circle */}
+            <div className="flex flex-col items-center gap-2">
+              <div className="relative">
+                <div className="w-20 h-20 rounded-full p-[3px]" style={{ background: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)' }}>
+                  <div className="w-full h-full rounded-full overflow-hidden border-2 border-[#0f172a]">
+                    {imagePreview ? (
+                      <img src={imagePreview} alt="Profile" className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full bg-slate-700 flex items-center justify-center">
+                        <span className="text-2xl text-slate-400">{instagramUsername?.[0]?.toUpperCase() ?? '?'}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#0f172a] flex items-center justify-center border border-slate-700">
+                  <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#ig-grad)" />
+                    <circle cx="12" cy="12" r="4.5" stroke="white" strokeWidth="1.5" fill="none" />
+                    <circle cx="17" cy="7" r="1" fill="white" />
+                    <defs>
+                      <linearGradient id="ig-grad" x1="2" y1="22" x2="22" y2="2" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stopColor="#f09433" />
+                        <stop offset="50%" stopColor="#e6283c" />
+                        <stop offset="100%" stopColor="#bc1888" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
               </div>
-              <span className="uppercase font-bold tracking-wider">Protocol 0{s}</span>
+              <div className="text-center">
+                <p className="text-white font-bold text-base">Analyzing Profile...</p>
+                {instagramUsername && <p className="text-slate-400 text-sm">@{instagramUsername}</p>}
+              </div>
             </div>
-          ))}
-        </div>
+
+            {/* Progress Bar */}
+            <div className="w-full space-y-2">
+              <div className="flex justify-between text-xs">
+                <span className="text-slate-400 font-mono">
+                  {scanPhase === 1 && "Accessing profile..."}
+                  {scanPhase === 2 && "Running facial recognition..."}
+                  {scanPhase === 3 && "Triangulating location..."}
+                  {scanPhase === 4 && "Decrypting private logs..."}
+                  {scanPhase === 5 && "Compiling evidence..."}
+                  {scanPhase === 0 && "Bypassing security..."}
+                </span>
+                <span className="text-rose-400 font-bold">{Math.round(loadingProgress)}%</span>
+              </div>
+              <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div
+                  className="h-full rounded-full transition-all duration-500"
+                  style={{
+                    width: `${loadingProgress}%`,
+                    background: 'linear-gradient(to right, #f09433, #e6283c, #bc1888)'
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Feed Grid */}
+            <div className="grid grid-cols-3 gap-1 w-full">
+              {Array.from({ length: 9 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="aspect-square bg-slate-800 rounded overflow-hidden relative"
+                  style={{ animationDelay: `${i * 0.15}s` }}
+                >
+                  <div
+                    className="absolute inset-0 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 animate-pulse"
+                    style={{
+                      animationDelay: `${i * 0.2}s`,
+                      opacity: scanPhase > i * 0.5 ? 0.4 : 1
+                    }}
+                  />
+                  {scanPhase >= Math.ceil((i + 1) / 3) && (
+                    <div className="absolute inset-0 bg-slate-700/60 flex items-center justify-center">
+                      <div className="w-4 h-4 border border-rose-500/40 rounded-sm" />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          /* ---- DEFAULT RADAR VIEW ---- */
+          <>
+            {/* Radar Animation */}
+            <div className="relative w-48 h-48">
+              <div className="absolute inset-0 border border-slate-700 rounded-full"></div>
+              <div className="absolute inset-[20%] border border-slate-700/50 rounded-full"></div>
+              <div className="absolute inset-[40%] border border-slate-700/30 rounded-full"></div>
+              <div className="absolute top-1/2 left-1/2 w-full h-1/2 bg-gradient-to-t from-cyan-500/20 to-transparent origin-top animate-radar-spin rounded-t-full"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-cyan-500 rounded-full shadow-[0_0_10px_cyan]"></div>
+            </div>
+
+            <div className="text-center space-y-2">
+              <h2 className="text-xl font-bold text-white uppercase tracking-widest">Scanning Deep Web</h2>
+              <p className="text-cyan-400 font-mono text-sm">
+                {scanPhase === 1 && "Accessing Tinder API..."}
+                {scanPhase === 2 && "Running Facial Recognition..."}
+                {scanPhase === 3 && "Triangulating GPS Data..."}
+                {scanPhase === 4 && "Decrypting Private Logs..."}
+                {scanPhase === 5 && "Compiling Evidence..."}
+              </p>
+            </div>
+
+            {/* Steps */}
+            <div className="w-full max-w-xs space-y-3">
+              {[1, 2, 3, 4, 5].map((s) => (
+                <div key={s} className={`flex items-center gap-3 text-xs transition-colors ${scanPhase >= s ? 'text-emerald-400' : 'text-slate-600'}`}>
+                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${scanPhase >= s ? 'bg-emerald-500/20 border-emerald-500' : 'border-slate-700'}`}>
+                    {scanPhase >= s && <CheckCircle2 className="w-3 h-3" />}
+                  </div>
+                  <span className="uppercase font-bold tracking-wider">Protocol 0{s}</span>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     )
   }
