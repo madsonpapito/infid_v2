@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import Script from 'next/script';
 import {
     Instagram, AlertTriangle, EyeOff, Lock, Clock, ShieldAlert, FileWarning
 } from 'lucide-react';
@@ -15,6 +14,23 @@ export default function Downsell2FPPage() {
             return () => clearInterval(timer);
         }
     }, [timeLeft]);
+
+    // Injeta o script da FortPay manualmente para garantir compatibilidade com React
+    useEffect(() => {
+        const existing = document.getElementById('fortpay-oneclick-d2');
+        if (existing) existing.remove();
+
+        const script = document.createElement('script');
+        script.id = 'fortpay-oneclick-d2';
+        script.src = 'https://app.plataformafortpay.com.br/js/oneclick.js';
+        script.async = true;
+        document.body.appendChild(script);
+
+        return () => {
+            const added = document.getElementById('fortpay-oneclick-d2');
+            if (added) added.remove();
+        };
+    }, []);
 
     const formatTime = (seconds: number) => {
         const m = Math.floor(seconds / 60);
@@ -143,12 +159,6 @@ export default function Downsell2FPPage() {
                             Vou recusar essa oferta
                         </a>
                     </div>
-
-                    <Script
-                        id="fortpay-oneclick-d2"
-                        src="https://app.plataformafortpay.com.br/js/oneclick.js"
-                        strategy="afterInteractive"
-                    />
                 </div>
 
             </div>
