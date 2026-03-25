@@ -348,8 +348,8 @@ export default function Upsell1Page() {
               {/* Gender */}
               <div className="space-y-3 z-10 relative">
                 <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Target Gender</label>
-                <div className="grid grid-cols-3 gap-3">
-                  {['Male', 'Female', 'Other'].map((g) => (
+                <div className="grid grid-cols-2 gap-3">
+                  {['Male', 'Female'].map((g) => (
                     <button
                       key={g}
                       onClick={() => setGender(g)}

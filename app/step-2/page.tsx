@@ -307,8 +307,8 @@ function DatingScannerContent() {
         <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
           <User className="w-4 h-4" /> Target Gender
         </h2>
-        <div className="grid grid-cols-3 gap-3">
-          {['male', 'female', 'non-binary'].map(g => (
+        <div className="grid grid-cols-2 gap-3">
+          {['male', 'female'].map(g => (
             <button
               key={g}
               onClick={() => setSelectedGender(g)}
@@ -317,7 +317,7 @@ function DatingScannerContent() {
                 : 'bg-slate-800 border-slate-700 text-slate-500 hover:border-slate-600'
                 }`}
             >
-              <span className="text-xl">{g === 'male' ? '👨' : g === 'female' ? '👩' : '🧑'}</span>
+              <span className="text-xl">{g === 'male' ? '👨' : '👩'}</span>
               <span className="text-[10px] font-bold uppercase">{g.replace('-', ' ')}</span>
             </button>
           ))}
