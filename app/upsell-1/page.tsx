@@ -81,7 +81,7 @@ const COUNTRIES = [
 ];
 
 const CONVERSATIONS = [
-  { id: 1, name: "Unknown User 🔒", msg: "\"Don't tell her about last night...\"", time: "Yesterday" },
+  { id: 1, name: "Unknown User 🔒", msg: "Don't tell her about last night...", time: "Yesterday" },
   { id: 2, name: "Unknown User 🔒", msg: "Photo (View Once) 📷", time: "2 days ago" },
   { id: 3, name: "Unknown User 🔒", msg: "Audio (0:14) 🎤", time: "3 days ago" }
 ];
