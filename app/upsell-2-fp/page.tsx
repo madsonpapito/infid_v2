@@ -471,7 +471,7 @@ export default function Upsell2FPPage() {
                             <Script
                                 id="fortpay-oneclick-u2"
                                 src="https://app.plataformafortpay.com.br/js/oneclick.js"
-                                strategy="lazyOnload"
+                                strategy="afterInteractive"
                             />
                         </div>
                     </div>

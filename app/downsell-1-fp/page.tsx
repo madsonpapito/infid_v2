@@ -166,7 +166,7 @@ export default function Downsell1FPPage() {
                         <Script
                             id="fortpay-oneclick-d1"
                             src="https://app.plataformafortpay.com.br/js/oneclick.js"
-                            strategy="lazyOnload"
+                            strategy="afterInteractive"
                         />
 
                     </div>
