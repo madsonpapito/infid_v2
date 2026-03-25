@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Analysis - Target Identification</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#171717',
+                        'whatsapp-green': '#25D366',
+                        'card-green': '#1f2e25', // Dark green for card
+                        'success-green': '#00A884',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        pulse: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '.5' }
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #171717;
+        }
+
+        /* Mobile optimization */
+        .mobile-container {
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+                w[l] = w[l] || []; w[l].push({
+                    'gtm.start':
+                        new Date().getTime(), event: 'gtm.js'
+                }); var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-PK6HB293');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body class="min-h-screen bg-white">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PK6HB293" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Top Banner (Persist) -->
+    <div id="top-banner" class="bg-red-600 text-center py-2.5 px-4 sticky top-0 z-50 shadow-md w-full">
+        <p class="text-sm font-semibold text-white">
+            <span>Attention: do not close this page, </span>
+            <span class="text-yellow-300">Your payment is still being processed.</span>
+        </p>
+    </div>
+
+    <div class="mobile-container p-4 pb-20">
+
+        <!-- HEADER / INPUT SECTION (Visible initially) -->
+        <div id="wrapper-step-1">
+            <!-- Header -->
+            <header class="text-center pt-8 pb-4">
+                <div class="inline-block bg-white p-4 rounded-full shadow-lg mb-4 border border-gray-100">
+                    <i data-lucide="instagram" class="h-10 w-10 text-pink-600"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-900 mb-2">
+                    ATTENTION!
+                </h1>
+                <p class="text-gray-600 text-sm px-4">
+                    We found suspicious activity on Instagram
+                </p>
+            </header>
+
+            <!-- STEP 1: INPUT -->
+            <div id="step-1" class="space-y-6">
+                <div class="space-y-3">
+                    <h3 class="text-lg font-bold text-gray-800 text-center">What is their gender?</h3>
+                    <div class="grid grid-cols-2 gap-3 px-2">
+                        <button onclick="selectGender('male')"
+                            class="gender-btn relative overflow-hidden group p-4 rounded-xl border-2 transition-all duration-200"
+                            id="btn-male">
+                            <div
+                                class="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-100 transition-opacity">
+                            </div>
+                            <div class="relative z-10 flex flex-col items-center gap-2">
+                                <span class="text-4xl">👨</span>
+                                <span class="font-bold text-gray-700">Male</span>
+                            </div>
+                        </button>
+                        <button onclick="selectGender('female')"
+                            class="gender-btn relative overflow-hidden group p-4 rounded-xl border-2 transition-all duration-200"
+                            id="btn-female">
+                            <div
+                                class="absolute inset-0 bg-pink-50 opacity-0 group-hover:opacity-100 transition-opacity">
+                            </div>
+                            <div class="relative z-10 flex flex-col items-center gap-2">
+                                <span class="text-4xl">👩</span>
+                                <span class="font-bold text-gray-700">Female</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 mt-6 shadow-inner">
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <i data-lucide="scan-search" class="text-pink-600 w-5 h-5"></i>
+                        <h2 class="text-lg font-bold text-gray-800 tracking-wide uppercase">Identification</h2>
+                    </div>
+
+                    <p class="text-gray-500 text-xs text-center mb-3">Enter the @Instagram username below:</p>
+
+                    <div class="relative w-full">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">@</span>
+                        <input type="text" id="ig-input" placeholder="username" autocomplete="off"
+                            class="w-full bg-white border border-gray-300 text-gray-900 pl-10 h-12 text-lg rounded-lg focus:border-pink-500 focus:ring-2 focus:ring-pink-200 outline-none transition-all shadow-sm"
+                            oninput="handleInput(this.value)">
+                    </div>
+
+                    <!-- Profile Preview / Loading -->
+                    <div id="profile-preview-area"
+                        class="mt-4 w-full min-h-[80px] rounded-lg flex items-center justify-center relative overflow-hidden hidden transition-all">
+                        <!-- Injected via JS -->
+                        <div id="preview-loader" class="hidden flex items-center gap-2 text-pink-600">
+                            <i data-lucide="loader-2" class="animate-spin w-5 h-5"></i>
+                            <span class="text-sm font-medium">Searching...</span>
+                        </div>
+                        <div id="preview-content" class="w-full hidden animate-fade-in"></div>
+                    </div>
+                    <p id="error-msg" class="text-red-500 text-xs mt-2 hidden text-center font-medium"></p>
+                </div>
+
+                <button id="continue-btn" onclick="startAnalysis()" disabled
+                    class="w-full py-4 text-lg font-bold text-white bg-green-500 rounded-xl shadow-lg shadow-green-200 transition-all hover:bg-green-600 hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 flex items-center justify-center gap-2 mt-4">
+                    <span>CONTINUE ANALYSIS</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+                <p class="text-center text-[10px] text-gray-400 mt-4 px-8">
+                    By continuing, you agree to our terms of use and privacy policy. Analysis is anonymous.
+                </p>
+            </div>
+        </div>
+
+        <!-- STEP 2: LOADING -->
+        <div id="step-2" class="space-y-8 hidden animate-fade-in pt-10">
+            <div class="flex flex-col items-center">
+                <div class="relative">
+                    <div class="w-24 h-24 rounded-full border-4 border-pink-500 p-1 animate-pulse">
+                        <img id="loading-img" src="/placeholder.svg" class="w-full h-full rounded-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-2 -right-2 bg-white p-1.5 rounded-full shadow-md">
+                        <i data-lucide="instagram" class="w-5 h-5 text-pink-600"></i>
+                    </div>
+                </div>
+                <h2 class="text-xl font-bold text-gray-900 mt-4">Analyzing Profile...</h2>
+                <p class="text-sm text-gray-500">@<span id="loading-username">username</span></p>
+            </div>
+
+            <div class="w-full px-4 space-y-2">
+                <div class="flex justify-between text-xs font-semibold text-gray-600">
+                    <span id="progress-text">Initiating...</span>
+                    <span id="progress-percent">0%</span>
+                </div>
+                <div class="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+                    <div id="progress-bar" class="bg-pink-500 h-full rounded-full transition-all duration-300 ease-out"
+                        style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Grid (Simulated Posts) -->
+            <div id="posts-grid" class="grid grid-cols-3 gap-1 w-full opacity-50">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+
+        <!-- STEP 3: RESULTS (MATCHING REFERENCE IMAGE) -->
+        <div id="step-3" class="hidden animate-fade-in pt-4">
+
+            <!-- Success Header -->
+            <div class="flex items-center justify-center gap-2 mb-6">
+                <i data-lucide="check-circle-2" class="text-green-500 w-6 h-6 fill-current"></i>
+                <h2 class="text-green-600 font-bold text-lg">Analysis Complete</h2>
+            </div>
+
+            <!-- Profile Card (Dark Green) -->
+            <div id="result-profile-card"></div>
+
+            <!-- Log System Box -->
+            <div class="mt-4 bg-gray-50 border border-gray-200 rounded-lg p-3 shadow-sm">
+                <p class="text-xs font-bold text-green-600 mb-2">[SYSTEM_LOG] New activity detected:</p>
+                <div class="space-y-1.5 pl-2 border-l-2 border-blue-200">
+                    <p class="text-[11px] text-gray-700 font-mono">
+                        <span class="text-blue-500 font-bold">[INSTAGRAM]</span> <span class="font-bold text-gray-900"
+                            id="log-user-1">@user</span> liked your photo.
+                    </p>
+                    <p class="text-[11px] text-gray-700 font-mono">
+                        <span class="text-blue-500 font-bold">[INSTAGRAM]</span> New message from <span
+                            class="font-bold text-gray-900" id="log-user-2">@user2</span>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Interactions List -->
+            <div class="mt-4 space-y-2" id="interactions-list">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- INTERCEPTED HEADER -->
+            <div class="mt-8 mb-4 text-center">
+                <h2 class="text-red-500 font-bold text-lg uppercase leading-tight">
+                    INTERCEPTED: <span class="text-black">Suspicious Likes from <span id="target-username-display"
+                            class="lowercase">@username</span></span>
+                </h2>
+            </div>
+
+            <!-- Photos Grid (Vertical Cards) -->
+            <div id="intercepted-photos" class="space-y-4">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- UPSELL WIDGET AREA (Sticky/Bottom) -->
+            <div
+                class="mt-8 text-center bg-white border border-gray-100 shadow-2xl rounded-2xl p-6 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-green-600"></div>
+
+                <div class="mb-4 flex justify-center">
+                    <div class="bg-green-100 p-3 rounded-full">
+                        <i data-lucide="lock" class="w-8 h-8 text-green-600"></i>
+                    </div>
+                </div>
+
+                <h2 class="text-lg font-bold text-gray-800 mb-2">
+                    UNLOCK COMPLETE REPORT
+                </h2>
+                <p class="text-xs text-gray-500 mb-6 px-4">
+                    Get instant access to the full report with uncensored photos and complete conversation history.
+                </p>
+
+                <!-- MUNDPAY WIDGET -->
+                <div id="mundpay-area" class="w-full flex justify-center min-h-[100px]">
+                    <div data-mndpay-render="019b0d3e-2aeb-71c2-bad6-a416c3933ce1"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- LOGIC -->
+    <script>
+        let state = {
+            gender: 'female',
+            username: '',
+            profile: null,
+            posts: [],
+            targetGender: 'male' // Matches will be this gender (Male selected -> Female matches)
+        };
+        let debounceTimer;
+
+        // --- INIT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            selectGender('female'); // Default
+        });
+
+        // --- FUNCTIONS ---
+        function selectGender(g) {
+            state.gender = g;
+            // Fixing Logic: If target is Male, we show Female matches. If target is Female, we show Male matches.
+            state.targetGender = (g === 'male') ? 'female' : 'male';
+
+            document.querySelectorAll('.gender-btn').forEach(b => {
+                b.classList.remove('border-blue-500', 'border-pink-500', 'bg-blue-50', 'bg-pink-50', 'ring-2');
+                b.classList.add('border-gray-200');
+            });
+
+            const btnId = `btn-${g}`;
+            const btn = document.getElementById(btnId);
+            if (btn) {
+                const color = g === 'male' ? 'blue' : 'pink';
+                btn.classList.remove('border-gray-200');
+                btn.classList.add(`border-${color}-500`, `bg-${color}-50`, `ring-2`, `ring-${color}-200`);
+            }
+        }
+
+        function handleInput(val) {
+            state.username = val;
+            const container = document.getElementById('profile-preview-area');
+            const loader = document.getElementById('preview-loader');
+            const content = document.getElementById('preview-content');
+            const btn = document.getElementById('continue-btn');
+            const error = document.getElementById('error-msg');
+
+            // Reset
+            content.innerHTML = '';
+            content.classList.add('hidden');
+            error.classList.add('hidden');
+            btn.setAttribute('disabled', 'true');
+            state.profile = null;
+
+            if (debounceTimer) clearTimeout(debounceTimer);
+
+            if (val.length < 3) {
+                container.classList.add('hidden');
+                return;
+            }
+
+            container.classList.remove('hidden');
+            loader.classList.remove('hidden');
+
+            debounceTimer = setTimeout(() => {
+                fetchProfile(val);
+            }, 1000);
+        }
+
+        async function fetchProfile(username) {
+            const loader = document.getElementById('preview-loader');
+            const content = document.getElementById('preview-content');
+            const btn = document.getElementById('continue-btn');
+            const error = document.getElementById('error-msg');
+
+            try {
+                const res = await fetch("/api/instagram/profile", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username })
+                });
+                const data = await res.json();
+
+                loader.classList.add('hidden');
+
+                if (res.ok && data.success && data.profile) {
+                    state.profile = data.profile;
+                    renderPreview(data.profile);
+                    content.classList.remove('hidden');
+                    btn.removeAttribute('disabled');
+                } else {
+                    error.innerText = "Profile not found or private.";
+                    error.classList.remove('hidden');
+                }
+
+            } catch (e) {
+                console.error(e);
+                loader.classList.add('hidden');
+                error.innerText = "Connection error.";
+                error.classList.remove('hidden');
+            }
+        }
+
+        function renderPreview(profile) {
+            const container = document.getElementById('preview-content');
+            container.innerHTML = `
+                <div class="flex items-center gap-3 w-full bg-white p-2 rounded-lg border border-gray-100 shadow-sm">
+                    <img src="${profile.profile_pic_url}" class="w-12 h-12 rounded-full object-cover border border-gray-200" onerror="this.src='/placeholder.svg'">
+                    <div class="flex-1 min-w-0 text-left">
+                        <p class="text-gray-900 font-bold text-sm truncate">@${profile.username}</p>
+                        <p class="text-gray-500 text-xs truncate">${profile.full_name || ''}</p>
+                    </div>
+                     <div class="text-green-500">
+                        <i data-lucide="check-circle-2" class="w-5 h-5 fill-current text-green-100"></i>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function startAnalysis() {
+            // Hide Header Wrapper
+            document.getElementById('wrapper-step-1').classList.add('hidden');
+            document.getElementById('step-2').classList.remove('hidden');
+
+            // Pop Loading Data
+            document.getElementById('loading-img').src = state.profile.profile_pic_url;
+            document.getElementById('loading-username').innerText = state.profile.username;
+
+            // Fetch Posts (Async)
+            fetchPosts();
+
+            // Progress Animation
+            let progress = 0;
+            const bar = document.getElementById('progress-bar');
+            const text = document.getElementById('progress-text');
+            const percent = document.getElementById('progress-percent');
+
+            const msgs = [
+                "Connecting to servers...",
+                "Bypassing security...",
+                "Extracting followers...",
+                "Analyzing DMs...",
+                "Deciphering likes...",
+                "Generating report..."
+            ];
+
+            const interval = setInterval(() => {
+                progress += Math.random() * 3;
+                if (progress > 100) progress = 100;
+
+                bar.style.width = `${progress}%`;
+                percent.innerText = `${Math.floor(progress)}%`;
+
+                const step = Math.floor((progress / 100) * msgs.length);
+                if (msgs[step]) text.innerText = msgs[step];
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(showResults, 800);
+                }
+            }, 200);
+        }
+
+        async function fetchPosts() {
+            try {
+                const res = await fetch("/api/instagram/posts", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username: state.username })
+                });
+                const data = await res.json();
+                if (res.ok && data.posts) {
+                    state.posts = data.posts;
+                    renderPostsGrid(data.posts);
+                }
+            } catch (e) {
+                console.log("Error fetching posts", e);
+            }
+        }
+
+        function renderPostsGrid(posts) {
+            const grid = document.getElementById('posts-grid');
+            grid.innerHTML = '';
+            posts.slice(0, 9).forEach((post, i) => {
+                const div = document.createElement('div');
+                div.className = "aspect-square bg-gray-200 rounded overflow-hidden";
+                const proxyUrl = `/api/proxy-image?url=${encodeURIComponent(post.imageUrl)}`;
+                div.innerHTML = `<img src="${proxyUrl}" class="w-full h-full object-cover" onerror="this.src='/placeholder.svg'">`;
+                grid.appendChild(div);
+            });
+        }
+
+        function showResults() {
+            document.getElementById('step-2').classList.add('hidden');
+            const s3 = document.getElementById('step-3');
+            s3.classList.remove('hidden');
+
+            // Render Profile Card (Green Theme)
+            renderResultProfileCard();
+
+            // Render Log Usernames
+            // Logic: Use User Selected Gender for Interactions (as requested)
+            const names = state.gender === 'male'
+                ? ['carlos_fit', 'juan.pablo', 'roberto_99']
+                : ['emma.wht', 'julia_m', 'sofi.love'];
+
+            document.getElementById('log-user-1').innerText = '@' + names[0];
+            document.getElementById('log-user-2').innerText = '@' + names[1];
+
+            // Render Lists
+            renderInteractionsList(names);
+            renderInterceptedPhotos(names);
+
+            document.getElementById('target-username-display').innerText = state.profile.username;
+
+            lucide.createIcons();
+
+            // Load Script
+            if (!document.querySelector('script[src*="mundpay"]')) {
+                const script = document.createElement('script');
+                script.src = "https://upsell.mundpay.com/script-v2.js";
+                script.async = true;
+                document.body.appendChild(script);
+            }
+        }
+
+        function renderResultProfileCard() {
+            const p = state.profile;
+            const container = document.getElementById('result-profile-card');
+            container.innerHTML = `
+                <div class="bg-[#1f2e25] rounded-lg p-4 text-white shadow-lg relative overflow-hidden">
+                    <div class="absolute top-2 right-2">
+                        <i data-lucide="check-circle" class="text-green-500 w-5 h-5"></i>
+                    </div>
+                    <div class="flex items-center gap-3 z-10 relative">
+                         <img src="${p.profile_pic_url}" class="w-12 h-12 rounded-full border-2 border-white/20">
+                         <div>
+                             <p class="text-xs text-green-400 font-bold uppercase tracking-wider">Instagram Profile Detected</p>
+                             <h3 class="font-bold text-lg leading-none">@${p.username}</h3>
+                             <p class="text-[10px] text-gray-400 mt-0.5">${p.media_count} posts • ${p.follower_count} followers</p>
+                         </div>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-white/10 text-[10px] text-gray-300 flex items-center gap-1">
+                        <span>🔥</span>
+                        <span class="truncate italic opacity-80">${p.biography || 'No biography detected...'}</span>
+                    </div>
+                </div>
+             `;
+        }
+
+        function renderInteractionsList(names) {
+            const list = document.getElementById('interactions-list');
+            const target = state.gender; // Use 'male' or 'female' directly from selection
+
+            // Mock data - Generate 3 rows
+            // Logic: 3 rows. 
+            // 1. Like (Heart)
+            // 2. Like (Heart)
+            // 3. Message (Blue Bubble)
+
+            const rows = [
+                { name: names[0], action: 'liked your photo', time: '5 minutes ago', icon: 'heart', color: 'text-pink-500', isMsg: false },
+                { name: names[1], action: 'liked your photo', time: '12 minutes ago', icon: 'heart', color: 'text-pink-500', isMsg: false },
+                { name: target === 'female' ? 'izes_baby' : 'mark_tw', action: 'sent you a message', time: '25 minutes ago', icon: 'message-circle', color: 'text-blue-500', isMsg: true },
+                { name: names[2], action: 'sent you a message', time: '1 hour ago', icon: 'message-circle', color: 'text-blue-500', isMsg: true, badge: 'Suspicious' }
+            ];
+
+            list.innerHTML = rows.map((r, i) => `
+                <div class="bg-white border border-gray-100 rounded-lg p-2.5 flex items-center gap-3 shadow-sm">
+                    <img src="/images/${target}/perfil/${i + 1}.jpg" class="w-10 h-10 rounded-full object-cover" onerror="this.src='/placeholder.svg'">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-xs font-bold text-gray-800">@${r.name} <span class="font-normal text-gray-500">${r.action}</span></p>
+                        <p class="text-[10px] text-gray-400">${r.time}</p>
+                         ${r.isMsg && i === 3 ? '<p class="text-[9px] text-blue-500 font-bold cursor-pointer mt-0.5">Click to read history...</p>' : ''}
+                    </div>
+                    <div class="flex flex-col items-end gap-1">
+                        <i data-lucide="${r.icon}" class="w-4 h-4 ${r.color}"></i>
+                         ${r.badge ? `<span class="text-[8px] bg-red-100 text-red-600 px-1.5 py-0.5 rounded font-bold">${r.badge}</span>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderInterceptedPhotos(names) {
+            const container = document.getElementById('intercepted-photos');
+            const gender = state.gender; // Use User Gender as requested (Male -> Male Folder)
+
+            // Define specific available files to avoid 404s due to mixed extensions
+            const likedImages = {
+                male: [
+                    'male-liked-photo-1.jpg', 'male-liked-photo-2.jpeg', 'male-liked-photo-3.jpeg',
+                    'male-liked-story-1.jpg', 'male-liked-story-2.jpg', 'male-liked-photo-5.webp'
+                ],
+                female: [
+                    'female-liked-photo-1.jpg', 'female-liked-photo-2.jpg', 'female-liked-photo-3.jpg',
+                    'female-liked-story-1.jpg', 'female-liked-story-2.jpg', 'female-liked-story3.jpg'
+                ]
+            };
+
+            const images = likedImages[gender] || [];
+
+            // Logic: Show 4 cards
+            const cards = [
+                { id: 1, likes: '1.2K', comment: 'Wow, you look great 😽', user: state.profile.username },
+                { id: 2, likes: '875', comment: '😍😍', user: state.profile.username },
+                { id: 3, likes: '2.4K', comment: 'So beautiful 🥵', user: state.profile.username },
+                { id: 4, likes: '650', comment: 'You drive me crazy 😈', user: state.profile.username }
+            ];
+
+            container.innerHTML = cards.map((c, i) => {
+                // Cycle through available images
+                const imgName = images[i % images.length];
+                const src = `/images/${gender}/liked/${imgName}`;
+
+                return `
+                <div class="bg-white border border-gray-200 rounded-lg p-2 shadow-sm">
+                    <div class="relative w-full aspect-[4/3] bg-gray-200 rounded overflow-hidden group">
+                        <!-- Blur Filter -->
+                        <img src="${src}" class="w-full h-full object-cover filter blur-md transform scale-105" onerror="this.src='/placeholder.svg'">
+                         <!-- Lock Overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+                             <i data-lucide="lock" class="text-white w-8 h-8 opacity-80"></i>
+                        </div>
+                    </div>
+                    <div class="mt-2 text-left pl-1">
+                        <div class="flex items-center gap-1 mb-1">
+                            <i data-lucide="heart" class="w-3 h-3 text-pink-500 fill-current"></i>
+                            <span class="text-[10px] font-bold text-gray-600">${c.likes} likes</span>
+                        </div>
+                        <div class="flex items-start gap-1.5">
+                             <img src="${state.profile.profile_pic_url}" class="w-5 h-5 rounded-full border border-gray-100" onerror="this.src='/placeholder.svg'">
+                             <p class="text-xs text-gray-800 leading-tight">
+                                 <span class="font-bold mr-1">${c.user}</span>
+                                 ${c.comment}
+                             </p>
+                        </div>
+                    </div>
+                </div>
+             `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investigation Results</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- 1. SCRIPT MONETIZZE ONE CLICK (HEAD) -->
+    <script type="text/javascript" src="https://app.monetizze.com.br/upsell_incorporado.php"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        
+        /* Blur effect for censored images */
+        .censored-blur { filter: blur(8px); }
+
+        /* --- AJUSTE DE ALTURA DO IFRAME MONETIZZE --- */
+        .iframeUpsell {
+            width: 100%;
+            border: none;
+            /* Altura ajustada para caber o botão e o texto legal sem cortar */
+            min-height: 500px; 
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <!-- Top Banner -->
+    <div class="fixed top-0 w-full z-50 bg-red-600 text-white p-2 text-center text-sm font-semibold shadow-md">
+        <span class="font-bold text-yellow-400">Attention:</span> do not close this page, Your payment is still being processed.
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div class="min-h-screen flex flex-col items-center justify-center p-4 pt-16">
+        <main class="w-full max-w-md mx-auto">
+
+            <!-- STATE: INPUT SECTION -->
+            <div id="section-input" class="space-y-6 animate-fade-in">
+                <p class="text-lg text-center text-gray-800 pt-5">
+                    <span class="font-bold text-red-600">ATTENTION!</span> Our system has identified that this user is registered on dating apps. Use our image scanner to verify.
+                </p>
+                
+                <!-- Upload Box -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">Upload Their Photo for Facial Recognition</h2>
+                    <label for="photo-upload" class="w-40 h-40 mx-auto flex items-center justify-center border-2 border-dashed border-blue-400 rounded-xl cursor-pointer hover:bg-blue-50 transition-colors relative overflow-hidden">
+                        <input id="photo-upload" type="file" accept="image/*" class="hidden" onchange="handleImageChange(this)">
+                        <img id="image-preview" src="" class="w-full h-full object-cover absolute hidden">
+                        <div id="upload-placeholder">
+                            <i data-lucide="camera" class="w-12 h-12 text-gray-400 mx-auto"></i>
+                        </div>
+                    </label>
+                    <p class="text-sm text-gray-500 mt-4">We'll scan across all dating platforms to find matching profiles - even ones they think are hidden.</p>
+                </div>
+                
+                <!-- Gender Selector -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">What gender are they?</h2>
+                    <div class="grid grid-cols-3 gap-4">
+                        <button onclick="selectGender('Male')" id="btn-male" class="gender-btn p-4 border border-gray-200 rounded-xl transition-all duration-200 hover:border-gray-400">
+                            <span class="text-4xl mb-2 block">👨🏻</span>
+                            <span class="font-semibold text-gray-700">Male</span>
+                        </button>
+                        <button onclick="selectGender('Female')" id="btn-female" class="gender-btn p-4 border border-gray-200 rounded-xl transition-all duration-200 hover:border-gray-400">
+                            <span class="text-4xl mb-2 block">👩🏻</span>
+                            <span class="font-semibold text-gray-700">Female</span>
+                        </button>
+                        <button onclick="selectGender('Non-binary')" id="btn-non-binary" class="gender-btn p-4 border border-gray-200 rounded-xl transition-all duration-200 hover:border-gray-400">
+                            <span class="text-4xl mb-2 block">🧑🏻</span>
+                            <span class="font-semibold text-gray-700">Non-binary</span>
+                        </button>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4">
+                        This helps us track their device activity and cross-reference with dating app usage patterns.
+                    </p>
+                </div>
+
+                <button id="start-btn" onclick="startInvestigation()" disabled class="w-full text-white font-bold py-4 px-6 rounded-xl shadow-lg flex items-center justify-center gap-3 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed bg-red-600 hover:bg-red-700">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                    <span>START INVESTIGATION - FIND THE TRUTH</span>
+                </button>
+            </div>
+
+            <!-- STATE: LOADING SECTION -->
+            <div id="section-loading" class="text-center animate-fade-in space-y-4 py-10 hidden">
+                <i data-lucide="loader-2" class="w-16 h-16 text-blue-600 mx-auto animate-spin"></i>
+                <h2 class="text-2xl font-bold text-gray-800">Searching...</h2>
+                <p class="text-gray-600">Cross-referencing image with millions of profiles.<br/>This may take a moment.</p>
+            </div>
+
+            <!-- STATE: RESULTS SECTION -->
+            <div id="section-results" class="space-y-4 animate-fade-in hidden">
+                
+                <!-- Alert Banners -->
+                <div class="bg-red-600 text-white p-3 rounded-lg shadow-lg flex items-center gap-3">
+                    <i data-lucide="zap" class="w-6 h-6 shrink-0"></i>
+                    <div>
+                        <h1 class="font-bold text-base">PROFILE FOUND - THEY ARE ACTIVE ON TINDER</h1>
+                        <p class="text-xs text-red-200">Last seen: <span class="font-semibold">Online now</span></p>
+                    </div>
+                </div>
+                
+                <div class="bg-orange-500 text-white p-3 rounded-lg shadow-lg flex items-center gap-3">
+                    <i data-lucide="alert-triangle" class="w-6 h-6 shrink-0"></i>
+                    <p class="text-sm font-semibold">
+                        <span class="font-bold">ATTENTION: ACTIVE PROFILE FOUND!</span> We confirm this number is linked to an ACTIVE Tinder profile. Latest usage records detected in <span id="user-city">your city</span>.
+                    </p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-4 gap-3 text-center">
+                    <div class="bg-white p-3 rounded-lg shadow-md">
+                        <p class="text-2xl font-bold text-red-600">6</p>
+                        <p class="text-xs text-gray-500 font-semibold">MATCHES (7 DAYS)</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-md">
+                        <p class="text-2xl font-bold text-orange-500">30</p>
+                        <p class="text-xs text-gray-500 font-semibold">LIKES (7 DAYS)</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-md">
+                        <p class="text-2xl font-bold text-purple-600">4</p>
+                        <p class="text-xs text-gray-500 font-semibold">ACTIVE CHATS</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-md">
+                        <p class="text-2xl font-bold text-gray-800">18h</p>
+                        <p class="text-xs text-gray-500 font-semibold">LAST ACTIVE</p>
+                    </div>
+                </div>
+
+                <!-- Matches List -->
+                <div class="bg-gradient-to-b from-slate-800 to-slate-900 text-white p-5 rounded-lg shadow-2xl">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i data-lucide="flame" class="text-orange-400 w-5 h-5"></i>
+                        <h2 class="text-lg font-bold">RECENT MATCHES FOUND</h2>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-5">Tap on a match to view more information</p>
+                    <div id="matches-list" class="space-y-4">
+                        <!-- Matches injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Censored Photos Carousel -->
+                <div class="bg-gradient-to-b from-slate-800 to-slate-900 text-white p-5 rounded-lg shadow-2xl relative">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="camera" class="text-slate-300 w-5 h-5"></i>
+                        <h2 class="text-lg font-bold">CENSORED PHOTOS</h2>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4">See all their profile photos (including the ones you've never seen)</p>
+                    
+                    <!-- Carousel Container -->
+                    <div class="relative group">
+                        <div id="carousel-track" class="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory gap-0 rounded-lg">
+                            <!-- Images injected via JS -->
+                        </div>
+                        
+                        <!-- Controls -->
+                        <button onclick="scrollCarousel(-1)" class="absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors z-10">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                        </button>
+                        <button onclick="scrollCarousel(1)" class="absolute top-1/2 right-2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors z-10">
+                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    
+                    <div id="carousel-dots" class="flex justify-center items-center mt-4 gap-2">
+                        <!-- Dots injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Unlock / Monetizze Widget -->
+                <div class="bg-white p-5 rounded-lg shadow-xl text-center">
+                    <div class="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-green-400 to-cyan-500 flex items-center justify-center mb-4">
+                        <i data-lucide="lock" class="text-white w-8 h-8"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800"><span class="text-yellow-600">🔓</span> UNLOCK COMPLETE REPORT</h2>
+                    <p class="text-gray-600 mt-1">Get instant access to the full report with all the matches and photos exchanged</p>
+                    
+                    <div class="bg-red-100 border-2 border-red-500 text-red-800 p-4 rounded-lg mt-5 mb-5">
+                        <div class="flex items-center justify-center gap-2">
+                            <i data-lucide="alert-triangle" class="text-red-600 w-5 h-5"></i>
+                            <h3 class="font-bold">THE REPORT WILL BE DELETED IN:</h3>
+                        </div>
+                        <p id="countdown" class="text-4xl font-mono font-bold my-1">05:00</p>
+                        <p class="text-xs text-red-700">After the time expires, this report will be permanently deleted for privacy reasons. This offer cannot be recovered at a later date.</p>
+                    </div>
+
+                    <!-- 2. IFRAME MONETIZZE ONE CLICK (BODY) -->
+                    <div id="monetizze-widget-area" class="w-full pt-4 flex justify-center">
+                        <iframe class="iframeUpsell" data-chave="a7e1961ec720fef69dc5b947dd501000"></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- MATCH DETAIL MODAL -->
+    <div id="match-modal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 animate-fade-in hidden" onclick="closeModal()">
+        <div class="bg-white rounded-2xl w-full max-w-sm max-h-[90vh] overflow-y-auto relative" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-3 right-3 bg-black/40 hover:bg-black/60 text-white rounded-full p-1.5 z-10">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <img id="modal-avatar" src="" alt="Match" class="w-full h-80 object-cover rounded-t-2xl">
+            <div class="p-5">
+                <div class="flex items-center gap-2">
+                    <h1 id="modal-name" class="text-3xl font-bold text-gray-800">Name</h1>
+                    <i id="modal-verified" data-lucide="check-circle" class="text-blue-500 w-7 h-7 hidden" fill="white"></i>
+                </div>
+                <div class="flex flex-col gap-1 text-gray-600 mt-2 text-sm">
+                    <div class="flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4"></i><p id="modal-identity"></p></div>
+                    <div class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4"></i><p id="modal-location"></p></div>
+                    <div class="flex items-center gap-1.5"><p id="modal-distance"></p></div>
+                </div>
+                <div class="mt-6">
+                    <h2 class="font-bold text-gray-800">About Me</h2>
+                    <p id="modal-bio" class="text-gray-600 mt-1"></p>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4 text-sm" id="modal-tags">
+                    <!-- Tags -->
+                </div>
+                <div class="mt-6">
+                    <h2 class="font-bold text-gray-800">My Interests</h2>
+                    <div class="flex flex-wrap gap-2 mt-2 text-sm" id="modal-interests">
+                        <!-- Interests -->
+                    </div>
+                </div>
+            </div>
+            <div class="sticky bottom-0 grid grid-cols-2 gap-4 bg-white p-4 border-t border-gray-200">
+                <button onclick="closeModal()" class="bg-gray-200 text-gray-800 font-bold py-3 rounded-full hover:bg-gray-300 transition-colors">Pass</button>
+                <button class="bg-gradient-to-r from-pink-500 to-red-500 text-white font-bold py-3 rounded-full hover:opacity-90 transition-opacity">Like</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- DATA ---
+        const defaultMatchesData = [
+            { name: "Mila", age: 26, lastSeen: "6h ago", avatar: "/images/male/tinder/5.jpg", verified: true, identity: "Bisexual", distance: "2 km", bio: "Part dreamer, part doer, all about good vibes. Ready to make some memories?", zodiac: "Virgo", mbti: "KU", passion: "Coffee", interests: ["Hiking", "Green Living", "Live Music", "Pottery"] },
+            { name: "John", age: 25, lastSeen: "4h ago", avatar: "/images/female/tinder/5.jpg", verified: true, identity: "Bisexual", distance: "2 km", bio: "Half adrenaline junkie, half cozy blanket enthusiast. What’s your vibe?", zodiac: "Leo", mbti: "BU", passion: "Fitness", interests: ["Meditation", "Books", "Wine", "Music"] },
+            { name: "Harper", age: 21, lastSeen: "3h ago", avatar: "/images/male/tinder/3.jpg", verified: false, identity: "Woman", distance: "5 km", bio: "Just a girl who loves sunsets and long walks on the beach. Looking for someone to share adventures with.", zodiac: "Leo", mbti: "UVA", passion: "Yoga", interests: ["Travel", "Photography", "Podcasts"] },
+            { name: "Will", age: 23, lastSeen: "2h ago", avatar: "/images/female/tinder/3.jpg", verified: true, identity: "Man", distance: "8 km", bio: "Fluent in sarcasm and movie quotes. Let's find the best pizza place in town.", zodiac: "Gemini", mbti: "OHY", passion: "Baking", interests: ["Concerts", "Netflix", "Dogs"] }
+        ];
+
+        const femaleMatchesData = [
+            { name: "Elizabeth", age: 24, lastSeen: "1h ago", avatar: "/images/male/tinder/1.jpg", verified: true, identity: "Woman", distance: "3 km", bio: "Seeking new adventures and a great cup of coffee. Let's explore the city together.", zodiac: "Aries", mbti: "ENFP", passion: "Traveling", interests: ["Art", "History", "Podcasts"] },
+            { name: "Victoria", age: 27, lastSeen: "5h ago", avatar: "/images/male/tinder/2.jpg", verified: false, identity: "Woman", distance: "1 km", bio: "Bookworm and aspiring chef. Tell me about the last great book you read.", zodiac: "Taurus", mbti: "ISFJ", passion: "Cooking", interests: ["Reading", "Yoga", "Documentaries"] },
+            { name: "Charlotte", age: 22, lastSeen: "Online", avatar: "/images/male/tinder/3.jpg", verified: true, identity: "Woman", distance: "6 km", bio: "Lover of live music and spontaneous road trips. What's our first destination?", zodiac: "Sagittarius", mbti: "ESFP", passion: "Music", interests: ["Concerts", "Photography", "Hiking"] },
+            { name: "Emily", age: 25, lastSeen: "3h ago", avatar: "/images/male/tinder/4.jpg", verified: true, identity: "Woman", distance: "4 km", bio: "Fitness enthusiast who's equally happy on the couch with a good movie.", zodiac: "Virgo", mbti: "ISTJ", passion: "Fitness", interests: ["Movies", "Healthy Eating", "Dogs"] },
+            { name: "Grace", age: 28, lastSeen: "8h ago", avatar: "/images/male/tinder/5.jpg", verified: false, identity: "Woman", distance: "7 km", bio: "Creative soul with a love for painting and poetry. Looking for meaningful conversations.", zodiac: "Pisces", mbti: "INFP", passion: "Art", interests: ["Museums", "Writing", "Coffee Shops"] },
+            { name: "Olivia", age: 23, lastSeen: "2h ago", avatar: "/images/male/tinder/6.jpg", verified: true, identity: "Woman", distance: "2 km", bio: "Sarcasm is my second language. Let's find the best taco spot in town.", zodiac: "Gemini", mbti: "ENTP", passion: "Comedy", interests: ["Foodie", "Travel", "Stand-up"] }
+        ];
+
+        const maleMatchesData = [
+            { name: "William", age: 26, lastSeen: "Online", avatar: "/images/female/tinder/1.jpg", verified: true, identity: "Man", distance: "2 km", bio: "Engineer by day, musician by night. Let's talk about tech and tunes.", zodiac: "Capricorn", mbti: "INTJ", passion: "Guitar", interests: ["Technology", "Live Music", "Brewing"] },
+            { name: "James", age: 29, lastSeen: "4h ago", avatar: "/images/female/tinder/2.jpg", verified: true, identity: "Man", distance: "5 km", bio: "Outdoors enthusiast looking for someone to hike with. My dog will probably like you.", zodiac: "Leo", mbti: "ESTP", passion: "Hiking", interests: ["Camping", "Dogs", "Bonfires"] },
+            { name: "Henry", age: 25, lastSeen: "1h ago", avatar: "/images/female/tinder/3.jpg", verified: false, identity: "Man", distance: "3 km", bio: "Film buff and history nerd. Can recommend a movie for any mood.", zodiac: "Cancer", mbti: "INFJ", passion: "Movies", interests: ["History", "Reading", "Chess"] },
+            { name: "Oliver", age: 27, lastSeen: "6h ago", avatar: "/images/female/tinder/4.jpg", verified: true, identity: "Man", distance: "8 km", bio: "Just a guy who enjoys good food, good company, and exploring new places.", zodiac: "Libra", mbti: "ESFJ", passion: "Foodie", interests: ["Travel", "Cooking", "Sports"] },
+            { name: "Thomas", age: 30, lastSeen: "2h ago", avatar: "/images/female/tinder/5.jpg", verified: true, identity: "Man", distance: "4 km", bio: "Trying to find someone who won't steal my fries. Kidding... mostly.", zodiac: "Scorpio", mbti: "ISTP", passion: "Traveling", interests: ["Photography", "Motorcycles", "Gym"] },
+            { name: "Edward", age: 24, lastSeen: "7h ago", avatar: "/images/female/tinder/6.jpg", verified: false, identity: "Man", distance: "6 km", bio: "Fluent in sarcasm and bad jokes. Looking for a partner in crime.", zodiac: "Aquarius", mbti: "ENTP", passion: "Gaming", interests: ["Comedy", "Sci-Fi", "Concerts"] }
+        ];
+
+        const defaultCensoredPhotos = ["/images/censored/photo1.jpg", "/images/censored/photo2.jpg", "/images/censored/photo3.jpg", "/images/censored/photo4.jpg"];
+        const femaleCensoredPhotos = ["/images/male/tinder/censored/censored-f-1.jpg", "/images/male/tinder/censored/censored-f-2.jpg", "/images/male/tinder/censored/censored-f-3.jpg", "/images/male/tinder/censored/censored-f-4.jpg"];
+        const maleCensoredPhotos = ["/images/female/tinder/censored/censored-h-1.jpg", "/images/female/tinder/censored/censored-h-2.jpg", "/images/female/tinder/censored/censored-h-3.jpg", "/images/female/tinder/censored/censored-h-4.jpg"];
+
+        // --- STATE ---
+        let state = {
+            gender: null,
+            imageUploaded: false,
+            location: 'your city'
+        };
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            // Try to pre-fetch location immediately
+            fetch('/api/location')
+                .then(res => res.json())
+                .then(data => { if(data.city) state.location = data.city; })
+                .catch(err => console.log('Location fetch error (using default)', err));
+        });
+
+        // --- INPUT FUNCTIONS ---
+        function handleImageChange(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('image-preview');
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                    document.getElementById('upload-placeholder').classList.add('hidden');
+                    state.imageUploaded = true;
+                    checkStartButton();
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function selectGender(gender) {
+            state.gender = gender;
+            
+            // Visual Update
+            document.querySelectorAll('.gender-btn').forEach(btn => {
+                btn.className = "gender-btn p-4 border border-gray-200 rounded-xl transition-all duration-200 hover:border-gray-400";
+            });
+            const activeBtn = document.getElementById(`btn-${gender.toLowerCase().replace(' ', '-')}`);
+            activeBtn.className = "gender-btn p-4 border border-blue-500 bg-blue-100 ring-2 ring-blue-300 rounded-xl transition-all duration-200";
+            
+            checkStartButton();
+        }
+
+        function checkStartButton() {
+            const btn = document.getElementById('start-btn');
+            if (state.imageUploaded && state.gender) {
+                btn.removeAttribute('disabled');
+            } else {
+                btn.setAttribute('disabled', 'true');
+            }
+        }
+
+        function startInvestigation() {
+            document.getElementById('section-input').classList.add('hidden');
+            document.getElementById('section-loading').classList.remove('hidden');
+            
+            // Wait 3 seconds then show results
+            setTimeout(() => {
+                showResults();
+            }, 3000);
+        }
+
+        // --- RESULTS FUNCTIONS ---
+        function showResults() {
+            document.getElementById('section-loading').classList.add('hidden');
+            document.getElementById('section-results').classList.remove('hidden');
+            
+            document.getElementById('user-city').innerText = state.location;
+            
+            renderMatches();
+            renderCarousel();
+            startTimer();
+        }
+
+        function getActiveData() {
+            let matches = defaultMatchesData;
+            let photos = defaultCensoredPhotos;
+            
+            if (state.gender === 'Male') {
+                matches = femaleMatchesData; // Looking for females
+                photos = femaleCensoredPhotos;
+            } else if (state.gender === 'Female') {
+                matches = maleMatchesData; // Looking for males
+                photos = maleCensoredPhotos;
+            }
+            return { matches, photos };
+        }
+
+        function renderMatches() {
+            const { matches } = getActiveData();
+            const container = document.getElementById('matches-list');
+            
+            container.innerHTML = matches.map((match, index) => `
+                <div onclick="openModal(${index})" class="flex items-center gap-4 bg-slate-700/50 p-3 rounded-lg cursor-pointer hover:bg-slate-600 transition-colors">
+                    <img src="${match.avatar}" onerror="this.src='/placeholder.svg'" alt="${match.name}" class="w-12 h-12 rounded-full object-cover border-2 border-slate-600">
+                    <div class="flex-grow">
+                        <p class="font-bold">${match.name}, ${match.age}</p>
+                        <p class="text-xs text-gray-400">Last seen: ${match.lastSeen}</p>
+                        <p class="text-xs font-semibold text-green-400">Active chat: frequently online</p>
+                    </div>
+                    <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                </div>
+            `).join('');
+        }
+
+        // --- CAROUSEL LOGIC ---
+        function renderCarousel() {
+            const { photos } = getActiveData();
+            const track = document.getElementById('carousel-track');
+            const dots = document.getElementById('carousel-dots');
+            
+            track.innerHTML = photos.map(src => `
+                <div class="relative flex-[0_0_100%] aspect-video bg-gray-700 rounded-lg overflow-hidden snap-center">
+                    <img src="${src}" onerror="this.src='/placeholder.svg'" class="w-full h-full object-cover censored-blur">
+                    <div class="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-white">
+                        <i data-lucide="lock" class="w-8 h-8"></i>
+                        <span class="font-bold mt-1 text-sm tracking-widest">BLOCKED</span>
+                    </div>
+                </div>
+            `).join('');
+            
+            dots.innerHTML = photos.map((_, i) => `
+                <div class="w-2 h-2 rounded-full bg-slate-600 transition-colors" id="dot-${i}"></div>
+            `).join('');
+            
+            updateDots(0);
+            
+            // Re-init icons for new elements
+            lucide.createIcons();
+            
+            // Auto scroll logic
+            track.addEventListener('scroll', () => {
+                const index = Math.round(track.scrollLeft / track.offsetWidth);
+                updateDots(index);
+            });
+            
+            setInterval(() => scrollCarousel(1), 6000);
+        }
+
+        function scrollCarousel(direction) {
+            const track = document.getElementById('carousel-track');
+            const width = track.offsetWidth;
+            const maxScroll = track.scrollWidth - width;
+            
+            let newScroll = track.scrollLeft + (direction * width);
+            
+            // Loop functionality
+            if (newScroll > maxScroll + 10) newScroll = 0;
+            if (newScroll < 0) newScroll = maxScroll;
+            
+            track.scrollTo({ left: newScroll, behavior: 'smooth' });
+        }
+
+        function updateDots(activeIdx) {
+            const dots = document.getElementById('carousel-dots').children;
+            for(let i=0; i<dots.length; i++) {
+                dots[i].className = i === activeIdx 
+                    ? "w-2 h-2 rounded-full bg-white transition-colors" 
+                    : "w-2 h-2 rounded-full bg-slate-600 transition-colors";
+            }
+        }
+
+        // --- MODAL LOGIC ---
+        let currentMatches = []; // Store to access via index
+
+        function openModal(index) {
+            const { matches } = getActiveData();
+            currentMatches = matches;
+            const match = matches[index];
+            const modal = document.getElementById('match-modal');
+            
+            document.getElementById('modal-avatar').src = match.avatar;
+            document.getElementById('modal-name').innerText = match.name;
+            document.getElementById('modal-verified').classList.toggle('hidden', !match.verified);
+            
+            document.getElementById('modal-identity').innerText = match.identity;
+            document.getElementById('modal-location').innerText = `Lives in ${state.location}`;
+            document.getElementById('modal-distance').innerHTML = `📍 ${match.distance} away`;
+            document.getElementById('modal-bio').innerText = match.bio;
+            
+            // Tags
+            const tags = [match.zodiac, match.mbti, match.passion];
+            document.getElementById('modal-tags').innerHTML = tags.map(t => 
+                `<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full">${t}</span>`
+            ).join('');
+            
+            // Interests
+            document.getElementById('modal-interests').innerHTML = match.interests.map(i => 
+                `<span class="border border-gray-300 text-gray-700 px-3 py-1 rounded-full">${i}</span>`
+            ).join('');
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons(); // For modal icons if generated dynamically
+        }
+
+        function closeModal() {
+            document.getElementById('match-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // --- TIMER ---
+        function startTimer() {
+            let timeLeft = 300; // 5 min
+            const el = document.getElementById('countdown');
+            setInterval(() => {
+                if (timeLeft <= 0) return;
+                timeLeft--;
+                const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+                const s = (timeLeft % 60).toString().padStart(2, '0');
+                el.innerText = `${m}:${s}`;
+            }, 1000);
+        }
+
+    </script>
+</body>
+</html>

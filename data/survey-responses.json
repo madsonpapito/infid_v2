@@ -1,0 +1,449 @@
+{
+  "responses": [
+    {
+      "id": 1770908783701,
+      "timestamp": "2026-02-12T15:06:23.701Z",
+      "gender": "female",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "gut",
+      "redFlags": [
+        "hide_phone",
+        "changed_passwords"
+      ]
+    },
+    {
+      "id": 1770908803205,
+      "timestamp": "2026-02-12T15:06:43.205Z",
+      "gender": "male",
+      "ageRange": "18-24",
+      "relationshipStatus": "married",
+      "suspicionLevel": "certain",
+      "redFlags": [
+        "hide_phone",
+        "deleting_messages"
+      ]
+    },
+    {
+      "id": 1770909107822,
+      "timestamp": "2026-02-12T15:11:47.822Z",
+      "gender": "female",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "certain",
+      "redFlags": [
+        "changed_passwords"
+      ]
+    },
+    {
+      "id": 1770909229637,
+      "timestamp": "2026-02-12T15:13:49.637Z",
+      "gender": "female",
+      "ageRange": "25-34",
+      "relationshipStatus": "relationship",
+      "suspicionLevel": "unsure",
+      "redFlags": [
+        "late_nights"
+      ]
+    },
+    {
+      "id": 1770909314188,
+      "timestamp": "2026-02-12T15:15:14.188Z",
+      "gender": "female",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "gut",
+      "redFlags": [
+        "hide_phone"
+      ]
+    },
+    {
+      "id": 1770909336219,
+      "timestamp": "2026-02-12T15:15:36.219Z",
+      "gender": "male",
+      "ageRange": "35-44",
+      "relationshipStatus": "relationship",
+      "suspicionLevel": "unsure",
+      "redFlags": [
+        "late_nights",
+        "appearance_change"
+      ]
+    },
+    {
+      "id": 1770909664549,
+      "timestamp": "2026-02-12T15:21:04.549Z",
+      "gender": "female",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "gut",
+      "redFlags": [
+        "hide_phone"
+      ]
+    },
+    {
+      "id": 1770910552956,
+      "timestamp": "2026-02-12T15:35:52.956Z",
+      "gender": "female",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "gut",
+      "redFlags": [
+        "hide_phone"
+      ]
+    },
+    {
+      "id": 1770911783313,
+      "timestamp": "2026-02-12T15:56:23.313Z",
+      "gender": "female",
+      "ageRange": "45+",
+      "relationshipStatus": "dating",
+      "suspicionLevel": "checking",
+      "redFlags": [
+        "appearance_change"
+      ]
+    },
+    {
+      "id": 1770912303416,
+      "timestamp": "2026-02-12T16:05:03.416Z",
+      "gender": "male",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "gut",
+      "redFlags": [
+        "hide_phone"
+      ]
+    },
+    {
+      "id": 1770912820610,
+      "timestamp": "2026-02-12T16:13:40.610Z",
+      "gender": "female",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "gut",
+      "redFlags": [
+        "hide_phone"
+      ]
+    },
+    {
+      "id": 1770912868019,
+      "timestamp": "2026-02-12T16:14:28.019Z",
+      "gender": "female",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "gut",
+      "redFlags": [
+        "hide_phone"
+      ]
+    },
+    {
+      "id": 1770912944836,
+      "timestamp": "2026-02-12T16:15:44.836Z",
+      "gender": "female",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "gut",
+      "redFlags": [
+        "hide_phone"
+      ]
+    },
+    {
+      "id": 1770912975686,
+      "timestamp": "2026-02-12T16:16:15.686Z",
+      "gender": "female",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "gut",
+      "redFlags": [
+        "hide_phone"
+      ]
+    },
+    {
+      "id": 1771194310039,
+      "timestamp": "2026-02-15T22:25:10.039Z",
+      "gender": "female",
+      "ageRange": "25-34",
+      "relationshipStatus": "relationship",
+      "suspicionLevel": "gut",
+      "redFlags": [
+        "changed_passwords"
+      ]
+    },
+    {
+      "id": 1771195551121,
+      "timestamp": "2026-02-15T22:45:51.121Z",
+      "gender": "non-binary",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "certain",
+      "redFlags": [
+        "deleting_messages"
+      ]
+    },
+    {
+      "id": 1771260328393,
+      "timestamp": "2026-02-16T16:45:28.393Z",
+      "gender": "female",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "unsure",
+      "redFlags": [
+        "hide_phone"
+      ]
+    },
+    {
+      "id": 1771272620424,
+      "timestamp": "2026-02-16T20:10:20.424Z",
+      "gender": "female",
+      "ageRange": "35-44",
+      "relationshipStatus": "relationship",
+      "suspicionLevel": "gut",
+      "redFlags": [
+        "deleting_messages"
+      ]
+    },
+    {
+      "id": 1771272707312,
+      "timestamp": "2026-02-16T20:11:47.312Z",
+      "gender": "male",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "gut",
+      "redFlags": [
+        "hide_phone"
+      ]
+    },
+    {
+      "id": 1771273405154,
+      "timestamp": "2026-02-16T20:23:25.154Z",
+      "gender": "female",
+      "ageRange": "35-44",
+      "relationshipStatus": "dating",
+      "suspicionLevel": "gut",
+      "redFlags": [
+        "deleting_messages"
+      ]
+    },
+    {
+      "id": 1771273972864,
+      "timestamp": "2026-02-16T20:32:52.864Z",
+      "gender": "male",
+      "ageRange": "18-24",
+      "relationshipStatus": "married",
+      "suspicionLevel": "certain",
+      "redFlags": [
+        "late_nights"
+      ]
+    },
+    {
+      "id": 1771273994850,
+      "timestamp": "2026-02-16T20:33:14.850Z",
+      "gender": "male",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "unsure",
+      "redFlags": [
+        "late_nights"
+      ]
+    },
+    {
+      "id": 1771280378141,
+      "timestamp": "2026-02-16T22:19:38.141Z",
+      "gender": "male",
+      "ageRange": "25-34",
+      "relationshipStatus": "complicated",
+      "suspicionLevel": "gut",
+      "redFlags": [
+        "hide_phone"
+      ]
+    },
+    {
+      "id": 1771280454508,
+      "timestamp": "2026-02-16T22:20:54.508Z",
+      "gender": "female",
+      "ageRange": "25-34",
+      "relationshipStatus": "complicated",
+      "suspicionLevel": "certain",
+      "redFlags": [
+        "distant"
+      ]
+    },
+    {
+      "id": 1771280979314,
+      "timestamp": "2026-02-16T22:29:39.314Z",
+      "gender": "male",
+      "ageRange": "18-24",
+      "relationshipStatus": "complicated",
+      "suspicionLevel": "certain",
+      "redFlags": [
+        "hide_phone"
+      ]
+    },
+    {
+      "id": 1771281540895,
+      "timestamp": "2026-02-16T22:39:00.895Z",
+      "gender": "female",
+      "ageRange": "18-24",
+      "relationshipStatus": "complicated",
+      "suspicionLevel": "certain",
+      "redFlags": [
+        "late_nights"
+      ]
+    },
+    {
+      "id": 1771282139128,
+      "timestamp": "2026-02-16T22:48:59.128Z",
+      "gender": "female",
+      "ageRange": "35-44",
+      "relationshipStatus": "married",
+      "suspicionLevel": "unsure",
+      "redFlags": [
+        "deleting_messages"
+      ]
+    },
+    {
+      "id": 1771413896190,
+      "timestamp": "2026-02-18T11:24:56.190Z",
+      "gender": "male",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "certain",
+      "redFlags": [
+        "hide_phone"
+      ]
+    },
+    {
+      "id": 1771414397277,
+      "timestamp": "2026-02-18T11:33:17.277Z",
+      "gender": "female",
+      "ageRange": "25-34",
+      "relationshipStatus": "married",
+      "suspicionLevel": "certain",
+      "redFlags": [
+        "appearance"
+      ]
+    }
+  ],
+  "summary": {
+    "totalResponses": 29,
+    "gender": [
+      {
+        "value": "female",
+        "count": 19,
+        "percentage": 66
+      },
+      {
+        "value": "male",
+        "count": 9,
+        "percentage": 31
+      },
+      {
+        "value": "non-binary",
+        "count": 1,
+        "percentage": 3
+      }
+    ],
+    "ageRange": [
+      {
+        "value": "25-34",
+        "count": 20,
+        "percentage": 69
+      },
+      {
+        "value": "18-24",
+        "count": 4,
+        "percentage": 14
+      },
+      {
+        "value": "35-44",
+        "count": 4,
+        "percentage": 14
+      },
+      {
+        "value": "45+",
+        "count": 1,
+        "percentage": 3
+      }
+    ],
+    "relationshipStatus": [
+      {
+        "value": "married",
+        "count": 19,
+        "percentage": 66
+      },
+      {
+        "value": "relationship",
+        "count": 4,
+        "percentage": 14
+      },
+      {
+        "value": "complicated",
+        "count": 4,
+        "percentage": 14
+      },
+      {
+        "value": "dating",
+        "count": 2,
+        "percentage": 7
+      }
+    ],
+    "suspicionLevel": [
+      {
+        "value": "gut",
+        "count": 14,
+        "percentage": 48
+      },
+      {
+        "value": "certain",
+        "count": 9,
+        "percentage": 31
+      },
+      {
+        "value": "unsure",
+        "count": 5,
+        "percentage": 17
+      },
+      {
+        "value": "checking",
+        "count": 1,
+        "percentage": 3
+      }
+    ],
+    "redFlags": [
+      {
+        "value": "hide_phone",
+        "count": 15,
+        "percentage": 52
+      },
+      {
+        "value": "deleting_messages",
+        "count": 5,
+        "percentage": 17
+      },
+      {
+        "value": "late_nights",
+        "count": 5,
+        "percentage": 17
+      },
+      {
+        "value": "changed_passwords",
+        "count": 3,
+        "percentage": 10
+      },
+      {
+        "value": "appearance_change",
+        "count": 2,
+        "percentage": 7
+      },
+      {
+        "value": "distant",
+        "count": 1,
+        "percentage": 3
+      },
+      {
+        "value": "appearance",
+        "count": 1,
+        "percentage": 3
+      }
+    ]
+  }
+}
