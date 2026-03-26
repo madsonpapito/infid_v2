@@ -90,7 +90,6 @@ const KW_STATS = [
   { w: "Miss you", c: 12 }, { w: "Babe", c: 10 }, { w: "Secret", c: 9 }
 ];
 
-// Image paths per gender
 const RECENT_LOGS_IMAGES = {
   male: ["/images/male/zap/1-f.png", "/images/male/zap/2-f.png", "/images/male/zap/3-f.png"],
   female: ["/images/female/zap/1-h.png", "/images/female/zap/2-h.png", "/images/female/zap/3-h.png"],
@@ -123,17 +122,14 @@ export default function Upsell1FPPage() {
   const [userLon, setUserLon] = useState<number | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Loading State
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [loadingStepText, setLoadingStepText] = useState("Initializing System...");
   const [loadingStepsHistory, setLoadingStepsHistory] = useState<string[]>([]);
 
-  // Report State
   const [timeLeft, setTimeLeft] = useState(300);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState<typeof CONVERSATIONS[0] | null>(null);
 
-  // Fetch user location
   useEffect(() => {
     fetch('/api/geo')
       .then(r => r.json())
@@ -156,7 +152,6 @@ export default function Upsell1FPPage() {
       });
   }, []);
 
-  // Script injection for FortPay
   useEffect(() => {
     if (step !== 'report') return;
     const existing = document.getElementById('fortpay-oneclick-u1');
@@ -172,7 +167,6 @@ export default function Upsell1FPPage() {
     };
   }, [step]);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -183,10 +177,9 @@ export default function Upsell1FPPage() {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  // Auto-fetch WhatsApp avatar when phone is long enough
   useEffect(() => {
     const cleaned = phone.replace(/\D/g, '');
-    if (cleaned.length < 8) {
+    if (cleaned.length < 6) {
       setAvatarUrl(null);
       return;
     }
@@ -225,7 +218,6 @@ export default function Upsell1FPPage() {
   };
 
   const startAnalysis = () => {
-    if (phone.replace(/\D/g, '').length < 8) return;
     setStep('loading');
     runLoadingSequence();
   };
@@ -274,8 +266,6 @@ export default function Upsell1FPPage() {
 
   return (
     <div className="bg-[#0B1120] min-h-screen font-sans text-slate-200 selection:bg-cyan-500/30">
-
-      {/* --- TOP BANNER --- */}
       <div className="w-full bg-rose-600/90 backdrop-blur-md text-center py-2 px-4 sticky top-0 z-50 border-b border-rose-500/50">
         <p className="text-xs font-bold text-white uppercase tracking-widest animate-pulse flex items-center justify-center gap-2">
           <AlertTriangle className="w-4 h-4" />
@@ -296,13 +286,9 @@ export default function Upsell1FPPage() {
       )}
 
       <main className="w-full max-w-md mx-auto px-4 py-8 pb-32">
-
-        {/* --- STEP 1: INTRO & FORM --- */}
         {step === 'intro' && (
           <div className="space-y-8 animate-fade-in-up">
-
             <div className="text-center space-y-4">
-              {/* AVATAR ICON — updates with WhatsApp photo */}
               <div className="relative inline-flex items-center justify-center mx-auto">
                 <div className="w-24 h-24 rounded-full border-2 border-cyan-500/40 shadow-[0_0_20px_rgba(6,182,212,0.2)] overflow-hidden bg-slate-800 flex items-center justify-center">
                   {isFetchingAvatar ? (
@@ -319,96 +305,49 @@ export default function Upsell1FPPage() {
                   </div>
                 )}
               </div>
-
-              <h1 className="text-2xl font-bold text-white">
-                <span className="text-cyan-400">WhatsApp</span> Deep Scan
-              </h1>
-
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Our intelligence network has flagged suspicious activity. Enter the target number to extract hidden logs.
-              </p>
+              <h1 className="text-2xl font-bold text-white"><span className="text-cyan-400">WhatsApp</span> Deep Scan</h1>
+              <p className="text-slate-400 text-sm leading-relaxed">Our intelligence network has flagged suspicious activity. Enter the target number to extract hidden logs.</p>
             </div>
 
-            {/* Form Container */}
             <div className="bg-[#0f172a] border border-slate-700/50 rounded-2xl p-6 shadow-xl space-y-6 relative overflow-hidden">
               <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 pointer-events-none"></div>
 
-              {/* Gender */}
               <div className="space-y-3 z-10 relative">
                 <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Target Gender</label>
                 <div className="grid grid-cols-3 gap-3">
                   {['Male', 'Female', 'Other'].map((g) => (
-                    <button
-                      key={g}
-                      onClick={() => setGender(g)}
-                      className={`py-3 rounded-xl text-sm font-bold border transition-all ${gender === g
-                        ? 'bg-cyan-500/10 border-cyan-500 text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.2)]'
-                        : 'bg-slate-800 border-slate-700 text-slate-400 hover:border-slate-600'
-                        }`}
-                    >
-                      {g}
-                    </button>
+                    <button key={g} onClick={() => setGender(g)} className={`py-3 rounded-xl text-sm font-bold border transition-all ${gender === g ? 'bg-cyan-500/10 border-cyan-500 text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.2)]' : 'bg-slate-800 border-slate-700 text-slate-400 hover:border-slate-600'}`}>{g}</button>
                   ))}
                 </div>
               </div>
 
-              {/* Phone Input with Country Dropdown */}
               <div className="space-y-3 z-10 relative" ref={dropdownRef}>
                 <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Target Number</label>
                 <div className="relative">
                   <div className="flex bg-slate-800 rounded-xl border border-slate-700 overflow-visible focus-within:border-cyan-500 transition-colors">
-                    <button
-                      type="button"
-                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                      className="px-3 py-3 bg-slate-900/50 border-r border-slate-700 flex items-center gap-1.5 hover:bg-slate-800 transition-colors rounded-l-xl min-w-[80px]"
-                    >
+                    <button type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="px-3 py-3 bg-slate-900/50 border-r border-slate-700 flex items-center gap-1.5 hover:bg-slate-800 transition-colors rounded-l-xl min-w-[80px]">
                       <span className="text-base">{country.flag}</span>
                       <span className="text-xs font-mono text-slate-300">{country.code}</span>
                     </button>
-                    <input
-                      type="tel"
-                      value={phone}
-                      onChange={handlePhoneChange}
-                      placeholder={country.placeholder}
-                      className="flex-1 bg-transparent px-4 py-3 text-white outline-none placeholder-slate-600 font-mono text-sm"
-                    />
+                    <input type="tel" value={phone} onChange={handlePhoneChange} placeholder={country.placeholder} className="flex-1 bg-transparent px-4 py-3 text-white outline-none placeholder-slate-600 font-mono text-sm" />
                     {isFetchingAvatar && (
                       <div className="pr-3 flex items-center">
                         <Loader2 className="w-4 h-4 text-cyan-400 animate-spin" />
                       </div>
                     )}
                   </div>
-
-                  {/* Country Dropdown */}
                   {isDropdownOpen && (
                     <div className="absolute top-full left-0 mt-1 w-full bg-slate-800 border border-slate-700 rounded-xl shadow-2xl z-50 flex flex-col max-h-60">
                       <div className="p-2 border-b border-slate-700 sticky top-0 bg-slate-800 z-10">
                         <div className="relative">
                           <Search className="absolute left-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-400" />
-                          <input
-                            type="text"
-                            className="w-full bg-slate-900 border border-slate-700 rounded-lg text-xs text-white pl-7 p-2 focus:border-cyan-500 outline-none"
-                            placeholder="Search country..."
-                            value={countrySearch}
-                            onChange={(e) => setCountrySearch(e.target.value)}
-                            autoFocus
-                          />
+                          <input type="text" className="w-full bg-slate-900 border border-slate-700 rounded-lg text-xs text-white pl-7 p-2 focus:border-cyan-500 outline-none" placeholder="Search country..." value={countrySearch} onChange={(e) => setCountrySearch(e.target.value)} autoFocus />
                         </div>
                       </div>
                       <div className="overflow-y-auto flex-1">
-                        {filteredCountries.length === 0 && (
-                          <div className="p-4 text-center text-slate-500 text-xs">No countries found</div>
-                        )}
+                        {filteredCountries.length === 0 && <div className="p-4 text-center text-slate-500 text-xs">No countries found</div>}
                         {filteredCountries.map((c, i) => (
-                          <button
-                            key={i}
-                            onClick={() => {
-                              setCountry(c);
-                              setIsDropdownOpen(false);
-                              setCountrySearch('');
-                            }}
-                            className="w-full flex items-center gap-3 p-2 hover:bg-slate-700 text-left transition-colors border-b border-slate-700/50 last:border-0"
-                          >
+                          <button key={i} onClick={() => { setCountry(c); setIsDropdownOpen(false); setCountrySearch(''); }} className="w-full flex items-center gap-3 p-2 hover:bg-slate-700 text-left transition-colors border-b border-slate-700/50 last:border-0">
                             <span className="text-base flex-shrink-0">{c.flag}</span>
                             <div className="flex-1 min-w-0">
                               <p className="text-xs text-white font-bold truncate">{c.name}</p>
@@ -422,25 +361,17 @@ export default function Upsell1FPPage() {
                 </div>
               </div>
 
-              <button
-                onClick={startAnalysis}
-                disabled={phone.replace(/\D/g, '').length < 8}
-                className="w-full py-4 bg-cyan-500 hover:bg-cyan-400 text-[#0B1120] font-bold rounded-xl shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <Lock className="w-5 h-5" />
-                INITIATE CLONE
+              <button onClick={startAnalysis} disabled={phone.replace(/\D/g, '').length < 6} className="w-full py-4 bg-cyan-500 hover:bg-cyan-400 text-[#0B1120] font-bold rounded-xl shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                <Lock className="w-5 h-5" /> INITIATE CLONE
               </button>
-
               <div className="flex justify-center items-center gap-2 text-[10px] text-slate-500">
                 <ShieldCheck className="w-3 h-3 text-emerald-500" />
                 <span>256-bit Encrypted • Anonymous Search</span>
               </div>
             </div>
-
           </div>
         )}
 
-        {/* --- STEP 2: LOADING (TERMINAL STYLE) --- */}
         {step === 'loading' && (
           <div className="max-w-md mx-auto space-y-6 animate-in zoom-in duration-300">
             <div className="bg-[#0f172a] rounded-2xl border border-cyan-500/30 shadow-[0_0_30px_rgba(6,182,212,0.15)] p-6 text-center space-y-6 relative overflow-hidden">
@@ -463,10 +394,7 @@ export default function Upsell1FPPage() {
                   <span>{Math.round(loadingProgress)}%</span>
                 </div>
                 <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-cyan-500 shadow-[0_0_10px_cyan]"
-                    style={{ width: `${loadingProgress}%`, transition: 'width 0.1s linear' }}
-                  ></div>
+                  <div className="h-full bg-cyan-500 shadow-[0_0_10px_cyan]" style={{ width: `${loadingProgress}%`, transition: 'width 0.1s linear' }} />
                 </div>
               </div>
               <div className="h-32 bg-[#050911] rounded-lg p-3 text-left overflow-y-auto border border-slate-800 font-mono text-[10px] space-y-1">
@@ -482,11 +410,8 @@ export default function Upsell1FPPage() {
           </div>
         )}
 
-        {/* --- STEP 3: REPORT (CYBER UI) --- */}
         {step === 'report' && (
           <div className="animate-in slide-in-from-bottom-8 duration-700 space-y-6">
-
-            {/* Header */}
             <div className="bg-gradient-to-r from-emerald-600 to-cyan-700 p-4 rounded-t-2xl shadow-lg text-center relative z-10 border-b border-white/10">
               <h1 className="text-lg font-bold text-white flex items-center justify-center gap-2 uppercase tracking-wide">
                 <CheckCircle2 className="w-5 h-5" /> Access Granted
@@ -495,41 +420,25 @@ export default function Upsell1FPPage() {
             </div>
 
             <div className="bg-[#0f172a] rounded-b-2xl shadow-2xl p-5 space-y-6 pt-8 border border-slate-700 -mt-4 relative z-0">
-
-              {/* Alert Box */}
               <div className="bg-rose-500/10 border border-rose-500/20 p-4 rounded-xl flex items-start gap-3">
                 <Activity className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
                 <div>
                   <h3 className="text-sm font-bold text-rose-400">Suspicious Activity Detected</h3>
-                  <p className="text-xs text-slate-400 mt-1">
-                    Found <span className="text-white font-bold">148 deleted messages</span> and hidden media files.
-                  </p>
+                  <p className="text-xs text-slate-400 mt-1">Found <span className="text-white font-bold">148 deleted messages</span> and hidden media files.</p>
                 </div>
               </div>
 
-              {/* Recent Logs — with gender-based avatars */}
               <div className="space-y-2">
                 <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest pl-1">Recent Logs</h4>
                 {CONVERSATIONS.map((c, i) => (
-                  <div
-                    key={c.id}
-                    onClick={() => { setModalData(c); setModalOpen(true); }}
-                    className="flex justify-between items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-cyan-500/50 cursor-pointer transition-colors group"
-                  >
+                  <div key={c.id} onClick={() => { setModalData(c); setModalOpen(true); }} className="flex justify-between items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-cyan-500/50 cursor-pointer transition-colors group">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-700 flex-shrink-0">
-                        <img
-                          src={recentLogImages[i % recentLogImages.length]}
-                          alt="User"
-                          className="w-full h-full object-cover"
-                          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                        />
+                        <img src={recentLogImages[i % recentLogImages.length]} alt="User" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
                       </div>
                       <div>
                         <p className="font-bold text-xs text-white group-hover:text-cyan-400 transition-colors uppercase">{c.name}</p>
-                        <p className="text-[10px] text-rose-400 flex items-center gap-1">
-                          <AlertTriangle className="w-3 h-3" /> {c.msg}
-                        </p>
+                        <p className="text-[10px] text-rose-400 flex items-center gap-1"><AlertTriangle className="w-3 h-3" /> {c.msg}</p>
                       </div>
                     </div>
                     <Lock className="w-3 h-3 text-slate-600 group-hover:text-cyan-500" />
@@ -537,69 +446,38 @@ export default function Upsell1FPPage() {
                 ))}
               </div>
 
-              {/* Keywords */}
               <div className="bg-slate-800/30 p-3 rounded-xl border border-slate-700">
                 <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Keyword Analysis</h4>
                 <div className="flex flex-wrap gap-2">
                   {KW_STATS.map((k, i) => (
                     <span key={i} className="px-2 py-1 bg-slate-800 border border-slate-600 rounded text-[10px] text-slate-300 flex items-center gap-1">
-                      {k.w}
-                      <span className="bg-rose-500 text-white px-1 rounded-sm font-bold">{k.c}</span>
+                      {k.w} <span className="bg-rose-500 text-white px-1 rounded-sm font-bold">{k.c}</span>
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* Suspicious Location */}
               <div className="bg-slate-800/30 p-4 rounded-xl border border-slate-700 space-y-3">
-                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
-                  <MapPin className="w-3 h-3 text-rose-400" /> Suspicious Location
-                </h4>
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2"><MapPin className="w-3 h-3 text-rose-400" /> Suspicious Location</h4>
                 <div className="relative w-full h-48 rounded-lg overflow-hidden border border-slate-700">
-                  <iframe
-                    title="Suspicious Location Map"
-                    src={userLat && userLon
-                      ? `https://maps.google.com/maps?q=motel+near+${userLat},${userLon}&output=embed&z=14`
-                      : `https://maps.google.com/maps?q=motel+near+${encodeURIComponent(userLocation)}&output=embed&z=14`
-                    }
-                    className="w-full h-full"
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
+                  <iframe title="Suspicious Location Map" src={userLat && userLon ? `https://maps.google.com/maps?q=motel+near+${userLat},${userLon}&output=embed&z=14` : `https://maps.google.com/maps?q=motel+near+${encodeURIComponent(userLocation)}&output=embed&z=14`} className="w-full h-full" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
                   <div className="absolute inset-0 pointer-events-none border border-rose-500/20 rounded-lg" />
                 </div>
                 <div className="flex items-center gap-2 bg-rose-500/10 border border-rose-500/20 rounded-lg p-2">
                   <div className="w-2 h-2 bg-rose-500 rounded-full animate-pulse flex-shrink-0" />
-                  <p className="text-[10px] text-rose-300 font-mono">
-                    Device signal detected near <span className="font-bold text-white">{userLocation}</span> — suspicious activity
-                  </p>
+                  <p className="text-[10px] text-rose-300 font-mono">Device signal detected near <span className="font-bold text-white">{userLocation}</span> — suspicious activity</p>
                 </div>
               </div>
 
-              {/* Recovered Media */}
               <div className="bg-slate-800/30 p-4 rounded-xl border border-slate-700 space-y-3">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
-                    <ImageIcon className="w-3 h-3 text-cyan-400" /> Recovered Media
-                  </h4>
-                  <span className="text-[10px] text-rose-400 font-bold">
-                    <span className="text-rose-400">247 deleted photos</span> were found.
-                  </span>
+                  <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2"><ImageIcon className="w-3 h-3 text-cyan-400" /> Recovered Media</h4>
+                  <span className="text-[10px] text-rose-400 font-bold"><span className="text-rose-400">247 deleted photos</span> were found.</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   {recoveredImages.map((src, i) => (
-                    <div
-                      key={i}
-                      onClick={() => setModalOpen(true)}
-                      className="relative aspect-[3/4] rounded-lg overflow-hidden bg-slate-800 cursor-pointer group"
-                    >
-                      <img
-                        src={src}
-                        alt="Recovered"
-                        className="w-full h-full object-cover blur-sm opacity-60 group-hover:opacity-80 transition-opacity"
-                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                      />
+                    <div key={i} onClick={() => setModalOpen(true)} className="relative aspect-[3/4] rounded-lg overflow-hidden bg-slate-800 cursor-pointer group">
+                      <img src={src} alt="Recovered" className="w-full h-full object-cover blur-sm opacity-60 group-hover:opacity-80 transition-opacity" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
                       <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
                         <Lock className="w-6 h-6 text-white/80" />
                         <span className="text-[10px] text-white/70 font-bold uppercase tracking-wider">Blocked</span>
@@ -609,42 +487,28 @@ export default function Upsell1FPPage() {
                 </div>
               </div>
 
-              {/* UNLOCK CARD */}
               <div className="bg-[#0B1120] border border-cyan-500/50 rounded-xl p-6 text-center shadow-[0_0_30px_rgba(6,182,212,0.1)] relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-rose-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
-                  EXPIRING SOON
-                </div>
-
-                <div className="mx-auto w-12 h-12 bg-cyan-500/10 rounded-full flex items-center justify-center mb-4 animate-bounce border border-cyan-500/30">
-                  <LockOpen className="w-6 h-6 text-cyan-400" />
-                </div>
-
+                <div className="absolute top-0 right-0 bg-rose-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">EXPIRING SOON</div>
+                <div className="mx-auto w-12 h-12 bg-cyan-500/10 rounded-full flex items-center justify-center mb-4 animate-bounce border border-cyan-500/30"><LockOpen className="w-6 h-6 text-cyan-400" /></div>
                 <h2 className="text-xl font-black text-white mb-2 uppercase tracking-wide">UNLOCK FULL REPORT</h2>
                 <p className="text-slate-400 text-xs mb-6 px-4">Get instant access to the full report with all chats, conversations, audio, videos, location history and photos exchanged.</p>
-
                 <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 mb-6 flex justify-between items-center max-w-[200px] mx-auto">
                   <span className="text-[10px] text-slate-500 uppercase font-bold">Session Expires:</span>
                   <span className="font-mono font-bold text-rose-500">{formatTime(timeLeft)}</span>
                 </div>
-
                 <div className="w-full flex flex-col items-center gap-3 pt-2">
                   <a href="javascript:void(0)" data-fortpay="3diwhi3kqn" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center">VIEW FULL REPORT</a>
                   <a href="/downsell-1-fp" className="text-[#004faa] text-sm hover:underline">I don't want access</a>
                 </div>
               </div>
-
             </div>
           </div>
         )}
-
       </main>
 
       {/* CHAT MODAL */}
       {modalOpen && (
-        <div
-          className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in"
-          onClick={() => setModalOpen(false)}
-        >
+        <div className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in" onClick={() => setModalOpen(false)}>
           <div className="bg-[#0f172a] w-full max-w-sm rounded-xl overflow-hidden border border-slate-700 shadow-2xl" onClick={e => e.stopPropagation()}>
             <div className="bg-slate-800 p-3 text-white flex items-center gap-3 border-b border-slate-700">
               <button onClick={() => setModalOpen(false)}><X className="w-5 h-5 text-slate-400" /></button>
@@ -655,17 +519,13 @@ export default function Upsell1FPPage() {
                 <Lock className="w-8 h-8 text-slate-500" />
               </div>
               <p className="text-slate-400 text-sm">This content is locked by 256-bit encryption.</p>
-              <button
-                onClick={() => setModalOpen(false)}
-                className="bg-cyan-500 text-[#0B1120] px-6 py-2 rounded font-bold shadow-lg hover:bg-cyan-400 uppercase text-xs tracking-wider"
-              >
+              <button onClick={() => setModalOpen(false)} className="bg-cyan-500 text-[#0B1120] px-6 py-2 rounded font-bold shadow-lg hover:bg-cyan-400 uppercase text-xs tracking-wider">
                 Return to Unlock
               </button>
             </div>
           </div>
         </div>
       )}
-
     </div>
   );
 }
