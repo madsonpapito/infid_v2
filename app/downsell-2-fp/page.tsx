@@ -146,15 +146,15 @@ export default function Downsell2FPPage() {
                     <div className="w-full flex flex-col items-center gap-3">
                         <a
                             href="javascript:void(0)"
-                            data-fornpay="pat5wfnksy"
-                            className="fornpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] hover:from-[#4da3ff] hover:to-[#2a75e8] text-white font-bold rounded-xl shadow-lg transition-all transform hover:scale-[1.02] text-center"
+                            data-fortpay="pat5wfnksy"
+                            className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] hover:from-[#4da3ff] hover:to-[#2a75e8] text-white font-bold rounded-xl shadow-lg transition-all transform hover:scale-[1.02] text-center"
                         >
                             SIM, EU ACEITO ESSA OFERTA
                         </a>
                         <a
                             href="/thanks"
                             data-downsell="/thanks"
-                            className="fornpay_downsell text-[#004faa] text-sm hover:underline"
+                            className="fortpay_downsell text-[#004faa] text-sm hover:underline"
                         >
                             Vou recusar essa oferta
                         </a>

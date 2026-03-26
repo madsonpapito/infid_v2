@@ -163,8 +163,7 @@ export default function Upsell2FPPage() {
                             <div className="inline-flex items-center justify-center w-12 h-12 bg-rose-500/10 rounded-full border border-rose-500/30"><Lock className="w-6 h-6 text-rose-400" /></div>
                             <h2 className="text-xl font-bold text-white">Unlock Full Report</h2>
                             <div className="w-full flex flex-col items-center gap-3 pt-2">
-                                <a href="javascript:void(0)" data-fornpay="nqozvq7tqg" className="fornpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg text-center">SIM, EU ACEITO ESSA OFERTA</a>
-                                <a href="/downsell-2-fp" className="text-[#004faa] text-sm hover:underline">Vou recusar essa oferta</a>
+                                <a href="javascript:void(0)" data-fortpay="nqozvq7tqg" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg text-center">SIM, EU ACEITO ESSA OFERTA</a>                                <a href="/downsell-2-fp" className="text-[#004faa] text-sm hover:underline">Vou recusar essa oferta</a>
                             </div>
                         </div>
                     </div>

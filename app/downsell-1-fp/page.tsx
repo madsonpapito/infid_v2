@@ -87,7 +87,7 @@ export default function Downsell1FPPage() {
                         </div>
 
                         <div className="w-full flex flex-col items-center gap-3">
-                            <a href="javascript:void(0)" data-fornpay="emp8eejzsw" className="fornpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center">SIM, EU ACEITO ESSA OFERTA</a>
+                            <a href="javascript:void(0)" data-fortpay="emp8eejzsw" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center">SIM, EU ACEITO ESSA OFERTA</a>
                             <a href="/upsell-2-fp" className="text-[#004faa] text-sm hover:underline">Vou recusar essa oferta</a>
                         </div>
                     </div>
