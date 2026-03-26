@@ -3,7 +3,7 @@
 import { LegalFooter } from "@/components/legal-footer"
 import { Check, ShieldCheck, Lock, Eye, BookOpen, MessageCircle } from "lucide-react"
 import Link from "next/link"
-import { FacebookTracker } from "@/components/facebook-tracker"
+import { FacebookTracker } from "@/components/FacebookTracker"
 
 export default function InitPageFP() {
     return (
