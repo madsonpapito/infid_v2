@@ -379,8 +379,8 @@ export default function Upsell1FPPage() {
               <p className="text-sm text-slate-400">Get instant access to all recovered data, messages, and media.</p>
 
               <div className="w-full flex flex-col items-center gap-3 pt-2">
-                <a href="javascript:void(0)" data-fortpay="3diwhi3kqn" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center">SIM, EU ACEITO ESSA OFERTA</a>
-                <a href="/downsell-1-fp" className="text-[#004faa] text-sm hover:underline">Vou recusar essa oferta</a>
+                <a href="javascript:void(0)" data-fortpay="3diwhi3kqn" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center">VIEW FULL REPORT</a>
+                <a href="/downsell-1-fp" className="text-[#004faa] text-sm hover:underline">I don't want access</a>
               </div>
             </div>
           </div>
