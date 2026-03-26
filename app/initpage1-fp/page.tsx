@@ -8,7 +8,7 @@ export default function InitPage1FP() {
             {/* Warning Header Strip */}
             <div className="bg-red-600 text-white py-3 px-4 text-center">
                 <p className="text-sm md:text-base font-bold uppercase tracking-wide animate-pulse">
-                    {"WAIT! YOUR ORDER IS NOT COMPLETE YET. DO NOT CLOSE THIS PAGE."}
+                    ⚠️ WAIT! YOUR ORDER IS NOT COMPLETE YET. DO NOT CLOSE THIS PAGE. ⚠️
                 </p>
             </div>
 
@@ -35,7 +35,7 @@ export default function InitPage1FP() {
                                 <div className="w-0 h-0 border-l-[20px] border-l-white border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
                             </div>
                             <p className="text-white/80 text-sm md:text-base max-w-md">
-                                {"\"Most people think deleting a message deletes the evidence. It doesn't. Your phone tracks everything...\""}
+                                &ldquo;Most people think deleting a message deletes the evidence. It doesn&apos;t. Your phone tracks everything...&rdquo;
                             </p>
                         </div>
                     </div>
@@ -49,27 +49,22 @@ export default function InitPage1FP() {
                         <strong>Dear Friend,</strong>
                     </p>
                     <p className="text-slate-700 leading-relaxed">
-                        {"Congratulations on securing the "}
-                        <em>Reading Signs</em>
-                        {" method. You are now miles ahead of everyone else when it comes to spotting a lie."}
+                        Congratulations on securing the <em>Reading Signs</em> method. You are now miles ahead of everyone else when it comes to spotting a lie.
                     </p>
                     <p className="text-slate-700 leading-relaxed">
-                        {"But let's be honest for a second."}
+                        But let&apos;s be honest for a second.
                     </p>
                     <p className="text-slate-900 font-semibold text-xl leading-relaxed">
                         Knowing they are lying is painful. <span className="text-blue-600">Proving it is power.</span>
                     </p>
                     <p className="text-slate-700 leading-relaxed">
-                        {"When you confront your partner based on a \"feeling\" or a \"micro-expression,\" they can gaslight you. They can say, "}
-                        <em>{'"You\'re crazy,"'}</em>
-                        {" or "}
-                        <em>{'"You\'re imagining things."'}</em>
+                        When you confront your partner based on a &ldquo;feeling&rdquo; or a &ldquo;micro-expression,&rdquo; they can gaslight you. They can say, <em>&ldquo;You&apos;re crazy,&rdquo;</em> or <em>&ldquo;You&apos;re imagining things.&rdquo;</em>
                     </p>
                     <p className="text-slate-900 font-semibold leading-relaxed">
                         But they cannot argue with a screenshot. They cannot argue with digital logs.
                     </p>
                     <p className="text-slate-700 leading-relaxed">
-                        {"Most cheating partners think they are smart. They delete WhatsApp chats. They clear their browser history. They use \"Vanish Mode.\""}
+                        Most cheating partners think they are smart. They delete WhatsApp chats. They clear their browser history. They use &ldquo;Vanish Mode.&rdquo;
                     </p>
                     <p className="text-slate-900 font-bold text-xl">
                         But they make mistakes.
@@ -96,7 +91,7 @@ export default function InitPage1FP() {
                         </div>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-extrabold mb-4">
-                        The Digital Audit Kit
+                        📱 The Digital Audit Kit
                     </h2>
                     <p className="text-xl md:text-2xl text-slate-300 font-medium">
                         How to Find Concrete Proof Without Being a Hacker
@@ -122,7 +117,7 @@ export default function InitPage1FP() {
                                     <Battery className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-lg text-slate-900 mb-2">{"The \"Battery Betrayal\" Technique"}</h4>
+                                    <h4 className="font-bold text-lg text-slate-900 mb-2">🔋 The &ldquo;Battery Betrayal&rdquo; Technique</h4>
                                     <p className="text-slate-600 leading-relaxed">
                                         How to instantly see which apps are being used the most (and at what times), even if the icon is hidden from the home screen.
                                     </p>
@@ -137,7 +132,7 @@ export default function InitPage1FP() {
                                     <MapPin className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-lg text-slate-900 mb-2">The Location Timeline</h4>
+                                    <h4 className="font-bold text-lg text-slate-900 mb-2">📍 The Location Timeline</h4>
                                     <p className="text-slate-600 leading-relaxed">
                                         How to access the hidden map inside Google and Apple accounts that shows exactly where the phone has been, minute by minute.
                                     </p>
@@ -152,7 +147,7 @@ export default function InitPage1FP() {
                                     <Calculator className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-lg text-slate-900 mb-2">{"The \"Calculator\" Vaults"}</h4>
+                                    <h4 className="font-bold text-lg text-slate-900 mb-2">🛡️ The &ldquo;Calculator&rdquo; Vaults</h4>
                                     <p className="text-slate-600 leading-relaxed">
                                         Is that really a calculator app? Learn how to spot fake apps that are actually secret vaults for photos and messages.
                                     </p>
@@ -167,7 +162,7 @@ export default function InitPage1FP() {
                                     <Trash2 className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-lg text-slate-900 mb-2">The Ghost Folder</h4>
+                                    <h4 className="font-bold text-lg text-slate-900 mb-2">🗑️ The Ghost Folder</h4>
                                     <p className="text-slate-600 leading-relaxed">
                                         The one place inside the photo gallery that 90% of people forget to empty after deleting incriminating photos.
                                     </p>
@@ -182,7 +177,7 @@ export default function InitPage1FP() {
                                     <Cloud className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-lg text-slate-900 mb-2">The Cloud Backdoor</h4>
+                                    <h4 className="font-bold text-lg text-slate-900 mb-2">☁️ The Cloud Backdoor</h4>
                                     <p className="text-slate-600 leading-relaxed">
                                         How to find messages that were deleted from the phone but are still living in the cloud backup.
                                     </p>
@@ -193,40 +188,9 @@ export default function InitPage1FP() {
                 </div>
             </section>
 
-            {/* Urgency Section */}
-            <section className="py-16 px-4 md:px-8 bg-amber-50 border-y-4 border-amber-400">
-                <div className="max-w-3xl mx-auto text-center space-y-6">
-                    <h3 className="text-2xl md:text-3xl font-bold text-amber-900">
-                        Why You Need This Right Now:
-                    </h3>
-                    <p className="text-lg text-amber-800 leading-relaxed">
-                        If you leave this page, you might never find this offer again. But more importantly, <strong>digital evidence disappears with time.</strong>
-                    </p>
-                    <p className="text-lg text-amber-900 font-semibold">
-                        Every day you wait is a day they might clear the cache or update the software.
-                    </p>
-                    <p className="text-amber-800 leading-relaxed">
-                        {"You don't need to be a tech genius. You don't need to guess passwords. You just need to follow the checklist."}
-                    </p>
-                    <p className="text-xl font-bold text-amber-900 pt-4">
-                        Get the Peace of Mind You Deserve.
-                    </p>
-                </div>
-            </section>
-
             {/* Offer Section */}
             <section className="py-20 px-4 md:px-8 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white">
                 <div className="max-w-3xl mx-auto text-center space-y-8">
-                    <div>
-                        <p className="text-blue-200 text-lg mb-2">The Offer:</p>
-                        <p className="text-blue-100 leading-relaxed">
-                            Normally, we sell this advanced module separately for <span className="line-through opacity-70">$97</span> because it is so powerful.
-                        </p>
-                        <p className="text-white leading-relaxed mt-2">
-                            But since you are a new member, and I want you to have the <strong>COMPLETE truth</strong>, you can add this to your order right now for a single payment of:
-                        </p>
-                    </div>
-
                     <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
                         <p className="text-blue-200 text-lg font-medium mb-2">One Time Only</p>
                         <div className="flex items-center justify-center gap-3">
@@ -234,7 +198,7 @@ export default function InitPage1FP() {
                             <span className="text-6xl md:text-7xl font-extrabold text-white">$47</span>
                         </div>
                         <p className="text-yellow-400 font-bold mt-3 text-lg">
-                            {"That's a 50% Discount - One Time Only!"}
+                            🔥 That&apos;s a 50% Discount - One Time Only!
                         </p>
                     </div>
 
@@ -243,7 +207,7 @@ export default function InitPage1FP() {
                             href="https://go.plataformafortpay.com.br/erdmddyptp"
                             className="block w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg md:text-xl font-bold py-5 px-10 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-orange-400"
                         >
-                            {"YES! Add The \"Digital Audit Kit\" To My Order"}
+                            ✅ YES! Add The &ldquo;Digital Audit Kit&rdquo; To My Order
                         </Link>
                         <p className="text-blue-100 text-sm">
                             Click here to add for just $47. Instant Access.
@@ -255,7 +219,7 @@ export default function InitPage1FP() {
                             href="/initpage2-fp"
                             className="text-slate-400 hover:text-slate-300 text-sm underline transition-colors inline-block"
                         >
-                            {"No thanks, I don't want the digital proof. I will rely only on my intuition and body language signs."}
+                            No thanks, I don&apos;t want the digital proof. I will rely only on my intuition and body language signs.
                         </Link>
                     </div>
                 </div>
@@ -269,27 +233,11 @@ export default function InitPage1FP() {
                             <ShieldCheck className="w-8 h-8 text-green-600" />
                         </div>
                         <h3 className="text-2xl font-bold text-green-900 mb-4">
-                            100% Risk-Free Guarantee
+                            🔒 100% Risk-Free Guarantee
                         </h3>
                         <p className="text-green-800 leading-relaxed">
                             Just like the main course, if you use these techniques and find they are too difficult or not useful, just email us, and we will refund this upgrade immediately. <strong>No questions asked.</strong>
                         </p>
-                    </div>
-                </div>
-            </section>
-
-            {/* Final CTA */}
-            <section className="py-12 px-4 md:px-8 bg-slate-100">
-                <div className="max-w-3xl mx-auto text-center space-y-6">
-                    <Link
-                        href="https://go.plataformafortpay.com.br/erdmddyptp"
-                        className="inline-block w-full md:w-auto bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg font-bold py-4 px-10 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
-                    >
-                        YES! Add The Digital Audit Kit - Only $47
-                    </Link>
-                    <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
-                        <Lock className="w-4 h-4" />
-                        Secure Payment - Instant Access
                     </div>
                 </div>
             </section>

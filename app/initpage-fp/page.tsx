@@ -3,155 +3,167 @@
 import { LegalFooter } from "@/components/legal-footer"
 import { Check, ShieldCheck, Lock, Eye, BookOpen, MessageCircle } from "lucide-react"
 import Link from "next/link"
-import { FacebookTracker } from "@/components/FacebookTracker"
+import { FacebookTracker } from "@/components/facebook-tracker"
 
 export default function InitPageFP() {
     return (
         <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
-            {/* Facebook Tracking - envia evento ViewContent com dados enriquecidos */}
-            <FacebookTracker
-                eventName="ViewContent"
-                contentName="Sales Page - Reading Signs"
-                contentCategory="Offer"
-                customData={{ value: 37, currency: "BRL" }}
-            />
+            <FacebookTracker />
+            {/* Warning Header Strip */}
+            <div className="bg-red-600 text-white py-3 px-4 text-center">
+                <p className="text-sm md:text-base font-bold uppercase tracking-wide animate-pulse">
+                    ⚠️ WAIT! YOUR ORDER IS NOT COMPLETE YET. DO NOT CLOSE THIS PAGE. ⚠️
+                </p>
+            </div>
 
             {/* Hero Section */}
-            <section className="bg-white pt-20 pb-16 px-4 md:px-8 shadow-sm">
-                <div className="max-w-4xl mx-auto text-center space-y-8">
-                    <div className="inline-block bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4 tracking-wide uppercase">
-                        Discover the Truth
-                    </div>
-                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
-                        Is Your Partner Hiding Something? <br className="hidden md:block" />
-                        <span className="text-blue-600">Learn to Read the Signs.</span>
+            <section className="bg-white pt-12 pb-16 px-4 md:px-8 shadow-sm text-center space-y-6">
+                <div className="max-w-4xl mx-auto">
+                    <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                        You Can See the Lies. <br className="hidden md:block" />
+                        <span className="text-blue-600">Now, You Need to Hear the Truth.</span>
                     </h1>
-                    <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                        The proven method to identify lies through body language and behavioral psychology. Reclaim your peace of mind today.
-                    </p>
-
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-8">
-                        <Link
-                            href="https://go.plataformafortpay.com.br/ousxjbuoqw"
-                            className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold py-4 px-10 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
-                        >
-                            Get Access Now For $37
-                        </Link>
-                    </div>
-                    <p className="text-sm text-slate-400 mt-4 flex items-center justify-center gap-2">
-                        <ShieldCheck className="w-4 h-4" /> 100% Safe and Discrete Purchase
+                    <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed mt-6">
+                        Congratulations! You have just secured the <strong>Digital Footprint</strong> system. You are now seconds away from seeing what they hide on their phone.
                     </p>
                 </div>
             </section>
 
-            {/* Benefits Grid */}
-            <section className="py-20 px-4 md:px-8 bg-slate-50">
-                <div className="max-w-6xl mx-auto">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold text-slate-900">What You Will Learn</h2>
-                        <p className="text-slate-600 mt-4 text-lg">Advanced techniques simplified for immediate application.</p>
+            {/* Important Notice */}
+            <section className="py-10 px-4 md:px-8 bg-amber-50 border-y border-amber-100">
+                <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-6">
+                    <div className="bg-amber-100 p-4 rounded-full">
+                        <ShieldCheck className="w-10 h-10 text-amber-600" />
                     </div>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {/* Benefit 1 */}
-                        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-6">
-                                <Eye className="w-6 h-6" />
-                            </div>
-                            <h3 className="text-xl font-bold mb-3">Body Language Reading</h3>
-                            <p className="text-slate-600 leading-relaxed">
-                                Identify micro-expressions and involuntary gestures that reveal lies and omissions in seconds.
-                            </p>
-                        </div>
-
-                        {/* Benefit 2 */}
-                        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-6">
-                                <MessageCircle className="w-6 h-6" />
-                            </div>
-                            <h3 className="text-xl font-bold mb-3">Conversation Techniques</h3>
-                            <p className="text-slate-600 leading-relaxed">
-                                Know exactly what questions to ask and how to analyze answers to uncover the truth without aggressive confrontation.
-                            </p>
-                        </div>
-
-                        {/* Benefit 3 */}
-                        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-6">
-                                <BookOpen className="w-6 h-6" />
-                            </div>
-                            <h3 className="text-xl font-bold mb-3">Couples Reconnection</h3>
-                            <p className="text-slate-600 leading-relaxed">
-                                {"It's not just about uncovering lies. Learn techniques to rekindle the flame and rebuild trust if that is your desire."}
-                            </p>
-                        </div>
+                    <div className="text-center md:text-left">
+                        <h2 className="text-xl font-bold text-amber-900">Wait! There is one final piece missing...</h2>
+                        <p className="text-amber-800">
+                            Most people find the evidence but don&apos;t know how to use it. Don&apos;t make that mistake.
+                        </p>
                     </div>
                 </div>
             </section>
 
-            {/* Content Breakdown Section */}
-            <section className="py-20 px-4 md:px-8 bg-white">
-                <div className="max-w-4xl mx-auto bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-100">
-                    <h2 className="text-3xl font-bold text-center mb-10">Training Content</h2>
-                    <div className="space-y-4">
-                        {[
-                            "Module 1: The fundamentals of lying and how the brain reacts.",
-                            "Module 2: Reading eyes, hands, and posture – The body speaks.",
-                            "Module 3: Analyzing text messages and online behavior.",
-                            "Module 4: The Truth Method – How to confront safely.",
-                            "Bonus: Guide to Rebuilding Trust and Intimacy."
-                        ].map((item, index) => (
-                            <div key={index} className="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm">
-                                <div className="bg-green-100 text-green-600 p-1 rounded-full mt-0.5">
-                                    <Check className="w-4 h-4" />
-                                </div>
-                                <p className="text-slate-700 font-medium">{item}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* CTA Section */}
-            <section className="py-20 px-4 md:px-8 bg-gradient-to-br from-blue-600 to-blue-800 text-white text-center">
-                <div className="max-w-3xl mx-auto space-y-8">
-                    <h2 className="text-3xl md:text-5xl font-bold">Stop Living in Doubt.</h2>
-                    <p className="text-blue-100 text-lg md:text-xl">
-                        Get immediate access to all content and discover the truth today. Unconditional 7-day guarantee.
+            {/* Body Copy Section */}
+            <section className="py-16 px-4 md:px-8 bg-white">
+                <div className="max-w-3xl mx-auto prose prose-lg prose-slate">
+                    <p className="text-slate-700 leading-relaxed italic border-l-4 border-slate-200 pl-6 my-8">
+                        &ldquo;Body language is the subconscious leaking the truth before the mouth has a chance to lie.&rdquo;
                     </p>
-                    <div className="flex flex-col items-center gap-4">
-                        <Link
-                            href="https://go.plataformafortpay.com.br/ousxjbuoqw"
-                            className="bg-white text-blue-700 hover:bg-slate-100 text-lg font-bold py-4 px-10 rounded-xl shadow-lg transition-all transform hover:-translate-y-1 w-full md:w-auto"
-                        >
-                            Yes! I Want Immediate Access
-                        </Link>
-                        <div className="flex items-center gap-2 text-sm text-blue-200 opacity-90">
-                            <Lock className="w-4 h-4" /> Secure Payment via FortPay
+                    
+                    <p className="text-slate-700 leading-relaxed">
+                        Now that you have the digital proof, you will likely face a <strong>confrontation</strong>.
+                    </p>
+                    
+                    <p className="text-slate-700 leading-relaxed">
+                        When you show them the evidence, they will try to lie their way out of it. They will say it&apos;s &ldquo;just a friend,&rdquo; &ldquo;old messages,&rdquo; or that &ldquo;you are crazy and imagining things.&rdquo;
+                    </p>
+
+                    <p className="text-slate-900 font-bold text-xl leading-relaxed">
+                        Do you know how to tell if they are lying to your face in real-time?
+                    </p>
+
+                    <p className="text-slate-700 leading-relaxed">
+                        If you can&apos;t read their micro-expressions, their eye movements, and their hand gestures, you will be <strong>gaslighted</strong>. You will have the proof in your hands, but they will make you feel like the guilty one.
+                    </p>
+                </div>
+            </section>
+
+            {/* Product Introduction */}
+            <section className="py-16 px-4 md:px-8 bg-slate-900 text-white rounded-3xl mx-4 my-8 shadow-2xl">
+                <div className="max-w-4xl mx-auto text-center">
+                    <div className="inline-block bg-blue-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-6">
+                        Limited Time Upgrade
+                    </div>
+                    <h2 className="text-3xl md:text-5xl font-extrabold mb-6">
+                        🕵️ The Reading Signs Method
+                    </h2>
+                    <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+                        Learn how to read a person like an open book. Know they are lying before they even finish the sentence.
+                    </p>
+                    
+                    <div className="grid md:grid-cols-3 gap-6 text-left">
+                        <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
+                            <Eye className="text-blue-400 w-8 h-8 mb-4" />
+                            <h3 className="font-bold mb-2 text-lg">Eye Gaze Patterns</h3>
+                            <p className="text-sm text-slate-400">Discover where they look when they are creating a lie vs. remembering the truth.</p>
+                        </div>
+                        <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
+                            <MessageCircle className="text-blue-400 w-8 h-8 mb-4" />
+                            <h3 className="font-bold mb-2 text-lg">Verbal Stutters</h3>
+                            <p className="text-sm text-slate-400">The 3 specific &ldquo;trigger words&rdquo; liars use to buy time while thinking of a cover story.</p>
+                        </div>
+                        <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
+                            <BookOpen className="text-blue-400 w-8 h-8 mb-4" />
+                            <h3 className="font-bold mb-2 text-lg">The Full Guide</h3>
+                            <p className="text-sm text-slate-400">A complete masterclass on human psychology and lie detection.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Pricing Section */}
+            <section className="py-20 px-4 md:px-8">
+                <div className="max-w-2xl mx-auto bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+                    <div className="bg-blue-600 p-8 text-center text-white">
+                        <p className="uppercase tracking-widest text-sm font-bold opacity-80 mb-2">Exclusive Offer</p>
+                        <div className="flex items-center justify-center gap-4">
+                            <span className="text-3xl line-through opacity-50">$67</span>
+                            <span className="text-6xl font-black">$19</span>
+                        </div>
+                    </div>
+                    
+                    <div className="p-8 md:p-12 space-y-8">
+                        <div className="space-y-4">
+                            <div className="flex items-start gap-3">
+                                <Check className="text-green-500 w-6 h-6 shrink-0" />
+                                <p className="text-slate-700"><strong>Instant Access:</strong> Download the guide immediately.</p>
+                            </div>
+                            <div className="flex items-start gap-3">
+                                <Check className="text-green-500 w-6 h-6 shrink-0" />
+                                <p className="text-slate-700"><strong>Universal:</strong> Works for partners, friends, and coworkers.</p>
+                            </div>
+                            <div className="flex items-start gap-3">
+                                <Check className="text-green-500 w-6 h-6 shrink-0" />
+                                <p className="text-slate-700"><strong>Lifetime Updates:</strong> Never pay for new versions.</p>
+                            </div>
+                        </div>
+
+                        <div className="space-y-4">
+                            <Link 
+                                href="https://go.plataformafortpay.com.br/mdyvshobez"
+                                className="block w-full bg-orange-500 hover:bg-orange-600 text-white text-center py-5 rounded-2xl text-xl font-bold shadow-lg shadow-orange-200 transition-all transform hover:-translate-y-1"
+                            >
+                                ✅ Add to My Order - Just $19
+                            </Link>
+                            <Link 
+                                href="/initpage1-fp"
+                                className="block w-full text-center text-slate-400 hover:text-slate-600 text-sm underline transition-colors"
+                            >
+                                No thanks, I don&apos;t want to read their signs. I&apos;ll stick with just the digital proof.
+                            </Link>
+                        </div>
+
+                        <div className="pt-6 border-t border-slate-100 flex items-center justify-center gap-2 text-slate-400 text-xs">
+                            <Lock className="w-3 h-3" /> Secure 256-bit Encrypted Payment
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* FAQ Section */}
-            <section className="py-20 px-4 md:px-8 bg-slate-50">
-                <div className="max-w-3xl mx-auto">
-                    <h2 className="text-3xl font-bold text-center mb-12 text-slate-900">Frequently Asked Questions</h2>
+            <section className="py-16 px-4 md:px-8 bg-slate-100">
+                <div className="max-w-3xl mx-auto space-y-8">
+                    <h2 className="text-2xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+                    
                     <div className="space-y-6">
-                        {/* FAQ Item 1 */}
-                        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
-                            <h3 className="font-bold text-lg mb-2 text-slate-800">Is it safe to buy?</h3>
-                            <p className="text-slate-600">Yes, 100% safe. The payment is processed by FortPay, one of the most secure platforms. Your data is protected.</p>
+                        <div className="bg-white p-6 rounded-2xl shadow-sm">
+                            <h3 className="font-bold text-lg mb-2">Is this a physical book?</h3>
+                            <p className="text-slate-600">No, this is a digital masterclass that you can access instantly on your phone, tablet, or computer.</p>
                         </div>
-                        {/* FAQ Item 2 */}
-                        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
-                            <h3 className="font-bold text-lg mb-2 text-slate-800">How do I get access?</h3>
-                            <p className="text-slate-600">Immediately after payment confirmation, you will receive an email with your login and password to access the member area.</p>
-                        </div>
-                        {/* FAQ Item 3 */}
-                        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
-                            <h3 className="font-bold text-lg mb-2 text-slate-800">Does it work for any relationship?</h3>
-                            <p className="text-slate-600">Yes. The body language and psychology techniques are universal and work regardless of the length of the relationship.</p>
+                        <div className="bg-white p-6 rounded-2xl shadow-sm">
+                            <h3 className="font-bold text-lg mb-2">Does this work if the person is a &ldquo;good liar&rdquo;?</h3>
+                            <p className="text-slate-600">Yes. These techniques are based on biological responses that are impossible to control consciously, even for experienced liars.</p>
                         </div>
                     </div>
                 </div>

@@ -61,9 +61,9 @@ export default function Downsell2FPPage() {
                         {"DON'T LOSE THE EVIDENCE!"}
                     </h1>
 
-                    <p className="text-slate-400 text-xs leading-relaxed max-w-xs mx-auto font-mono">
+                    <p className="text-slate-400 text-xs leading-relaxed max-w-xs mx-auto font-mono text-center">
                         The scan results are stored in temporary cache. <br />
-                        <span className="text-white font-bold">Unlock everything for 50% less.</span>
+                        <span className="text-white font-bold text-sm">Unlock everything for 50% less.</span>
                     </p>
                 </div>
 
@@ -80,9 +80,9 @@ export default function Downsell2FPPage() {
 
                     <div className="p-4 bg-rose-500/5 border-b border-slate-700/50 flex items-start gap-3">
                         <ShieldAlert className="text-rose-500 shrink-0 w-5 h-5 mt-0.5" />
-                        <p className="text-xs text-rose-400 font-medium">
+                        <p className="text-xs text-rose-400 font-medium leading-relaxed">
                             Suspicious DMs and hidden stories found. <br />
-                            <span className="text-white font-bold">Last chance to view before purge.</span>
+                            <span className="text-white font-bold">Last chance to view before permanent purge.</span>
                         </p>
                     </div>
 
@@ -91,21 +91,21 @@ export default function Downsell2FPPage() {
                         <div><p className="text-lg font-bold text-white">8</p><p className="text-[8px] text-slate-500 font-bold uppercase tracking-wider">DMs</p></div>
                         <div><p className="text-lg font-bold text-rose-500">42</p><p className="text-[8px] text-slate-500 font-bold uppercase tracking-wider">Likes</p></div>
                         <div><p className="text-lg font-bold text-purple-500">12</p><p className="text-[8px] text-slate-500 font-bold uppercase tracking-wider">Stories</p></div>
-                        <div><p className="text-lg font-bold text-emerald-500">Active</p><p className="text-[8px] text-slate-500 font-bold uppercase tracking-wider">Status</p></div>
+                        <div><p className="text-lg font-bold text-emerald-500 uppercase">Active</p><p className="text-[8px] text-slate-500 font-bold uppercase tracking-wider">Status</p></div>
                     </div>
 
                     {/* Private Gallery (Censored) */}
                     <div className="p-5">
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="font-bold text-slate-400 text-xs uppercase tracking-widest flex items-center gap-2">
-                                <Lock className="w-3 h-3" /> Encrypted Gallery
+                                <Lock className="w-3 h-3 text-cyan-400" /> Encrypted Gallery
                             </h3>
                         </div>
 
                         <div className="grid grid-cols-2 gap-2">
                             {[...Array(4)].map((_, i) => (
-                                <div key={i} className="aspect-square bg-slate-800 rounded relative overflow-hidden flex items-center justify-center text-white/50 border border-slate-700/50">
-                                    <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-black blur-md opacity-80"></div>
+                                <div key={i} className="aspect-square bg-slate-800 rounded relative overflow-hidden flex items-center justify-center text-white/50 border border-slate-700/50 group">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-black blur-md opacity-80 group-hover:opacity-60 transition-opacity"></div>
 
                                     {/* Glitch Effect Lines */}
                                     <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,#000_3px)] opacity-20 pointer-events-none"></div>
@@ -125,21 +125,21 @@ export default function Downsell2FPPage() {
                     {/* Scanline */}
                     <div className="absolute top-0 left-0 w-full h-[2px] bg-rose-500 shadow-[0_0_10px_#f43f5e] animate-scanline"></div>
 
-                    <div className="mx-auto w-12 h-12 rounded-full bg-rose-500/10 flex items-center justify-center mb-3">
+                    <div className="mx-auto w-12 h-12 rounded-full bg-rose-500/10 flex items-center justify-center mb-3 border border-rose-500/20">
                         <Lock className="text-rose-500 w-6 h-6" />
                     </div>
 
                     <h2 className="text-lg font-black text-rose-500 uppercase tracking-widest">UNLOCK FULL REPORT</h2>
-                    <div className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded text-[10px] font-bold inline-block mb-4 tracking-wider shadow-[0_0_10px_rgba(16,185,129,0.2)]">
+                    <div className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded text-[10px] font-bold inline-block mb-4 tracking-wider shadow-[0_0_15px_rgba(16,185,129,0.2)] uppercase">
                         ADMIN DISCOUNT: 50% APPLIED
                     </div>
 
-                    <div className="bg-rose-500/5 border border-rose-500/20 rounded-lg p-3 mb-4 flex justify-between items-center">
+                    <div className="bg-rose-500/5 border border-rose-500/20 rounded-lg p-3 mb-4 flex justify-between items-center px-6">
                         <div className="flex items-center gap-2 text-rose-500">
                             <Clock className="w-4 h-4" />
                             <span className="text-[10px] font-bold uppercase tracking-widest">Purge In:</span>
                         </div>
-                        <p className="text-lg font-mono font-bold text-rose-500">{formatTime(timeLeft)}</p>
+                        <p className="text-xl font-mono font-bold text-rose-500 tracking-tight">{formatTime(timeLeft)}</p>
                     </div>
 
                     {/* FORTPAY */}
@@ -153,12 +153,16 @@ export default function Downsell2FPPage() {
                         </a>
                         <a
                             href="/thanks"
-                            data-downsell="/thanks"
-                            className="fortpay_downsell text-[#004faa] text-sm hover:underline"
+                            className="text-[#004faa] text-sm hover:underline"
                         >
                             I don't want access
-                        </a>                    </div>
+                        </a>
+                    </div>
                 </div>
+
+                <p className="text-center text-[10px] text-slate-600 font-mono uppercase">
+                    Secure Server Connection • ID: #INSTA-99X
+                </p>
 
             </div>
         </div>
