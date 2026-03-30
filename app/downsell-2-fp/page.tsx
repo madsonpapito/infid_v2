@@ -145,7 +145,7 @@ export default function Downsell2FPPage() {
                     {/* FORTPAY */}
                     <div className="w-full flex flex-col items-center gap-3">
                         <a
-                            href="#"
+                            style={{ cursor: "pointer" }}
                             data-fortpay="pat5wfnksy"
                             className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] hover:from-[#4da3ff] hover:to-[#2a75e8] text-white font-bold rounded-xl shadow-lg transition-all transform hover:scale-[1.02] text-center"
                         >
@@ -161,10 +161,11 @@ export default function Downsell2FPPage() {
                 </div>
 
                 <p className="text-center text-[10px] text-slate-600 font-mono uppercase">
-                    Secure Server Connection â€¢ ID: #INSTA-99X
+                    Secure Server Connection Ã¢â‚¬Â¢ ID: #INSTA-99X
                 </p>
 
             </div>
         </div>
     );
 }
+
