@@ -1,0 +1,193 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/creative-lab",
+      "regex": "^/creative\\-lab(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/creative\\-lab(?:/)?$"
+    },
+    {
+      "page": "/downsell-1",
+      "regex": "^/downsell\\-1(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/downsell\\-1(?:/)?$"
+    },
+    {
+      "page": "/downsell-1-fp",
+      "regex": "^/downsell\\-1\\-fp(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/downsell\\-1\\-fp(?:/)?$"
+    },
+    {
+      "page": "/downsell-1-ky",
+      "regex": "^/downsell\\-1\\-ky(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/downsell\\-1\\-ky(?:/)?$"
+    },
+    {
+      "page": "/downsell-2",
+      "regex": "^/downsell\\-2(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/downsell\\-2(?:/)?$"
+    },
+    {
+      "page": "/downsell-2-fp",
+      "regex": "^/downsell\\-2\\-fp(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/downsell\\-2\\-fp(?:/)?$"
+    },
+    {
+      "page": "/downsell-2-ky",
+      "regex": "^/downsell\\-2\\-ky(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/downsell\\-2\\-ky(?:/)?$"
+    },
+    {
+      "page": "/initpage",
+      "regex": "^/initpage(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/initpage(?:/)?$"
+    },
+    {
+      "page": "/initpage-fp",
+      "regex": "^/initpage\\-fp(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/initpage\\-fp(?:/)?$"
+    },
+    {
+      "page": "/initpage1",
+      "regex": "^/initpage1(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/initpage1(?:/)?$"
+    },
+    {
+      "page": "/initpage1-fp",
+      "regex": "^/initpage1\\-fp(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/initpage1\\-fp(?:/)?$"
+    },
+    {
+      "page": "/initpage2",
+      "regex": "^/initpage2(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/initpage2(?:/)?$"
+    },
+    {
+      "page": "/initpage2-fp",
+      "regex": "^/initpage2\\-fp(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/initpage2\\-fp(?:/)?$"
+    },
+    {
+      "page": "/privacy",
+      "regex": "^/privacy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/privacy(?:/)?$"
+    },
+    {
+      "page": "/results",
+      "regex": "^/results(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/results(?:/)?$"
+    },
+    {
+      "page": "/step-1",
+      "regex": "^/step\\-1(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/step\\-1(?:/)?$"
+    },
+    {
+      "page": "/step-2",
+      "regex": "^/step\\-2(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/step\\-2(?:/)?$"
+    },
+    {
+      "page": "/terms",
+      "regex": "^/terms(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/terms(?:/)?$"
+    },
+    {
+      "page": "/upsell-1",
+      "regex": "^/upsell\\-1(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/upsell\\-1(?:/)?$"
+    },
+    {
+      "page": "/upsell-1-fp",
+      "regex": "^/upsell\\-1\\-fp(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/upsell\\-1\\-fp(?:/)?$"
+    },
+    {
+      "page": "/upsell-1-ky",
+      "regex": "^/upsell\\-1\\-ky(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/upsell\\-1\\-ky(?:/)?$"
+    },
+    {
+      "page": "/upsell-2",
+      "regex": "^/upsell\\-2(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/upsell\\-2(?:/)?$"
+    },
+    {
+      "page": "/upsell-2-fp",
+      "regex": "^/upsell\\-2\\-fp(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/upsell\\-2\\-fp(?:/)?$"
+    },
+    {
+      "page": "/upsell-2-ky",
+      "regex": "^/upsell\\-2\\-ky(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/upsell\\-2\\-ky(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "RSC",
+    "varyHeader": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+    "prefetchHeader": "Next-Router-Prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "Next-Router-Segment-Prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  },
+  "rewrites": []
+}

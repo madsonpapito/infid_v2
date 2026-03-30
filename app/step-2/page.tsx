@@ -5,7 +5,8 @@ import { useSearchParams } from "next/navigation"
 import {
   CheckCircle2, AlertTriangle, Lock, LockOpen, Search, MapPin,
   Smartphone, Fingerprint, Eye, User, HeartCrack, Activity,
-  ScanFace, Globe, ShieldCheck, ChevronRight, X, MessageCircle
+  ScanFace, Globe, ShieldCheck, ChevronRight, X, MessageCircle,
+  ChevronLeft, Volume2, HelpCircle, History
 } from "lucide-react"
 import { getRandomProfile, MALE_NAMES, FEMALE_NAMES } from "@/lib/profile-data"
 import { COUNTRIES } from "@/components/Countries"
@@ -15,7 +16,20 @@ import { COUNTRIES } from "@/components/Countries"
 // DATA MOCKS
 // ==========================================================
 
-const matchesData = [
+interface Match {
+  name: string;
+  age: number;
+  lastSeen: string;
+  avatar: string;
+  verified: boolean;
+  identity: string;
+  distance: string;
+  bio: string;
+  zodiac: string;
+  interests: string[];
+}
+
+const matchesData: Match[] = [
   { name: "Mila", age: 26, lastSeen: "6h ago", avatar: "/images/male/tinder/5.jpg", verified: true, identity: "Bisexual", distance: "2 km", bio: "Good vibes only.", zodiac: "Virgo", interests: ["Hiking", "Music"] },
   { name: "John", age: 25, lastSeen: "4h ago", avatar: "/images/female/tinder/5.jpg", verified: true, identity: "Bisexual", distance: "2 km", bio: "Adrenaline junkie.", zodiac: "Leo", interests: ["Fitness", "Books"] },
   { name: "Harper", age: 21, lastSeen: "3h ago", avatar: "/images/male/tinder/3.jpg", verified: false, identity: "Woman", distance: "5 km", bio: "Sunsets and wine.", zodiac: "Leo", interests: ["Travel", "Photo"] },
@@ -47,10 +61,32 @@ function DatingScannerContent() {
   const [scanPhase, setScanPhase] = useState(0)
   const [location, setLocation] = useState("Unknown Location")
   const [timeLeft, setTimeLeft] = useState(5 * 60)
-  const [selectedMatch, setSelectedMatch] = useState<any | null>(null)
+  const [selectedMatch, setSelectedMatch] = useState<Match | null>(null)
+  const [testimonialIndex, setTestimonialIndex] = useState(0)
+
+  const testimonials = [
+    {
+      name: "Jessica, 31",
+      location: "Orlando, FL",
+      text: "I honestly didn't think it would work, but the report pulled up deleted chats that explained everything. It felt like the missing piece.",
+      video: "https://play.tynk.ai/p/55c0525d-8354-4cd6-a98f-34a31df5b1aa"
+    },
+    {
+      name: "Amanda, 44",
+      location: "Dallas, TX",
+      text: "I was nervous, but within minutes it showed hidden messages and even voice notes. That was the confirmation I needed.",
+      video: "https://play.tynk.ai/p/d04e1286-c92c-4f39-a679-2ce4b742cd59"
+    },
+    {
+      name: "Daniel, 38",
+      location: "Fresno, CA",
+      text: "It's not guesses or random alerts… it's actual proof. I saw the screenshots myself. It's worth it.",
+      video: "https://play.tynk.ai/p/ac310c50-c224-4c0f-bdc0-ebf311ef7afa"
+    }
+  ]
 
   // Dynamic Matches State
-  const [randomMatches, setRandomMatches] = useState<any[]>([])
+  const [randomMatches, setRandomMatches] = useState<Match[]>([])
 
   useEffect(() => {
     // Fetch user location silently
@@ -96,24 +132,27 @@ function DatingScannerContent() {
   }, [step, selectedGender])
 
   const checkoutRef = useRef<HTMLDivElement>(null)
+  const videoScrollRef = useRef<HTMLDivElement>(null)
+
+  const scrollVideos = (direction: 'left' | 'right') => {
+    if (videoScrollRef.current) {
+      const scrollAmount = 300
+      videoScrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      })
+    }
+  }
 
 
   const scrollToCheckout = useCallback(() => {
     checkoutRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }, [])
 
-  useEffect(() => {
-    fetch("/api/location")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.city) setLocation(data.city)
-      })
-      .catch(() => setLocation("New York, US"))
-  }, [])
 
   useEffect(() => {
     if (step === 3 && timeLeft > 0) {
-      const timer = setInterval(() => setTimeLeft((prev) => prev - 1), 1000)
+      const timer = setInterval(() => setTimeLeft((prev: number) => prev - 1), 1000)
       return () => clearInterval(timer)
     }
   }, [step, timeLeft])
@@ -165,6 +204,10 @@ function DatingScannerContent() {
     }, 7000)
 
     setTimeout(() => {
+      // Mark as scanned to prevent future free attempts
+      document.cookie = "has_scanned=true; path=/; max-age=2592000"; // 30 days
+      localStorage.setItem("has_scanned", "true");
+      
       setStep(3)
       setScanPhase(0)
     }, 10000)
@@ -186,6 +229,7 @@ function DatingScannerContent() {
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false)
   const [isFetchingProfile, setIsFetchingProfile] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [instagramFeed, setInstagramFeed] = useState<any[]>([])
 
   const checkProfile = async (type: 'instagram' | 'whatsapp', value: string) => {
     setErrorMessage(null);
@@ -219,6 +263,23 @@ function DatingScannerContent() {
               setImageUploaded(true);
             } else {
               setErrorMessage("Profile found but private/no photo accessible.");
+            }
+
+            // Fetch feed for Instagram Scanner
+            try {
+              const postsRes = await fetch('/api/instagram/posts', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: cleanValue })
+              });
+              if (postsRes.ok) {
+                const postsData = await postsRes.json();
+                if (postsData.success && postsData.posts) {
+                  setInstagramFeed(postsData.posts);
+                }
+              }
+            } catch (err) {
+              console.error("Feed fetch error", err);
             }
           } else {
             setErrorMessage(data.error || "Profile picture not found.");
@@ -429,10 +490,28 @@ function DatingScannerContent() {
         </p>
 
         {/* Tabs */}
-        <div className="flex bg-slate-900 p-1 rounded-lg border border-slate-800">
-          <button onClick={() => { setActiveInputTab('instagram'); setErrorMessage(null); }} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded-md transition-all ${activeInputTab === 'instagram' ? 'bg-slate-700 text-white shadow' : 'text-slate-500 hover:text-slate-300'}`}>Instagram</button>
-          <button onClick={() => { setActiveInputTab('photo'); setErrorMessage(null); }} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded-md transition-all ${activeInputTab === 'photo' ? 'bg-slate-700 text-white shadow' : 'text-slate-500 hover:text-slate-300'}`}>Photo Upload</button>
-          <button onClick={() => { setActiveInputTab('whatsapp'); setErrorMessage(null); }} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded-md transition-all ${activeInputTab === 'whatsapp' ? 'bg-emerald-900/30 text-emerald-400 border border-emerald-500/30 shadow' : 'text-slate-500 hover:text-slate-300'}`}>WhatsApp</button>
+        <div className="flex bg-slate-900 p-1.5 rounded-xl border border-slate-800 shadow-inner">
+          <button 
+            type="button"
+            onClick={() => { setActiveInputTab('instagram'); setErrorMessage(null); }} 
+            className={`flex-1 py-3 text-xs font-bold uppercase rounded-lg transition-all ${activeInputTab === 'instagram' ? 'bg-slate-700 text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
+          >
+            Instagram
+          </button>
+          <button 
+            type="button"
+            onClick={() => { setActiveInputTab('photo'); setErrorMessage(null); }} 
+            className={`flex-1 py-3 text-xs font-bold uppercase rounded-lg transition-all ${activeInputTab === 'photo' ? 'bg-slate-700 text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
+          >
+            Photo
+          </button>
+          <button 
+            type="button"
+            onClick={() => { setActiveInputTab('whatsapp'); setErrorMessage(null); }} 
+            className={`flex-1 py-3 text-xs font-bold uppercase rounded-lg transition-all ${activeInputTab === 'whatsapp' ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
+          >
+            WhatsApp
+          </button>
         </div>
 
         {/* Content Area */}
@@ -440,8 +519,8 @@ function DatingScannerContent() {
 
           {/* PHOTO UPLOAD */}
           {activeInputTab === 'photo' && (
-            <label className="block w-full h-32 border-2 border-dashed border-slate-600 rounded-xl hover:border-cyan-500 hover:bg-cyan-500/5 transition-all cursor-pointer relative flex flex-col items-center justify-center gap-2 group">
-              <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
+            <label className="block w-full h-40 border-2 border-dashed border-slate-600 rounded-2xl hover:border-cyan-500 hover:bg-cyan-500/5 transition-all cursor-pointer relative flex flex-col items-center justify-center gap-3 group overflow-hidden">
+              <input type="file" accept="image/*" className="sr-only" onChange={handleImageChange} />
               {imagePreview && activeInputTab === 'photo' ? (
                 <img src={imagePreview} className="absolute inset-0 w-full h-full object-cover rounded-xl opacity-50" />
               ) : (
@@ -737,16 +816,28 @@ function DatingScannerContent() {
                   className="aspect-square bg-slate-800 rounded overflow-hidden relative"
                   style={{ animationDelay: `${i * 0.15}s` }}
                 >
-                  <div
-                    className="absolute inset-0 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 animate-pulse"
-                    style={{
-                      animationDelay: `${i * 0.2}s`,
-                      opacity: scanPhase > i * 0.5 ? 0.4 : 1
-                    }}
-                  />
+                  {instagramFeed[i] ? (
+                    <img 
+                      src={instagramFeed[i].imageUrl} 
+                      alt={`Feed ${i}`} 
+                      className="w-full h-full object-cover animate-fade-in"
+                      style={{ 
+                        opacity: scanPhase >= Math.ceil((i + 1) / 3) ? 1 : 0.3,
+                        filter: scanPhase >= Math.ceil((i + 1) / 3) ? 'none' : 'blur(2px)'
+                      }}
+                    />
+                  ) : (
+                    <div
+                      className="absolute inset-0 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 animate-pulse"
+                      style={{
+                        animationDelay: `${i * 0.2}s`,
+                        opacity: scanPhase > i * 0.5 ? 0.4 : 1
+                      }}
+                    />
+                  )}
                   {scanPhase >= Math.ceil((i + 1) / 3) && (
-                    <div className="absolute inset-0 bg-slate-700/60 flex items-center justify-center">
-                      <div className="w-4 h-4 border border-rose-500/40 rounded-sm" />
+                    <div className="absolute inset-0 bg-slate-700/10 flex items-center justify-center">
+                      {!instagramFeed[i] && <div className="w-4 h-4 border border-rose-500/40 rounded-sm" />}
                     </div>
                   )}
                 </div>
@@ -797,17 +888,9 @@ function DatingScannerContent() {
   // STEP 3: RESULTS (DARK MODE)
   // --------------------------------------------------------
   const renderResultsStep = () => {
-    // Dynamic Image Paths based on selectedGender
-    // If target is MALE, show Male photos. If target is FEMALE, show Female photos.
-    // Default to 'male' if not set
     const genderFolder = selectedGender === 'female' ? 'female' : 'male';
-
-    // Use the randomMatches state which is populated on mount/step change
     const displayMatches = randomMatches.length > 0 ? randomMatches : [];
 
-    // Construct Hidden Photos List dynamically based on directory structure found
-    // Male folder has 'censored-f-X.jpg', Female folder has 'censored-h-X.jpg' (or generic names if changed)
-    // We use the file names we found in the directory audit to form the paths correctly.
     const dynamicHiddenPhotos = genderFolder === 'male'
       ? ["censored-f-1.jpg", "censored-f-2.jpg", "censored-f-3.jpg", "censored-f-4.jpg"].map(f => `/images/male/tinder/censored/${f}`)
       : ["censored-h-1.jpg", "censored-h-2.jpg", "censored-h-3.jpg", "censored-h-4.jpg"].map(f => `/images/female/tinder/censored/${f}`);
@@ -821,6 +904,17 @@ function DatingScannerContent() {
           <div>
             <h1 className="font-bold text-lg uppercase tracking-tight">Positive Match Found</h1>
             <p className="text-xs text-rose-100">User is currently <span className="font-bold underline">ONLINE</span> in {location}.</p>
+          </div>
+        </div>
+
+        {/* URGENCY BANNER */}
+        <div className="bg-orange-500/10 border border-orange-500/50 p-4 rounded-xl flex items-start gap-3 mt-4">
+          <Activity className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
+          <div>
+            <h3 className="text-sm font-bold text-orange-400 uppercase tracking-wide">Data Locking Imminent</h3>
+            <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
+              To guarantee true anonymity and comply with privacy rules, these intercepted messages and hidden galleries will be <strong>permanently encrypted</strong> in {formatTime(timeLeft)}.
+            </p>
           </div>
         </div>
 
@@ -848,7 +942,7 @@ function DatingScannerContent() {
             <span className="bg-rose-500 text-white text-[9px] px-1.5 py-0.5 rounded font-bold">3 NEW</span>
           </div>
           <div className="divide-y divide-slate-800">
-            {displayMatches.slice(0, 3).map((m, i) => (
+            {displayMatches.slice(0, 3).map((m: Match, i: number) => (
               <div
                 key={i}
                 className="p-3 flex items-center gap-3 hover:bg-slate-800/50 cursor-pointer transition-colors"
@@ -871,7 +965,7 @@ function DatingScannerContent() {
           </div>
         </div>
 
-        {/* RECENT CHATS (NEW CARD) */}
+        {/* RECENT CHATS */}
         <div className="bg-[#0f172a] rounded-xl border border-slate-700/50 overflow-hidden shadow-lg animate-fade-in delay-100">
           <div className="bg-slate-800/50 p-3 border-b border-slate-700 flex justify-between items-center group">
             <div className="flex items-center gap-2">
@@ -884,7 +978,7 @@ function DatingScannerContent() {
           </div>
 
           <div className="divide-y divide-slate-800">
-            {displayMatches.slice(3, 6).map((match, i) => (
+            {displayMatches.slice(3, 6).map((match: Match, i: number) => (
               <div
                 key={i}
                 onClick={scrollToCheckout}
@@ -926,7 +1020,6 @@ function DatingScannerContent() {
             </div>
 
             <div className="relative w-full h-40 bg-slate-900 rounded-lg overflow-hidden border border-slate-800 group cursor-pointer" onClick={scrollToCheckout}>
-              {/* Google Map Embed */}
               <iframe
                 title="Suspicious Location Map"
                 src={`https://maps.google.com/maps?q=motel+near+${encodeURIComponent(location)}&output=embed&z=13`}
@@ -937,7 +1030,6 @@ function DatingScannerContent() {
                 referrerPolicy="no-referrer-when-downgrade"
               />
 
-              {/* Pin Animation Overlay */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
                 <div className="relative">
                   <div className="w-4 h-4 bg-rose-500 rounded-full animate-ping absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-75"></div>
@@ -945,7 +1037,6 @@ function DatingScannerContent() {
                 </div>
               </div>
 
-              {/* Map UI Overlay */}
               <div className="absolute bottom-2 right-2 bg-slate-900/90 border border-slate-700 px-2 py-1 rounded flex items-center gap-1">
                 <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
                 <span className="text-[8px] text-slate-400 font-bold uppercase">Live Tracking</span>
@@ -962,7 +1053,7 @@ function DatingScannerContent() {
             </h3>
           </div>
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-            {dynamicHiddenPhotos.map((src, i) => (
+            {dynamicHiddenPhotos.map((src: string, i: number) => (
               <div key={i} className="flex-shrink-0 w-48 h-64 bg-slate-800 rounded relative overflow-hidden">
                 <img src={src} className="w-full h-full object-cover blur-sm opacity-50" />
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -987,37 +1078,163 @@ function DatingScannerContent() {
           <h2 className="text-xl font-black text-white uppercase tracking-wide mb-2">UNLOCK FULL DOSSIER</h2>
           <p className="text-xs text-slate-400 mb-6 px-4">Get instant access to the full report with all chats, conversations, audio, videos, location history and photos exchanged.</p>
 
-          <div className="bg-slate-900 border border-slate-800 p-3 rounded-lg mb-6 flex justify-between items-center max-w-[200px] mx-auto">
-            <span className="text-[10px] text-slate-500 uppercase font-bold">Expires:</span>
-            <span className="font-mono font-bold text-rose-500 text-lg">{formatTime(timeLeft)}</span>
+          <div className="bg-slate-900 border border-slate-800 p-3 rounded-lg mb-6 flex flex-col items-center justify-center max-w-[280px] mx-auto space-y-2">
+            <div className="flex justify-between w-full items-center">
+              <span className="text-[10px] text-slate-500 uppercase font-bold">Offer Expires:</span>
+              <span className="font-mono font-bold text-rose-500 text-lg">{formatTime(timeLeft)}</span>
+            </div>
+            <div className="w-full h-px bg-slate-800 my-1"></div>
+            <div className="flex justify-between w-full items-center">
+              <span className="text-xs text-slate-400 line-through">Regular: $149.00</span>
+              <span className="font-black text-emerald-400 text-2xl">Today: $37</span>
+            </div>
+            <p className="text-[9px] text-slate-500">Includes full evidence download & updates</p>
           </div>
 
           <a
-            href="https://pay.mycheckoutt.com/0198c1be-98b4-7315-a3bc-8c0fa9120e5c?ref="
+            href="https://go.plataformafortpay.com.br/ousxjbuoqw?ref="
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full bg-emerald-500 hover:bg-emerald-400 text-[#0B1120] font-bold py-4 rounded-xl shadow-lg transition-all transform hover:scale-[1.02] uppercase tracking-widest text-sm relative z-10"
+            className="block w-full bg-emerald-500 hover:bg-emerald-400 text-[#0B1120] font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all transform hover:scale-[1.02] uppercase tracking-widest text-sm relative z-10"
           >
-            UNLOCK REPORT NOW
+            UNLOCK REPORT FOR $37
           </a>
 
-          <p className="text-[10px] text-slate-600 mt-4 font-mono">Secure Payment • 256-bit SSL</p>
+          <div className="flex justify-center items-center gap-4 mt-4 text-[10px] text-slate-500 font-mono">
+            <span className="flex items-center gap-1"><ShieldCheck className="w-3 h-3 text-emerald-500"/> 256-bit SSL</span>
+            <span className="flex items-center gap-1"><CheckCircle2 className="w-3 h-3 text-emerald-500"/> 7-Day Guarantee</span>
+          </div>
         </div>
 
-        {/* Testimonial */}
-        {/* Testimonial */}
-        <div className="bg-slate-800/30 p-4 rounded-xl border border-slate-700/50 flex gap-3">
-          <img
-            src={selectedGender === 'female' ? '/images/p3.jpg' : '/images/f3.jpg'}
-            className="w-10 h-10 rounded-full object-cover flex-shrink-0"
-            alt="User Testimonial"
-          />
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-white">Verified User</span>
-              <span className="text-xs text-emerald-500">★ ★ ★ ★ ★</span>
+        {/* VIDEO TESTIMONIALS */}
+        <div className="bg-[#0f172a] rounded-2xl border border-slate-700/50 p-6 space-y-4 shadow-2xl relative overflow-hidden mt-8 w-full block">
+          <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-emerald-500/10 blur-[60px] rounded-full pointer-events-none"></div>
+
+          <div className="text-center relative z-10 w-full mb-2">
+            <h2 className="text-xl md:text-2xl font-black text-white uppercase tracking-wide">WHAT THEY DISCOVERED</h2>
+            <p className="text-xs text-slate-400 mt-2">Real reactions from people who unlocked their reports today.</p>
+          </div>
+
+          <div className="relative group">
+            <button 
+              onClick={() => scrollVideos('left')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -ml-3 z-20 bg-[#0B1120] hover:bg-slate-800 text-white rounded-full p-2 border border-slate-700 transition shadow-[0_0_10px_rgba(0,0,0,0.5)]"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            <button 
+              onClick={() => scrollVideos('right')}
+              className="absolute right-0 top-1/2 -translate-y-1/2 -mr-3 z-20 bg-[#0B1120] hover:bg-slate-800 text-white rounded-full p-2 border border-slate-700 transition shadow-[0_0_10px_rgba(0,0,0,0.5)]"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            <div 
+              ref={videoScrollRef}
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 pt-2 relative z-10"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {/* JESSICA */}
+              <div className="w-[280px] shrink-0 snap-center flex flex-col gap-3">
+                <div className="w-full aspect-[9/16] rounded-xl overflow-hidden border border-slate-700 shadow-xl bg-black relative">
+                  <iframe
+                    src="https://play.tynk.ai/p/55c0525d-8354-4cd6-a98f-34a31df5b1aa"
+                    width="100%"
+                    height="100%"
+                    style={{ border: "none" }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen>
+                  </iframe>
+                </div>
+                <div className="bg-slate-800/40 p-4 rounded-xl border border-slate-700/50 shadow-inner">
+                  <h4 className="font-bold text-white text-[13px] mb-2">Jessica, 31 — Orlando, FL</h4>
+                  <p className="text-xs text-slate-400 italic leading-relaxed">&quot;I honestly didn&apos;t think it would work, but the report pulled up deleted chats that explained everything. It felt like the missing piece.&quot;</p>
+                </div>
+              </div>
+
+              {/* AMANDA */}
+              <div className="w-[280px] shrink-0 snap-center flex flex-col gap-3">
+                <div className="w-full aspect-[9/16] rounded-xl overflow-hidden border border-slate-700 shadow-xl bg-black relative">
+                  <iframe
+                    src="https://play.tynk.ai/p/d04e1286-c92c-4f39-a679-2ce4b742cd59"
+                    width="100%"
+                    height="100%"
+                    style={{ border: "none" }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen>
+                  </iframe>
+                </div>
+                <div className="bg-slate-800/40 p-4 rounded-xl border border-slate-700/50 shadow-inner">
+                  <h4 className="font-bold text-white text-[13px] mb-2">Amanda, 44 — Dallas, TX</h4>
+                  <p className="text-xs text-slate-400 italic leading-relaxed">&quot;I was nervous, but within minutes it showed hidden messages and even voice notes. That was the confirmation I needed.&quot;</p>
+                </div>
+              </div>
+
+              {/* DANIEL */}
+              <div className="w-[280px] shrink-0 snap-center flex flex-col gap-3">
+                <div className="w-full aspect-[9/16] rounded-xl overflow-hidden border border-slate-700 shadow-xl bg-black relative">
+                  <iframe
+                    src="https://play.tynk.ai/p/ac310c50-c224-4c0f-bdc0-ebf311ef7afa"
+                    width="100%"
+                    height="100%"
+                    style={{ border: "none" }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen>
+                  </iframe>
+                </div>
+                <div className="bg-slate-800/40 p-4 rounded-xl border border-slate-700/50 shadow-inner">
+                  <h4 className="font-bold text-white text-[13px] mb-2">Daniel, 38 — Fresno, CA</h4>
+                  <p className="text-xs text-slate-400 italic leading-relaxed">&quot;It&apos;s not guesses or random alerts… it&apos;s actual proof. I saw the screenshots myself. It&apos;s worth it.&quot;</p>
+                </div>
+              </div>
             </div>
-            <p className="text-xs text-slate-400 italic mt-1">"I found exactly what I was afraid of, but at least now I know the truth."</p>
+            
+            <div className="w-full flex justify-center mt-2 gap-1.5 opacity-50">
+              <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+              <div className="w-2 h-2 rounded-full bg-slate-600"></div>
+              <div className="w-2 h-2 rounded-full bg-slate-600"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* FAQ & OBJECTIONS */}
+        <div className="bg-[#0f172a]/80 rounded-2xl border border-slate-700/30 p-6 space-y-6 shadow-xl mt-8 w-full">
+          <h2 className="text-xl font-bold text-white text-center mb-6 flex items-center justify-center gap-2">
+            <CheckCircle2 className="w-5 h-5 text-emerald-500" /> Frequently Asked Questions
+          </h2>
+          
+          <div className="space-y-4">
+            <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 flex flex-col items-start text-left">
+              <h4 className="font-bold text-sm text-white flex items-center gap-2 mb-2">
+                <Lock className="w-4 h-4 text-emerald-400" /> Is this 100% Anonymous?
+              </h4>
+              <p className="text-xs text-slate-400">Absolutely. There is no trace that you accessed this data. We don&apos;t notify them or need any access to their device.</p>
+            </div>
+            
+            <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 flex flex-col items-start text-left">
+              <h4 className="font-bold text-sm text-white flex items-center gap-2 mb-2">
+                <Search className="w-4 h-4 text-emerald-400" /> What exactly is in the report?
+              </h4>
+              <p className="text-xs text-slate-400">You will instantly download a dossier containing hidden social media activity, deleted messages logs, GPS history, and hidden gallery items found in our database scan.</p>
+            </div>
+
+            <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 flex flex-col items-start text-left">
+              <h4 className="font-bold text-sm text-white flex items-center gap-2 mb-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" /> What if I don&apos;t find anything?
+              </h4>
+              <p className="text-xs text-slate-400">If our scan comes back completely clean, you have the peace of mind you deserve. You are covered by our 7-Day Guarantee.</p>
+            </div>
+          </div>
+          
+          {/* Secondary CTA */}
+          <div className="mt-8 pt-6 border-t border-slate-800/50 text-center">
+            <button
+               onClick={scrollToCheckout}
+               className="w-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-bold py-4 px-8 rounded-xl transition-all text-sm uppercase tracking-widest"
+            >
+              Get My Dossier Now
+            </button>
           </div>
         </div>
 
@@ -1035,7 +1252,7 @@ function DatingScannerContent() {
         className="fixed inset-0 bg-black/90 flex items-center justify-center z-[60] p-4 backdrop-blur-sm animate-in fade-in"
         onClick={() => setSelectedMatch(null)}
       >
-        <div className="bg-[#0f172a] rounded-2xl w-full max-w-sm max-h-[90vh] overflow-y-auto relative border border-slate-700 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+        <div className="bg-[#0f172a] rounded-2xl w-full max-w-sm max-h-[90vh] overflow-y-auto relative border border-slate-700 shadow-2xl" onClick={(e: React.MouseEvent) => e.stopPropagation()}>
           <button onClick={() => setSelectedMatch(null)} aria-label="Close modal" className="absolute top-3 right-3 bg-black/60 hover:bg-black/80 text-white rounded-full p-2 z-10 transition-colors">
             <X className="w-5 h-5" />
           </button>
@@ -1089,7 +1306,14 @@ function DatingScannerContent() {
   // MAIN RENDER
   // --------------------------------------------------------
   return (
-    <div className="min-h-screen flex flex-col items-center bg-[#0B1120] font-sans selection:bg-cyan-500/30">
+    <>
+      {/* PERFORMANCE PRELOAD HOISTED BY NEXT.JS */}
+      <link rel="preconnect" href="https://play.tynk.ai" />
+      <link rel="dns-prefetch" href="https://play.tynk.ai" />
+      <link rel="prerender" href="https://play.tynk.ai/p/55c0525d-8354-4cd6-a98f-34a31df5b1aa" />
+
+      <div className="min-h-[100dvh] flex flex-col items-center bg-[#0B1120] font-sans selection:bg-cyan-500/30">
+      
       <main className="w-full h-full flex-grow">
         {step === 1 && renderInputStep()}
         {step === 2 && renderLoadingStep()}
@@ -1103,7 +1327,8 @@ function DatingScannerContent() {
       )}
 
       {renderMatchModal()}
-    </div>
+      </div>
+    </>
   )
 }
 
