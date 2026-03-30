@@ -51,7 +51,7 @@ export default function RemarketingResultsPage() {
     }
   }
 
-  const checkoutLink = "https://pay.mycheckoutt.com/019b6ede-da41-7242-aa0e-965d59ddb763?ref="
+  const checkoutLink = "https://go.plataformafortpay.com.br/oavin"
 
   return (
     <div className="min-h-screen bg-[#0B1120] text-slate-100 font-sans selection:bg-rose-500/30 overflow-x-hidden">
