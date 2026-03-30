@@ -12,7 +12,7 @@ export default function InitPageFP() {
             {/* Warning Header Strip */}
             <div className="bg-red-600 text-white py-3 px-4 text-center">
                 <p className="text-sm md:text-base font-bold uppercase tracking-wide animate-pulse">
-                    âš ï¸ WAIT! YOUR ORDER IS NOT COMPLETE YET. DO NOT CLOSE THIS PAGE. âš ï¸
+                    ⚠️ WAIT! YOUR ORDER IS NOT COMPLETE YET. DO NOT CLOSE THIS PAGE. ⚠️
                 </p>
             </div>
 
@@ -76,7 +76,7 @@ export default function InitPageFP() {
                         Limited Time Upgrade
                     </div>
                     <h2 className="text-3xl md:text-5xl font-extrabold mb-6">
-                        ðŸ•µï¸ The Reading Signs Method
+                        🕵️ The Reading Signs Method
                     </h2>
                     <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
                         Learn how to read a person like an open book. Know they are lying before they even finish the sentence.
@@ -134,7 +134,7 @@ export default function InitPageFP() {
                                 href="https://go.plataformafortpay.com.br/mdyvshobez"
                                 className="block w-full bg-orange-500 hover:bg-orange-600 text-white text-center py-5 rounded-2xl text-xl font-bold shadow-lg shadow-orange-200 transition-all transform hover:-translate-y-1"
                             >
-                                âœ… Add to My Order - Just $19
+                                ✅ Add to My Order - Just $19
                             </Link>
                             <Link 
                                 href="/initpage1-fp"

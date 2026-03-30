@@ -10,79 +10,79 @@ import {
 // --- DATABASE SIMULATION ---
 const COUNTRIES = [
   // --- English Speaking (Primary) ---
-  { code: "+1", iso: "US", name: "United States", flag: "Ã°Å¸â€¡ÂºÃ°Å¸â€¡Â¸", placeholder: "(555) 123-4567" },
-  { code: "+44", iso: "GB", name: "United Kingdom", flag: "Ã°Å¸â€¡Â¬Ã°Å¸â€¡Â§", placeholder: "7911 123456" },
-  { code: "+1", iso: "CA", name: "Canada", flag: "Ã°Å¸â€¡Â¨Ã°Å¸â€¡Â¦", placeholder: "(555) 123-4567" },
-  { code: "+61", iso: "AU", name: "Australia", flag: "Ã°Å¸â€¡Â¦Ã°Å¸â€¡Âº", placeholder: "412 345 678" },
-  { code: "+64", iso: "NZ", name: "New Zealand", flag: "Ã°Å¸â€¡Â³Ã°Å¸â€¡Â¿", placeholder: "21 123 4567" },
-  { code: "+353", iso: "IE", name: "Ireland", flag: "Ã°Å¸â€¡Â®Ã°Å¸â€¡Âª", placeholder: "87 123 4567" },
-  { code: "+27", iso: "ZA", name: "South Africa", flag: "Ã°Å¸â€¡Â¿Ã°Å¸â€¡Â¦", placeholder: "71 123 4567" },
+  { code: "+1", iso: "US", name: "United States", flag: "🇺🇸", placeholder: "(555) 123-4567" },
+  { code: "+44", iso: "GB", name: "United Kingdom", flag: "🇬🇧", placeholder: "7911 123456" },
+  { code: "+1", iso: "CA", name: "Canada", flag: "🇨🇦", placeholder: "(555) 123-4567" },
+  { code: "+61", iso: "AU", name: "Australia", flag: "🇦🇺", placeholder: "412 345 678" },
+  { code: "+64", iso: "NZ", name: "New Zealand", flag: "🇳🇿", placeholder: "21 123 4567" },
+  { code: "+353", iso: "IE", name: "Ireland", flag: "🇮🇪", placeholder: "87 123 4567" },
+  { code: "+27", iso: "ZA", name: "South Africa", flag: "🇿🇦", placeholder: "71 123 4567" },
   // --- Europe ---
-  { code: "+33", iso: "FR", name: "France", flag: "Ã°Å¸â€¡Â«Ã°Å¸â€¡Â·", placeholder: "6 12 34 56 78" },
-  { code: "+49", iso: "DE", name: "Germany", flag: "Ã°Å¸â€¡Â©Ã°Å¸â€¡Âª", placeholder: "1512 3456789" },
-  { code: "+39", iso: "IT", name: "Italy", flag: "Ã°Å¸â€¡Â®Ã°Å¸â€¡Â¹", placeholder: "312 345 6789" },
-  { code: "+34", iso: "ES", name: "Spain", flag: "Ã°Å¸â€¡ÂªÃ°Å¸â€¡Â¸", placeholder: "612 34 56 78" },
-  { code: "+351", iso: "PT", name: "Portugal", flag: "Ã°Å¸â€¡ÂµÃ°Å¸â€¡Â¹", placeholder: "912 345 678" },
-  { code: "+31", iso: "NL", name: "Netherlands", flag: "Ã°Å¸â€¡Â³Ã°Å¸â€¡Â±", placeholder: "6 12345678" },
-  { code: "+32", iso: "BE", name: "Belgium", flag: "Ã°Å¸â€¡Â§Ã°Å¸â€¡Âª", placeholder: "470 12 34 56" },
-  { code: "+41", iso: "CH", name: "Switzerland", flag: "Ã°Å¸â€¡Â¨Ã°Å¸â€¡Â­", placeholder: "78 123 45 67" },
-  { code: "+43", iso: "AT", name: "Austria", flag: "Ã°Å¸â€¡Â¦Ã°Å¸â€¡Â¹", placeholder: "664 123456" },
-  { code: "+46", iso: "SE", name: "Sweden", flag: "Ã°Å¸â€¡Â¸Ã°Å¸â€¡Âª", placeholder: "70-123 45 67" },
-  { code: "+47", iso: "NO", name: "Norway", flag: "Ã°Å¸â€¡Â³Ã°Å¸â€¡Â´", placeholder: "406 12 345" },
-  { code: "+45", iso: "DK", name: "Denmark", flag: "Ã°Å¸â€¡Â©Ã°Å¸â€¡Â°", placeholder: "20 12 34 56" },
-  { code: "+358", iso: "FI", name: "Finland", flag: "Ã°Å¸â€¡Â«Ã°Å¸â€¡Â®", placeholder: "50 123 4567" },
-  { code: "+48", iso: "PL", name: "Poland", flag: "Ã°Å¸â€¡ÂµÃ°Å¸â€¡Â±", placeholder: "512 345 678" },
-  { code: "+30", iso: "GR", name: "Greece", flag: "Ã°Å¸â€¡Â¬Ã°Å¸â€¡Â·", placeholder: "691 234 5678" },
-  { code: "+420", iso: "CZ", name: "Czech Republic", flag: "Ã°Å¸â€¡Â¨Ã°Å¸â€¡Â¿", placeholder: "712 345 678" },
-  { code: "+36", iso: "HU", name: "Hungary", flag: "Ã°Å¸â€¡Â­Ã°Å¸â€¡Âº", placeholder: "20 123 4567" },
-  { code: "+40", iso: "RO", name: "Romania", flag: "Ã°Å¸â€¡Â·Ã°Å¸â€¡Â´", placeholder: "712 345 678" },
-  { code: "+380", iso: "UA", name: "Ukraine", flag: "Ã°Å¸â€¡ÂºÃ°Å¸â€¡Â¦", placeholder: "50 123 4567" },
-  { code: "+7", iso: "RU", name: "Russia", flag: "Ã°Å¸â€¡Â·Ã°Å¸â€¡Âº", placeholder: "912 345-67-89" },
+  { code: "+33", iso: "FR", name: "France", flag: "🇫🇷", placeholder: "6 12 34 56 78" },
+  { code: "+49", iso: "DE", name: "Germany", flag: "🇩🇪", placeholder: "1512 3456789" },
+  { code: "+39", iso: "IT", name: "Italy", flag: "🇮🇹", placeholder: "312 345 6789" },
+  { code: "+34", iso: "ES", name: "Spain", flag: "🇪🇸", placeholder: "612 34 56 78" },
+  { code: "+351", iso: "PT", name: "Portugal", flag: "🇵🇹", placeholder: "912 345 678" },
+  { code: "+31", iso: "NL", name: "Netherlands", flag: "🇳🇱", placeholder: "6 12345678" },
+  { code: "+32", iso: "BE", name: "Belgium", flag: "🇧🇪", placeholder: "470 12 34 56" },
+  { code: "+41", iso: "CH", name: "Switzerland", flag: "🇨🇭", placeholder: "78 123 45 67" },
+  { code: "+43", iso: "AT", name: "Austria", flag: "🇦🇹", placeholder: "664 123456" },
+  { code: "+46", iso: "SE", name: "Sweden", flag: "🇸🇪", placeholder: "70-123 45 67" },
+  { code: "+47", iso: "NO", name: "Norway", flag: "🇳🇴", placeholder: "406 12 345" },
+  { code: "+45", iso: "DK", name: "Denmark", flag: "🇩🇰", placeholder: "20 12 34 56" },
+  { code: "+358", iso: "FI", name: "Finland", flag: "🇫🇮", placeholder: "50 123 4567" },
+  { code: "+48", iso: "PL", name: "Poland", flag: "🇵🇱", placeholder: "512 345 678" },
+  { code: "+30", iso: "GR", name: "Greece", flag: "🇬🇷", placeholder: "691 234 5678" },
+  { code: "+420", iso: "CZ", name: "Czech Republic", flag: "🇨🇿", placeholder: "712 345 678" },
+  { code: "+36", iso: "HU", name: "Hungary", flag: "🇭🇺", placeholder: "20 123 4567" },
+  { code: "+40", iso: "RO", name: "Romania", flag: "🇷🇴", placeholder: "712 345 678" },
+  { code: "+380", iso: "UA", name: "Ukraine", flag: "🇺🇦", placeholder: "50 123 4567" },
+  { code: "+7", iso: "RU", name: "Russia", flag: "🇷🇺", placeholder: "912 345-67-89" },
   // --- Latin America ---
-  { code: "+55", iso: "BR", name: "Brazil", flag: "Ã°Å¸â€¡Â§Ã°Å¸â€¡Â·", placeholder: "(11) 99999-9999" },
-  { code: "+52", iso: "MX", name: "Mexico", flag: "Ã°Å¸â€¡Â²Ã°Å¸â€¡Â½", placeholder: "55 1234 5678" },
-  { code: "+54", iso: "AR", name: "Argentina", flag: "Ã°Å¸â€¡Â¦Ã°Å¸â€¡Â·", placeholder: "11 1234-5678" },
-  { code: "+56", iso: "CL", name: "Chile", flag: "Ã°Å¸â€¡Â¨Ã°Å¸â€¡Â±", placeholder: "9 1234 5678" },
-  { code: "+57", iso: "CO", name: "Colombia", flag: "Ã°Å¸â€¡Â¨Ã°Å¸â€¡Â´", placeholder: "300 1234567" },
-  { code: "+51", iso: "PE", name: "Peru", flag: "Ã°Å¸â€¡ÂµÃ°Å¸â€¡Âª", placeholder: "912 345 678" },
-  { code: "+58", iso: "VE", name: "Venezuela", flag: "Ã°Å¸â€¡Â»Ã°Å¸â€¡Âª", placeholder: "412-1234567" },
-  { code: "+593", iso: "EC", name: "Ecuador", flag: "Ã°Å¸â€¡ÂªÃ°Å¸â€¡Â¨", placeholder: "99 123 4567" },
-  { code: "+595", iso: "PY", name: "Paraguay", flag: "Ã°Å¸â€¡ÂµÃ°Å¸â€¡Â¾", placeholder: "961 123456" },
-  { code: "+598", iso: "UY", name: "Uruguay", flag: "Ã°Å¸â€¡ÂºÃ°Å¸â€¡Â¾", placeholder: "94 123 456" },
-  { code: "+591", iso: "BO", name: "Bolivia", flag: "Ã°Å¸â€¡Â§Ã°Å¸â€¡Â´", placeholder: "71234567" },
-  { code: "+507", iso: "PA", name: "Panama", flag: "Ã°Å¸â€¡ÂµÃ°Å¸â€¡Â¦", placeholder: "6123-4567" },
-  { code: "+506", iso: "CR", name: "Costa Rica", flag: "Ã°Å¸â€¡Â¨Ã°Å¸â€¡Â·", placeholder: "8123-4567" },
-  { code: "+1", iso: "DO", name: "Dominican Republic", flag: "Ã°Å¸â€¡Â©Ã°Å¸â€¡Â´", placeholder: "(809) 123-4567" },
+  { code: "+55", iso: "BR", name: "Brazil", flag: "🇧🇷", placeholder: "(11) 99999-9999" },
+  { code: "+52", iso: "MX", name: "Mexico", flag: "🇲🇽", placeholder: "55 1234 5678" },
+  { code: "+54", iso: "AR", name: "Argentina", flag: "🇦🇷", placeholder: "11 1234-5678" },
+  { code: "+56", iso: "CL", name: "Chile", flag: "🇨🇱", placeholder: "9 1234 5678" },
+  { code: "+57", iso: "CO", name: "Colombia", flag: "🇨🇴", placeholder: "300 1234567" },
+  { code: "+51", iso: "PE", name: "Peru", flag: "🇵🇪", placeholder: "912 345 678" },
+  { code: "+58", iso: "VE", name: "Venezuela", flag: "🇻🇪", placeholder: "412-1234567" },
+  { code: "+593", iso: "EC", name: "Ecuador", flag: "🇪🇨", placeholder: "99 123 4567" },
+  { code: "+595", iso: "PY", name: "Paraguay", flag: "🇵🇾", placeholder: "961 123456" },
+  { code: "+598", iso: "UY", name: "Uruguay", flag: "🇺🇾", placeholder: "94 123 456" },
+  { code: "+591", iso: "BO", name: "Bolivia", flag: "🇧🇴", placeholder: "71234567" },
+  { code: "+507", iso: "PA", name: "Panama", flag: "🇵🇦", placeholder: "6123-4567" },
+  { code: "+506", iso: "CR", name: "Costa Rica", flag: "🇨🇷", placeholder: "8123-4567" },
+  { code: "+1", iso: "DO", name: "Dominican Republic", flag: "🇩🇴", placeholder: "(809) 123-4567" },
   // --- Asia / Pacific ---
-  { code: "+81", iso: "JP", name: "Japan", flag: "Ã°Å¸â€¡Â¯Ã°Å¸â€¡Âµ", placeholder: "90-1234-5678" },
-  { code: "+82", iso: "KR", name: "South Korea", flag: "Ã°Å¸â€¡Â°Ã°Å¸â€¡Â·", placeholder: "10-1234-5678" },
-  { code: "+86", iso: "CN", name: "China", flag: "Ã°Å¸â€¡Â¨Ã°Å¸â€¡Â³", placeholder: "138 0013 8000" },
-  { code: "+91", iso: "IN", name: "India", flag: "Ã°Å¸â€¡Â®Ã°Å¸â€¡Â³", placeholder: "81234 56789" },
-  { code: "+62", iso: "ID", name: "Indonesia", flag: "Ã°Å¸â€¡Â®Ã°Å¸â€¡Â©", placeholder: "0812 3456 789" },
-  { code: "+63", iso: "PH", name: "Philippines", flag: "Ã°Å¸â€¡ÂµÃ°Å¸â€¡Â­", placeholder: "912 345 6789" },
-  { code: "+60", iso: "MY", name: "Malaysia", flag: "Ã°Å¸â€¡Â²Ã°Å¸â€¡Â¾", placeholder: "012-345 6789" },
-  { code: "+65", iso: "SG", name: "Singapore", flag: "Ã°Å¸â€¡Â¸Ã°Å¸â€¡Â¬", placeholder: "8123 4567" },
-  { code: "+66", iso: "TH", name: "Thailand", flag: "Ã°Å¸â€¡Â¹Ã°Å¸â€¡Â­", placeholder: "081 234 5678" },
-  { code: "+84", iso: "VN", name: "Vietnam", flag: "Ã°Å¸â€¡Â»Ã°Å¸â€¡Â³", placeholder: "091 234 56 78" },
-  { code: "+92", iso: "PK", name: "Pakistan", flag: "Ã°Å¸â€¡ÂµÃ°Å¸â€¡Â°", placeholder: "0300 1234567" },
-  { code: "+880", iso: "BD", name: "Bangladesh", flag: "Ã°Å¸â€¡Â§Ã°Å¸â€¡Â©", placeholder: "01712-345678" },
-  { code: "+852", iso: "HK", name: "Hong Kong", flag: "Ã°Å¸â€¡Â­Ã°Å¸â€¡Â°", placeholder: "9123 4567" },
-  { code: "+886", iso: "TW", name: "Taiwan", flag: "Ã°Å¸â€¡Â¹Ã°Å¸â€¡Â¼", placeholder: "0912 345 678" },
+  { code: "+81", iso: "JP", name: "Japan", flag: "🇯🇵", placeholder: "90-1234-5678" },
+  { code: "+82", iso: "KR", name: "South Korea", flag: "🇰🇷", placeholder: "10-1234-5678" },
+  { code: "+86", iso: "CN", name: "China", flag: "🇨🇳", placeholder: "138 0013 8000" },
+  { code: "+91", iso: "IN", name: "India", flag: "🇮🇳", placeholder: "81234 56789" },
+  { code: "+62", iso: "ID", name: "Indonesia", flag: "🇮🇩", placeholder: "0812 3456 789" },
+  { code: "+63", iso: "PH", name: "Philippines", flag: "🇵🇭", placeholder: "912 345 6789" },
+  { code: "+60", iso: "MY", name: "Malaysia", flag: "🇲🇾", placeholder: "012-345 6789" },
+  { code: "+65", iso: "SG", name: "Singapore", flag: "🇸🇬", placeholder: "8123 4567" },
+  { code: "+66", iso: "TH", name: "Thailand", flag: "🇹🇭", placeholder: "081 234 5678" },
+  { code: "+84", iso: "VN", name: "Vietnam", flag: "🇻🇳", placeholder: "091 234 56 78" },
+  { code: "+92", iso: "PK", name: "Pakistan", flag: "🇵🇰", placeholder: "0300 1234567" },
+  { code: "+880", iso: "BD", name: "Bangladesh", flag: "🇧🇩", placeholder: "01712-345678" },
+  { code: "+852", iso: "HK", name: "Hong Kong", flag: "🇭🇰", placeholder: "9123 4567" },
+  { code: "+886", iso: "TW", name: "Taiwan", flag: "🇹🇼", placeholder: "0912 345 678" },
   // --- Middle East / Africa / Others ---
-  { code: "+972", iso: "IL", name: "Israel", flag: "Ã°Å¸â€¡Â®Ã°Å¸â€¡Â±", placeholder: "50 123 4567" },
-  { code: "+90", iso: "TR", name: "Turkey", flag: "Ã°Å¸â€¡Â¹Ã°Å¸â€¡Â·", placeholder: "501 234 56 78" },
-  { code: "+971", iso: "AE", name: "UAE", flag: "Ã°Å¸â€¡Â¦Ã°Å¸â€¡Âª", placeholder: "50 123 4567" },
-  { code: "+966", iso: "SA", name: "Saudi Arabia", flag: "Ã°Å¸â€¡Â¸Ã°Å¸â€¡Â¦", placeholder: "50 123 4567" },
-  { code: "+20", iso: "EG", name: "Egypt", flag: "Ã°Å¸â€¡ÂªÃ°Å¸â€¡Â¬", placeholder: "100 123 4567" },
-  { code: "+234", iso: "NG", name: "Nigeria", flag: "Ã°Å¸â€¡Â³Ã°Å¸â€¡Â¬", placeholder: "802 123 4567" },
-  { code: "+254", iso: "KE", name: "Kenya", flag: "Ã°Å¸â€¡Â°Ã°Å¸â€¡Âª", placeholder: "712 123456" },
-  { code: "+212", iso: "MA", name: "Morocco", flag: "Ã°Å¸â€¡Â²Ã°Å¸â€¡Â¦", placeholder: "612-345678" },
+  { code: "+972", iso: "IL", name: "Israel", flag: "🇮🇱", placeholder: "50 123 4567" },
+  { code: "+90", iso: "TR", name: "Turkey", flag: "🇹🇷", placeholder: "501 234 56 78" },
+  { code: "+971", iso: "AE", name: "UAE", flag: "🇦🇪", placeholder: "50 123 4567" },
+  { code: "+966", iso: "SA", name: "Saudi Arabia", flag: "🇸🇦", placeholder: "50 123 4567" },
+  { code: "+20", iso: "EG", name: "Egypt", flag: "🇪🇬", placeholder: "100 123 4567" },
+  { code: "+234", iso: "NG", name: "Nigeria", flag: "🇳🇬", placeholder: "802 123 4567" },
+  { code: "+254", iso: "KE", name: "Kenya", flag: "🇰🇪", placeholder: "712 123456" },
+  { code: "+212", iso: "MA", name: "Morocco", flag: "🇲🇦", placeholder: "612-345678" },
 ];
 
 const CONVERSATIONS = [
-  { id: 1, name: "Unknown User Ã°Å¸â€â€™", msg: "Don't tell her about last night...", time: "Yesterday" },
-  { id: 2, name: "Unknown User Ã°Å¸â€â€™", msg: "Photo (View Once) Ã°Å¸â€œÂ·", time: "2 days ago" },
-  { id: 3, name: "Unknown User Ã°Å¸â€â€™", msg: "Audio (0:14) Ã°Å¸Å½Â¤", time: "3 days ago" }
+  { id: 1, name: "Unknown User 🔒", msg: "Don't tell her about last night...", time: "Yesterday" },
+  { id: 2, name: "Unknown User 🔒", msg: "Photo (View Once) 📷", time: "2 days ago" },
+  { id: 3, name: "Unknown User 🔒", msg: "Audio (0:14) 🎤", time: "3 days ago" }
 ];
 
 const KW_STATS = [
@@ -278,7 +278,7 @@ export default function Upsell1FPPage() {
           <div className="bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-xl shadow-2xl flex items-center gap-3 w-64">
             <div className="bg-green-500 p-2 rounded-lg"><MessageSquare className="w-4 h-4 text-white" /></div>
             <div>
-              <p className="text-[10px] text-white font-bold">WhatsApp Ã¢â‚¬Â¢ Now</p>
+              <p className="text-[10px] text-white font-bold">WhatsApp • Now</p>
               <p className="text-xs text-slate-200">Message Recovered: "Don't..."</p>
             </div>
           </div>
@@ -366,7 +366,7 @@ export default function Upsell1FPPage() {
               </button>
               <div className="flex justify-center items-center gap-2 text-[10px] text-slate-500">
                 <ShieldCheck className="w-3 h-3 text-emerald-500" />
-                <span>256-bit Encrypted Ã¢â‚¬Â¢ Anonymous Search</span>
+                <span>256-bit Encrypted • Anonymous Search</span>
               </div>
             </div>
           </div>
@@ -465,7 +465,7 @@ export default function Upsell1FPPage() {
                 </div>
                 <div className="flex items-center gap-2 bg-rose-500/10 border border-rose-500/20 rounded-lg p-2">
                   <div className="w-2 h-2 bg-rose-500 rounded-full animate-pulse flex-shrink-0" />
-                  <p className="text-[10px] text-rose-300 font-mono">Device signal detected near <span className="font-bold text-white">{userLocation}</span> Ã¢â‚¬â€ suspicious activity</p>
+                  <p className="text-[10px] text-rose-300 font-mono">Device signal detected near <span className="font-bold text-white">{userLocation}</span> — suspicious activity</p>
                 </div>
               </div>
 
@@ -497,7 +497,7 @@ export default function Upsell1FPPage() {
                   <span className="font-mono font-bold text-rose-500">{formatTime(timeLeft)}</span>
                 </div>
                 <div className="w-full flex flex-col items-center gap-3 pt-2">
-                  <a style={{ cursor: "pointer" }} data-fortpay="3diwhi3kqn" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center">VIEW FULL REPORT</a>
+                  <a href="javascript:void(0)" data-fortpay="3diwhi3kqn" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center">VIEW FULL REPORT</a>
                   <a href="/downsell-1-fp" className="text-[#004faa] text-sm hover:underline">I don't want access</a>
                 </div>
               </div>
@@ -529,4 +529,3 @@ export default function Upsell1FPPage() {
     </div>
   );
 }
-

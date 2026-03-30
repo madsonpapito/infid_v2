@@ -43,7 +43,7 @@ export default function Step1WireframeMatch() {
                         </div>
 
                         <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.1] tracking-tight">
-                            YOU&apos;RE NOT PARANOID â€” <br />
+                            YOU&apos;RE NOT PARANOID — <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">YOU&apos;RE INVESTIGATING</span>
                         </h1>
 
@@ -135,7 +135,7 @@ export default function Step1WireframeMatch() {
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-bold mb-4 text-white">The Signs You Know Too Well</h2>
                         <p className="text-slate-400 max-w-2xl mx-auto">
-                            Trusting your gut isn&apos;t paranoia â€” it&apos;s survival instinct. If you&apos;re reading this, something already feels wrong. You deserve clarity.
+                            Trusting your gut isn&apos;t paranoia — it&apos;s survival instinct. If you&apos;re reading this, something already feels wrong. You deserve clarity.
                         </p>
                     </div>
 
@@ -205,7 +205,7 @@ export default function Step1WireframeMatch() {
                                         {/* Title Card */}
                                         <div className="bg-gradient-to-r from-emerald-900/40 to-emerald-600/10 border border-emerald-500/20 p-3 rounded-lg text-center">
                                             <h4 className="text-emerald-400 font-bold text-xs tracking-widest uppercase">Investigation Report</h4>
-                                            <p className="text-[10px] text-emerald-500/60 mt-0.5">ID: #9928-XA â€¢ Completed Now</p>
+                                            <p className="text-[10px] text-emerald-500/60 mt-0.5">ID: #9928-XA • Completed Now</p>
                                         </div>
 
                                         {/* Grid Section */}
@@ -368,7 +368,7 @@ export default function Step1WireframeMatch() {
                         <span className="font-bold text-white">TinderCheck</span>
                     </div>
                     <p className="text-xs text-slate-600">Disclaimer: TinderCheck is for informational purposes only. We do not guarantee the accuracy of information.</p>
-                    <p className="text-xs text-slate-600 mt-2">Â© 2026 Infidelity Find. All rights reserved.</p>
+                    <p className="text-xs text-slate-600 mt-2">© 2026 Infidelity Find. All rights reserved.</p>
                 </div>
             </footer>
 

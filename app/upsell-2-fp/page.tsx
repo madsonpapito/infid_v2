@@ -34,7 +34,7 @@ export default function Upsell2FPPage() {
     // Instagram posts state
     const [posts, setPosts] = useState<{ id: string; imageUrl: string }[]>([]);
 
-    // Shuffled image pools Ã¢â‚¬â€ computed once per scan, stable across re-renders
+    // Shuffled image pools — computed once per scan, stable across re-renders
     const [shuffledLiked, setShuffledLiked] = useState<string[]>([]);
     const [shuffledPerfil, setShuffledPerfil] = useState<string[]>([]);
 
@@ -208,14 +208,14 @@ export default function Upsell2FPPage() {
                                         onClick={() => setGender('male')}
                                         className={`p-3 rounded-lg border flex items-center justify-center gap-2 transition-all ${gender === 'male' ? 'bg-cyan-500/10 border-cyan-500 text-cyan-400' : 'bg-slate-800 border-slate-700 text-slate-500 hover:border-slate-600'}`}
                                     >
-                                        <span className="text-lg">Ã°Å¸â€˜Â¨</span>
+                                        <span className="text-lg">👨</span>
                                         <span className="font-bold text-sm uppercase">Male</span>
                                     </button>
                                     <button
                                         onClick={() => setGender('female')}
                                         className={`p-3 rounded-lg border flex items-center justify-center gap-2 transition-all ${gender === 'female' ? 'bg-rose-500/10 border-rose-500 text-rose-400' : 'bg-slate-800 border-slate-700 text-slate-500 hover:border-slate-600'}`}
                                     >
-                                        <span className="text-lg">Ã°Å¸â€˜Â©</span>
+                                        <span className="text-lg">👩</span>
                                         <span className="font-bold text-sm uppercase">Female</span>
                                     </button>
                                 </div>
@@ -281,7 +281,7 @@ export default function Upsell2FPPage() {
 
                                 {searchStatus === 'not_found' && cleanUsername.length >= 3 && (
                                     <p className="text-[11px] text-slate-500 pl-1 font-mono">
-                                        Profile not found Ã¢â‚¬â€ scan will proceed anyway
+                                        Profile not found — scan will proceed anyway
                                     </p>
                                 )}
                             </div>
@@ -466,18 +466,18 @@ export default function Upsell2FPPage() {
 
                                 <div className="grid grid-cols-3 gap-2 text-center mb-3">
                                     <div className="bg-slate-800/60 rounded-lg py-2">
-                                        <p className="text-white font-bold text-sm">{profile?.media_count ?? 'Ã¢â‚¬â€'}</p>
+                                        <p className="text-white font-bold text-sm">{profile?.media_count ?? '—'}</p>
                                         <p className="text-slate-500 text-[10px]">Posts</p>
                                     </div>
                                     <div className="bg-slate-800/60 rounded-lg py-2">
                                         <p className="text-white font-bold text-sm">
-                                            {profile?.follower_count ? (profile.follower_count >= 1000 ? `${(profile.follower_count / 1000).toFixed(1)}k` : profile.follower_count) : 'Ã¢â‚¬â€'}
+                                            {profile?.follower_count ? (profile.follower_count >= 1000 ? `${(profile.follower_count / 1000).toFixed(1)}k` : profile.follower_count) : '—'}
                                         </p>
                                         <p className="text-slate-500 text-[10px]">Followers</p>
                                     </div>
                                     <div className="bg-slate-800/60 rounded-lg py-2">
                                         <p className="text-white font-bold text-sm">
-                                            {profile?.following_count ? (profile.following_count >= 1000 ? `${(profile.following_count / 1000).toFixed(1)}k` : profile.following_count) : 'Ã¢â‚¬â€'}
+                                            {profile?.following_count ? (profile.following_count >= 1000 ? `${(profile.following_count / 1000).toFixed(1)}k` : profile.following_count) : '—'}
                                         </p>
                                         <p className="text-slate-500 text-[10px]">Following</p>
                                     </div>
@@ -487,8 +487,8 @@ export default function Upsell2FPPage() {
                                     {profile?.biography
                                         ? profile.biography
                                         : profile?.is_private
-                                            ? 'Ã°Å¸â€â€™ Private account Ã¢â‚¬â€ bio hidden'
-                                            : 'Ã°Å¸â€œÂ Bio and last 4 locations extracted'
+                                            ? '🔒 Private account — bio hidden'
+                                            : '📍 Bio and last 4 locations extracted'
                                     }
                                 </div>
                             </div>
@@ -569,7 +569,7 @@ export default function Upsell2FPPage() {
                                             </div>
                                             <span className="text-white text-[10px] font-bold">@{cleanUsername}</span>
                                             <span className="text-slate-300 text-[10px] ml-1">
-                                                {['Wow, you look great Ã°Å¸â€Â¥', 'Ã¢ÂÂ¤Ã¯Â¸Â Ã¢ÂÂ¤Ã¯Â¸Â', 'So beautiful Ã°Å¸ËœÂ', 'You drive me crazy Ã°Å¸ËœË†'][i % 4]}
+                                                {['Wow, you look great 🔥', '❤️ ❤️', 'So beautiful 😍', 'You drive me crazy 😈'][i % 4]}
                                             </span>
                                         </div>
                                     </div>
@@ -586,7 +586,7 @@ export default function Upsell2FPPage() {
                                 <h2 className="text-lg font-black text-white mb-2 uppercase tracking-wide">UNLOCK FULL REPORT</h2>
                                 <p className="text-xs text-slate-400 mb-6 px-4">Instant access. 100% Anonymous.</p>
                                 <div className="w-full flex flex-col items-center gap-3 pt-2">
-                                    <a style={{ cursor: "pointer" }} data-fortpay="nqozvq7tqg" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center">VIEW FULL REPORT</a>
+                                    <a href="javascript:void(0)" data-fortpay="nqozvq7tqg" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center">VIEW FULL REPORT</a>
                                     <a href="/downsell-2-fp" className="text-[#004faa] text-sm hover:underline">I don't want access</a>
                                 </div>
                             </div>
@@ -599,4 +599,3 @@ export default function Upsell2FPPage() {
         </div>
     );
 }
-

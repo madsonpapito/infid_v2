@@ -80,7 +80,7 @@ function DatingScannerContent() {
     {
       name: "Daniel, 38",
       location: "Fresno, CA",
-      text: "It's not guesses or random alertsâ€¦ it's actual proof. I saw the screenshots myself. It's worth it.",
+      text: "It's not guesses or random alerts… it's actual proof. I saw the screenshots myself. It's worth it.",
       video: "https://play.tynk.ai/p/ac310c50-c224-4c0f-bdc0-ebf311ef7afa"
     }
   ]
@@ -378,7 +378,7 @@ function DatingScannerContent() {
                 : 'bg-slate-800 border-slate-700 text-slate-500 hover:border-slate-600'
                 }`}
             >
-              <span className="text-xl">{g === 'male' ? 'ðŸ‘¨' : 'ðŸ‘©'}</span>
+              <span className="text-xl">{g === 'male' ? '👨' : '👩'}</span>
               <span className="text-[10px] font-bold uppercase">{g.replace('-', ' ')}</span>
             </button>
           ))}
@@ -957,7 +957,7 @@ function DatingScannerContent() {
                     <p className="text-sm font-bold text-white">{m.name}, {m.age}</p>
                     <p className="text-[10px] text-slate-500">{m.lastSeen}</p>
                   </div>
-                  <p className="text-[10px] text-slate-400">Within {m.distance} â€¢ {m.identity}</p>
+                  <p className="text-[10px] text-slate-400">Within {m.distance} • {m.identity}</p>
                 </div>
                 <ChevronRight className="w-4 h-4 text-slate-600" />
               </div>
@@ -1148,7 +1148,7 @@ function DatingScannerContent() {
                   </iframe>
                 </div>
                 <div className="bg-slate-800/40 p-4 rounded-xl border border-slate-700/50 shadow-inner">
-                  <h4 className="font-bold text-white text-[13px] mb-2">Jessica, 31 â€” Orlando, FL</h4>
+                  <h4 className="font-bold text-white text-[13px] mb-2">Jessica, 31 — Orlando, FL</h4>
                   <p className="text-xs text-slate-400 italic leading-relaxed">&quot;I honestly didn&apos;t think it would work, but the report pulled up deleted chats that explained everything. It felt like the missing piece.&quot;</p>
                 </div>
               </div>
@@ -1166,7 +1166,7 @@ function DatingScannerContent() {
                   </iframe>
                 </div>
                 <div className="bg-slate-800/40 p-4 rounded-xl border border-slate-700/50 shadow-inner">
-                  <h4 className="font-bold text-white text-[13px] mb-2">Amanda, 44 â€” Dallas, TX</h4>
+                  <h4 className="font-bold text-white text-[13px] mb-2">Amanda, 44 — Dallas, TX</h4>
                   <p className="text-xs text-slate-400 italic leading-relaxed">&quot;I was nervous, but within minutes it showed hidden messages and even voice notes. That was the confirmation I needed.&quot;</p>
                 </div>
               </div>
@@ -1184,8 +1184,8 @@ function DatingScannerContent() {
                   </iframe>
                 </div>
                 <div className="bg-slate-800/40 p-4 rounded-xl border border-slate-700/50 shadow-inner">
-                  <h4 className="font-bold text-white text-[13px] mb-2">Daniel, 38 â€” Fresno, CA</h4>
-                  <p className="text-xs text-slate-400 italic leading-relaxed">&quot;It&apos;s not guesses or random alertsâ€¦ it&apos;s actual proof. I saw the screenshots myself. It&apos;s worth it.&quot;</p>
+                  <h4 className="font-bold text-white text-[13px] mb-2">Daniel, 38 — Fresno, CA</h4>
+                  <p className="text-xs text-slate-400 italic leading-relaxed">&quot;It&apos;s not guesses or random alerts… it&apos;s actual proof. I saw the screenshots myself. It&apos;s worth it.&quot;</p>
                 </div>
               </div>
             </div>
@@ -1322,7 +1322,7 @@ function DatingScannerContent() {
 
       {step !== 2 && (
         <footer className="py-6 text-center border-t border-slate-800 w-full mt-auto">
-          <p className="text-[10px] text-slate-600 uppercase tracking-widest">Â© 2026 Digital Truth Check. All rights reserved.</p>
+          <p className="text-[10px] text-slate-600 uppercase tracking-widest">© 2026 Digital Truth Check. All rights reserved.</p>
         </footer>
       )}
 

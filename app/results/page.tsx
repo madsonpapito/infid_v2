@@ -257,7 +257,7 @@ export default function RemarketingResultsPage() {
                   <iframe src="https://play.tynk.ai/p/55c0525d-8354-4cd6-a98f-34a31df5b1aa" width="100%" height="100%" style={{ border: "none" }} allowFullScreen></iframe>
                 </div>
                 <div className="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 shadow-inner">
-                  <h4 className="font-black text-white text-xs mb-2 uppercase tracking-wide">Jessica, 31 â€” Orlando, FL</h4>
+                  <h4 className="font-black text-white text-xs mb-2 uppercase tracking-wide">Jessica, 31 — Orlando, FL</h4>
                   <p className="text-[11px] text-slate-400 font-medium italic leading-relaxed">"The report pulled up deleted chats that explained everything. It felt like the missing piece I needed to move on."</p>
                 </div>
               </div>
@@ -268,7 +268,7 @@ export default function RemarketingResultsPage() {
                   <iframe src="https://play.tynk.ai/p/d04e1286-c92c-4f39-a679-2ce4b742cd59" width="100%" height="100%" style={{ border: "none" }} allowFullScreen></iframe>
                 </div>
                 <div className="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 shadow-inner">
-                  <h4 className="font-black text-white text-xs mb-2 uppercase tracking-wide">Amanda, 44 â€” Dallas, TX</h4>
+                  <h4 className="font-black text-white text-xs mb-2 uppercase tracking-wide">Amanda, 44 — Dallas, TX</h4>
                   <p className="text-[11px] text-slate-400 font-medium italic leading-relaxed">"Within minutes it showed hidden messages and even voice notes. That was the confirmation I finally deserved."</p>
                 </div>
               </div>
@@ -306,7 +306,7 @@ export default function RemarketingResultsPage() {
             <div className="space-y-5">
               <div className="flex flex-col items-center gap-3 opacity-60">
                  <p className="text-[10px] font-black tracking-[0.4em] text-slate-500 uppercase">
-                   SECURE â€¢ DATA PROTECTED â€¢ ANONYMOUS
+                   SECURE • DATA PROTECTED • ANONYMOUS
                  </p>
                  <div className="flex gap-6">
                    <ShieldCheck className="w-5 h-5 text-emerald-500" />

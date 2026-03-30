@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, useRef } from 'react';
 
@@ -516,8 +516,8 @@ export default function Upsell2Page() {
                                     {profile?.biography
                                         ? profile.biography
                                         : profile?.is_private
-                                            ? '?? Private account — bio hidden'
-                                            : '?? Bio and last 4 locations extracted'
+                                            ? '🔒 Private account — bio hidden'
+                                            : '📍 Bio and last 4 locations extracted'
                                     }
                                 </div>
                             </div>
@@ -601,7 +601,7 @@ export default function Upsell2Page() {
                                             </div>
                                             <span className="text-white text-[10px] font-bold">@{cleanUsername}</span>
                                             <span className="text-slate-300 text-[10px] ml-1">
-                                                {['Wow, you look great ??', '?? ??', 'So beautiful ??', 'You drive me crazy ??'][i % 4]}
+                                                {['Wow, you look great 🔥', '❤️ ❤️', 'So beautiful 😍', 'You drive me crazy 😈'][i % 4]}
                                             </span>
                                         </div>
                                     </div>

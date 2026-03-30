@@ -148,18 +148,17 @@ export default function Downsell1FPPage() {
                         </div>
 
                         <div className="w-full flex flex-col items-center gap-3">
-                            <a style={{ cursor: "pointer" }} data-fortpay="emp8eejzsw" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center transform hover:scale-[1.02]">VIEW FULL REPORT</a>
+                            <a href="javascript:void(0)" data-fortpay="emp8eejzsw" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center transform hover:scale-[1.02]">VIEW FULL REPORT</a>
                             <a href="/upsell-2-fp" className="text-[#004faa] text-sm hover:underline">I don't want access</a>
                         </div>
                     </div>
                 </div>
 
                 <p className="text-center text-[10px] text-slate-600 font-mono uppercase">
-                    Secure Server Connection Ã¢â‚¬Â¢ ID: #8821-X
+                    Secure Server Connection • ID: #8821-X
                 </p>
 
             </main>
         </div>
     );
 }
-

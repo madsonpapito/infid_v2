@@ -8,7 +8,7 @@ export default function InitPage2FP() {
             {/* Warning Header Strip */}
             <div className="bg-amber-100 text-amber-800 py-3 px-4 text-center border-b border-amber-200">
                 <p className="text-sm md:text-base font-bold uppercase tracking-wide">
-                    âš ï¸ FINAL STEP: THIS IS YOUR LAST UPGRADE OPTION.
+                    ⚠️ FINAL STEP: THIS IS YOUR LAST UPGRADE OPTION.
                 </p>
             </div>
 
@@ -95,7 +95,7 @@ export default function InitPage2FP() {
                             <div className="w-12 h-12 bg-teal-100 text-teal-600 rounded-xl flex items-center justify-center mb-4">
                                 <Headphones className="w-6 h-6" />
                             </div>
-                            <h3 className="font-bold text-xl text-slate-900 mb-3">ðŸŽ§ The 5-Minute &ldquo;SOS&rdquo; Audio</h3>
+                            <h3 className="font-bold text-xl text-slate-900 mb-3">🎧 The 5-Minute &ldquo;SOS&rdquo; Audio</h3>
                             <p className="text-slate-600 leading-relaxed">
                                 Listen to this immediately before the confrontation. It uses neuro-linguistic techniques to lower your heart rate and stop the &ldquo;fight or flight&rdquo; shaking.
                             </p>
@@ -106,7 +106,7 @@ export default function InitPage2FP() {
                             <div className="w-12 h-12 bg-slate-100 text-slate-600 rounded-xl flex items-center justify-center mb-4">
                                 <Mic className="w-6 h-6" />
                             </div>
-                            <h3 className="font-bold text-xl text-slate-900 mb-3">ðŸ—¿ The &ldquo;Grey Rock&rdquo; Method</h3>
+                            <h3 className="font-bold text-xl text-slate-900 mb-3">🗿 The &ldquo;Grey Rock&rdquo; Method</h3>
                             <p className="text-slate-600 leading-relaxed">
                                 How to become emotionally uninteresting to a manipulator. If they try to provoke you, this technique stops them dead in their tracks.
                             </p>
@@ -117,7 +117,7 @@ export default function InitPage2FP() {
                             <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-4">
                                 <Scroll className="w-6 h-6" />
                             </div>
-                            <h3 className="font-bold text-xl text-slate-900 mb-3">ðŸ“œ The Dignity Scripts</h3>
+                            <h3 className="font-bold text-xl text-slate-900 mb-3">📜 The Dignity Scripts</h3>
                             <p className="text-slate-600 mb-4">Exact phrases to say when they try to blame you:</p>
                             <div className="bg-slate-50 p-4 rounded-lg text-sm border-l-4 border-blue-400 space-y-2 italic text-slate-600">
                                 <p>&ldquo;When they say: &apos;You&apos;re invading my privacy!&apos;&rdquo;</p>
@@ -130,7 +130,7 @@ export default function InitPage2FP() {
                             <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mb-4">
                                 <Brain className="w-6 h-6" />
                             </div>
-                            <h3 className="font-bold text-xl text-slate-900 mb-3">ðŸ§  Post-Confrontation Detox</h3>
+                            <h3 className="font-bold text-xl text-slate-900 mb-3">🧠 Post-Confrontation Detox</h3>
                             <p className="text-slate-600 leading-relaxed">
                                 How to stop the obsessive thoughts (&ldquo;ruminating&rdquo;) after the fight, so you can actually sleep.
                             </p>
@@ -195,10 +195,10 @@ export default function InitPage2FP() {
                             href="https://go.plataformafortpay.com.br/mdyshb7mie"
                             className="block w-full md:max-w-xl mx-auto bg-teal-600 hover:bg-teal-700 text-white text-lg md:text-xl font-bold py-5 px-10 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
                         >
-                            âœ… YES! Add The &ldquo;Emotional Shielding Protocol&rdquo; To My Order
+                            ✅ YES! Add The &ldquo;Emotional Shielding Protocol&rdquo; To My Order
                         </Link>
                         <p className="text-slate-500 text-sm">
-                            Instant Digital Access â€¢ Secure Payment
+                            Instant Digital Access • Secure Payment
                         </p>
                     </div>
 

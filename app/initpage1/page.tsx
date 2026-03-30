@@ -8,7 +8,7 @@ export default function InitPage1() {
             {/* Warning Header Strip */}
             <div className="bg-red-600 text-white py-3 px-4 text-center">
                 <p className="text-sm md:text-base font-bold uppercase tracking-wide animate-pulse">
-                    âš ï¸ WAIT! YOUR ORDER IS NOT COMPLETE YET. DO NOT CLOSE THIS PAGE. âš ï¸
+                    ⚠️ WAIT! YOUR ORDER IS NOT COMPLETE YET. DO NOT CLOSE THIS PAGE. ⚠️
                 </p>
             </div>
 
@@ -91,7 +91,7 @@ export default function InitPage1() {
                         </div>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-extrabold mb-4">
-                        ðŸ“± The Digital Audit Kit
+                        📱 The Digital Audit Kit
                     </h2>
                     <p className="text-xl md:text-2xl text-slate-300 font-medium">
                         How to Find Concrete Proof Without Being a Hacker
@@ -117,7 +117,7 @@ export default function InitPage1() {
                                     <Battery className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-lg text-slate-900 mb-2">ðŸ”‹ The &ldquo;Battery Betrayal&rdquo; Technique</h4>
+                                    <h4 className="font-bold text-lg text-slate-900 mb-2">🔋 The &ldquo;Battery Betrayal&rdquo; Technique</h4>
                                     <p className="text-slate-600 leading-relaxed">
                                         How to instantly see which apps are being used the most (and at what times), even if the icon is hidden from the home screen.
                                     </p>
@@ -132,7 +132,7 @@ export default function InitPage1() {
                                     <MapPin className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-lg text-slate-900 mb-2">ðŸ“ The Location Timeline</h4>
+                                    <h4 className="font-bold text-lg text-slate-900 mb-2">📍 The Location Timeline</h4>
                                     <p className="text-slate-600 leading-relaxed">
                                         How to access the hidden map inside Google and Apple accounts that shows exactly where the phone has been, minute by minute.
                                     </p>
@@ -147,7 +147,7 @@ export default function InitPage1() {
                                     <Calculator className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-lg text-slate-900 mb-2">ðŸ›¡ï¸ The &ldquo;Calculator&rdquo; Vaults</h4>
+                                    <h4 className="font-bold text-lg text-slate-900 mb-2">🛡️ The &ldquo;Calculator&rdquo; Vaults</h4>
                                     <p className="text-slate-600 leading-relaxed">
                                         Is that really a calculator app? Learn how to spot fake apps that are actually secret vaults for photos and messages.
                                     </p>
@@ -162,7 +162,7 @@ export default function InitPage1() {
                                     <Trash2 className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-lg text-slate-900 mb-2">ðŸ—‘ï¸ The Ghost Folder</h4>
+                                    <h4 className="font-bold text-lg text-slate-900 mb-2">🗑️ The Ghost Folder</h4>
                                     <p className="text-slate-600 leading-relaxed">
                                         The one place inside the photo gallery that 90% of people forget to empty after deleting incriminating photos.
                                     </p>
@@ -177,7 +177,7 @@ export default function InitPage1() {
                                     <Cloud className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-lg text-slate-900 mb-2">â˜ï¸ The Cloud Backdoor</h4>
+                                    <h4 className="font-bold text-lg text-slate-900 mb-2">☁️ The Cloud Backdoor</h4>
                                     <p className="text-slate-600 leading-relaxed">
                                         How to find messages that were deleted from the phone but are still living in the cloud backup.
                                     </p>
@@ -229,7 +229,7 @@ export default function InitPage1() {
                             <span className="text-6xl md:text-7xl font-extrabold text-white">$47</span>
                         </div>
                         <p className="text-yellow-400 font-bold mt-3 text-lg">
-                            ðŸ”¥ That&apos;s a 50% Discount - One Time Only!
+                            🔥 That&apos;s a 50% Discount - One Time Only!
                         </p>
                     </div>
 
@@ -238,7 +238,7 @@ export default function InitPage1() {
                             href="https://pay.mycheckoutt.com/019bc677-f5bc-70ee-8e14-7f2ad8946394?ref="
                             className="block w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg md:text-xl font-bold py-5 px-10 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-orange-400"
                         >
-                            âœ… YES! Add The &ldquo;Digital Audit Kit&rdquo; To My Order
+                            ✅ YES! Add The &ldquo;Digital Audit Kit&rdquo; To My Order
                         </Link>
                         <p className="text-blue-100 text-sm">
                             Click here to add for just $47. Instant Access.
@@ -264,7 +264,7 @@ export default function InitPage1() {
                             <ShieldCheck className="w-8 h-8 text-green-600" />
                         </div>
                         <h3 className="text-2xl font-bold text-green-900 mb-4">
-                            ðŸ”’ 100% Risk-Free Guarantee
+                            🔒 100% Risk-Free Guarantee
                         </h3>
                         <p className="text-green-800 leading-relaxed">
                             Just like the main course, if you use these techniques and find they are too difficult or not useful, just email us, and we will refund this upgrade immediately. <strong>No questions asked.</strong>
@@ -280,11 +280,11 @@ export default function InitPage1() {
                         href="https://pay.mycheckoutt.com/019bc677-f5bc-70ee-8e14-7f2ad8946394?ref="
                         className="inline-block w-full md:w-auto bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg font-bold py-4 px-10 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
                     >
-                        âœ… YES! Add The Digital Audit Kit - Only $47
+                        ✅ YES! Add The Digital Audit Kit - Only $47
                     </Link>
                     <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
                         <Lock className="w-4 h-4" />
-                        Secure Payment â€¢ Instant Access
+                        Secure Payment • Instant Access
                     </div>
                 </div>
             </section>
