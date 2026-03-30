@@ -497,7 +497,7 @@ export default function Upsell1FPPage() {
                   <span className="font-mono font-bold text-rose-500">{formatTime(timeLeft)}</span>
                 </div>
                 <div className="w-full flex flex-col items-center gap-3 pt-2">
-                  <a href="javascript:void(0)" data-fortpay="3diwhi3kqn" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center">VIEW FULL REPORT</a>
+                  <a href="#" data-fortpay="3diwhi3kqn" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center">VIEW FULL REPORT</a>
                   <a href="/downsell-1-fp" className="text-[#004faa] text-sm hover:underline">I don't want access</a>
                 </div>
               </div>

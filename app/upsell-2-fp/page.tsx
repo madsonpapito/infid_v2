@@ -586,7 +586,7 @@ export default function Upsell2FPPage() {
                                 <h2 className="text-lg font-black text-white mb-2 uppercase tracking-wide">UNLOCK FULL REPORT</h2>
                                 <p className="text-xs text-slate-400 mb-6 px-4">Instant access. 100% Anonymous.</p>
                                 <div className="w-full flex flex-col items-center gap-3 pt-2">
-                                    <a href="javascript:void(0)" data-fortpay="nqozvq7tqg" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center">VIEW FULL REPORT</a>
+                                    <a href="#" data-fortpay="nqozvq7tqg" className="fortpay_btn w-full py-4 bg-gradient-to-r from-[#3d94f6] to-[#1e62d0] text-white font-bold rounded-xl shadow-lg transition-all text-center">VIEW FULL REPORT</a>
                                     <a href="/downsell-2-fp" className="text-[#004faa] text-sm hover:underline">I don't want access</a>
                                 </div>
                             </div>
