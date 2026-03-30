@@ -161,7 +161,7 @@ export default function Downsell2FPPage() {
                 </div>
 
                 <p className="text-center text-[10px] text-slate-600 font-mono uppercase">
-                    Secure Server Connection • ID: #INSTA-99X
+                    Secure Server Connection â€¢ ID: #INSTA-99X
                 </p>
 
             </div>

@@ -96,9 +96,9 @@ export default function InitPage() {
                     <div className="space-y-4">
                         {[
                             "Module 1: The fundamentals of lying and how the brain reacts.",
-                            "Module 2: Reading eyes, hands, and posture – The body speaks.",
+                            "Module 2: Reading eyes, hands, and posture â€“ The body speaks.",
                             "Module 3: Analyzing text messages and online behavior.",
-                            "Module 4: The Truth Method – How to confront safely.",
+                            "Module 4: The Truth Method â€“ How to confront safely.",
                             "Bonus: Guide to Rebuilding Trust and Intimacy."
                         ].map((item, index) => (
                             <div key={index} className="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm">

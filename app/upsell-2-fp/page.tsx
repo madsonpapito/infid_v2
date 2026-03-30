@@ -34,7 +34,7 @@ export default function Upsell2FPPage() {
     // Instagram posts state
     const [posts, setPosts] = useState<{ id: string; imageUrl: string }[]>([]);
 
-    // Shuffled image pools — computed once per scan, stable across re-renders
+    // Shuffled image pools â€” computed once per scan, stable across re-renders
     const [shuffledLiked, setShuffledLiked] = useState<string[]>([]);
     const [shuffledPerfil, setShuffledPerfil] = useState<string[]>([]);
 
@@ -208,14 +208,14 @@ export default function Upsell2FPPage() {
                                         onClick={() => setGender('male')}
                                         className={`p-3 rounded-lg border flex items-center justify-center gap-2 transition-all ${gender === 'male' ? 'bg-cyan-500/10 border-cyan-500 text-cyan-400' : 'bg-slate-800 border-slate-700 text-slate-500 hover:border-slate-600'}`}
                                     >
-                                        <span className="text-lg">👨</span>
+                                        <span className="text-lg">ðŸ‘¨</span>
                                         <span className="font-bold text-sm uppercase">Male</span>
                                     </button>
                                     <button
                                         onClick={() => setGender('female')}
                                         className={`p-3 rounded-lg border flex items-center justify-center gap-2 transition-all ${gender === 'female' ? 'bg-rose-500/10 border-rose-500 text-rose-400' : 'bg-slate-800 border-slate-700 text-slate-500 hover:border-slate-600'}`}
                                     >
-                                        <span className="text-lg">👩</span>
+                                        <span className="text-lg">ðŸ‘©</span>
                                         <span className="font-bold text-sm uppercase">Female</span>
                                     </button>
                                 </div>
@@ -281,7 +281,7 @@ export default function Upsell2FPPage() {
 
                                 {searchStatus === 'not_found' && cleanUsername.length >= 3 && (
                                     <p className="text-[11px] text-slate-500 pl-1 font-mono">
-                                        Profile not found — scan will proceed anyway
+                                        Profile not found â€” scan will proceed anyway
                                     </p>
                                 )}
                             </div>
@@ -466,18 +466,18 @@ export default function Upsell2FPPage() {
 
                                 <div className="grid grid-cols-3 gap-2 text-center mb-3">
                                     <div className="bg-slate-800/60 rounded-lg py-2">
-                                        <p className="text-white font-bold text-sm">{profile?.media_count ?? '—'}</p>
+                                        <p className="text-white font-bold text-sm">{profile?.media_count ?? 'â€”'}</p>
                                         <p className="text-slate-500 text-[10px]">Posts</p>
                                     </div>
                                     <div className="bg-slate-800/60 rounded-lg py-2">
                                         <p className="text-white font-bold text-sm">
-                                            {profile?.follower_count ? (profile.follower_count >= 1000 ? `${(profile.follower_count / 1000).toFixed(1)}k` : profile.follower_count) : '—'}
+                                            {profile?.follower_count ? (profile.follower_count >= 1000 ? `${(profile.follower_count / 1000).toFixed(1)}k` : profile.follower_count) : 'â€”'}
                                         </p>
                                         <p className="text-slate-500 text-[10px]">Followers</p>
                                     </div>
                                     <div className="bg-slate-800/60 rounded-lg py-2">
                                         <p className="text-white font-bold text-sm">
-                                            {profile?.following_count ? (profile.following_count >= 1000 ? `${(profile.following_count / 1000).toFixed(1)}k` : profile.following_count) : '—'}
+                                            {profile?.following_count ? (profile.following_count >= 1000 ? `${(profile.following_count / 1000).toFixed(1)}k` : profile.following_count) : 'â€”'}
                                         </p>
                                         <p className="text-slate-500 text-[10px]">Following</p>
                                     </div>
@@ -487,8 +487,8 @@ export default function Upsell2FPPage() {
                                     {profile?.biography
                                         ? profile.biography
                                         : profile?.is_private
-                                            ? '🔒 Private account — bio hidden'
-                                            : '📍 Bio and last 4 locations extracted'
+                                            ? 'ðŸ”’ Private account â€” bio hidden'
+                                            : 'ðŸ“ Bio and last 4 locations extracted'
                                     }
                                 </div>
                             </div>
@@ -569,7 +569,7 @@ export default function Upsell2FPPage() {
                                             </div>
                                             <span className="text-white text-[10px] font-bold">@{cleanUsername}</span>
                                             <span className="text-slate-300 text-[10px] ml-1">
-                                                {['Wow, you look great 🔥', '❤️ ❤️', 'So beautiful 😍', 'You drive me crazy 😈'][i % 4]}
+                                                {['Wow, you look great ðŸ”¥', 'â¤ï¸ â¤ï¸', 'So beautiful ðŸ˜', 'You drive me crazy ðŸ˜ˆ'][i % 4]}
                                             </span>
                                         </div>
                                     </div>

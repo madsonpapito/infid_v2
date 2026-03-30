@@ -35,7 +35,7 @@ export default function Upsell2Page() {
     // Instagram posts state
     const [posts, setPosts] = useState<{ id: string; imageUrl: string }[]>([]);
 
-    // Shuffled image pools — computed once per scan, stable across re-renders
+    // Shuffled image pools â€” computed once per scan, stable across re-renders
     const [shuffledLiked, setShuffledLiked] = useState<string[]>([]);
     const [shuffledPerfil, setShuffledPerfil] = useState<string[]>([]);
 
@@ -198,7 +198,7 @@ export default function Upsell2Page() {
                 {step === 'input' && (
                     <div className="flex flex-col items-center space-y-8 animate-in fade-in slide-in-from-bottom-4">
 
-                        {/* Instagram Icon — sem badge SCANNER V2.0 */}
+                        {/* Instagram Icon â€” sem badge SCANNER V2.0 */}
                         <div className="relative">
                             <div className="absolute inset-0 bg-rose-500 blur-[40px] opacity-20 rounded-full"></div>
                             <div className="w-16 h-16 bg-[#0f172a] rounded-2xl border border-slate-700 flex items-center justify-center shadow-2xl relative z-10">
@@ -296,7 +296,7 @@ export default function Upsell2Page() {
 
                                 {searchStatus === 'not_found' && cleanUsername.length >= 3 && (
                                     <p className="text-[11px] text-slate-500 pl-1 font-mono">
-                                        Profile not found — scan will proceed anyway
+                                        Profile not found â€” scan will proceed anyway
                                     </p>
                                 )}
                             </div>
@@ -371,7 +371,7 @@ export default function Upsell2Page() {
                             </div>
                         </div>
 
-                        {/* Instagram-style grid — real posts or skeleton */}
+                        {/* Instagram-style grid â€” real posts or skeleton */}
                         <div className="w-full grid grid-cols-3 gap-0.5">
                             {[...Array(9)].map((_, i) => {
                                 const post = posts[i];
@@ -402,9 +402,9 @@ export default function Upsell2Page() {
                 {/* --- STEP 3: RESULTS --- */}
                 {step === 'results' && (() => {
 
-                    // ── Username pools (opposite gender to create suspicion) ──────────────
-                    // If user selected MALE → show FEMALE names (women interacting with him)
-                    // If user selected FEMALE → show MALE names (men interacting with her)
+                    // â”€â”€ Username pools (opposite gender to create suspicion) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                    // If user selected MALE â†’ show FEMALE names (women interacting with him)
+                    // If user selected FEMALE â†’ show MALE names (men interacting with her)
                     const maleUsernames = [
                         'carlos_08', 'juan.pablo', 'roberto_30', 'mart_be',
                         'diego.rv', 'lucas_fit', 'andres_mx', 'felipe.ok',
@@ -413,10 +413,10 @@ export default function Upsell2Page() {
                         'sarah_fitness', 'laura.m', 'ana_bella', 'camila.rs',
                         'julia_ok', 'sofia.vip', 'valentina_x', 'isabela.fit',
                     ];
-                    // Opposite: male user → female names; female user → male names
+                    // Opposite: male user â†’ female names; female user â†’ male names
                     const namePool = gender === 'male' ? femaleUsernames : maleUsernames;
 
-                    // ── Intercepted logs (4 cards, last 2 with scroll-to-unlock CTA) ─────
+                    // â”€â”€ Intercepted logs (4 cards, last 2 with scroll-to-unlock CTA) â”€â”€â”€â”€â”€
                     const interceptedLogs = [
                         {
                             img: shuffledPerfil[0],
@@ -495,18 +495,18 @@ export default function Upsell2Page() {
                                 {/* Stats row */}
                                 <div className="grid grid-cols-3 gap-2 text-center mb-3">
                                     <div className="bg-slate-800/60 rounded-lg py-2">
-                                        <p className="text-white font-bold text-sm">{profile?.media_count ?? '—'}</p>
+                                        <p className="text-white font-bold text-sm">{profile?.media_count ?? 'â€”'}</p>
                                         <p className="text-slate-500 text-[10px]">Posts</p>
                                     </div>
                                     <div className="bg-slate-800/60 rounded-lg py-2">
                                         <p className="text-white font-bold text-sm">
-                                            {profile?.follower_count ? (profile.follower_count >= 1000 ? `${(profile.follower_count / 1000).toFixed(1)}k` : profile.follower_count) : '—'}
+                                            {profile?.follower_count ? (profile.follower_count >= 1000 ? `${(profile.follower_count / 1000).toFixed(1)}k` : profile.follower_count) : 'â€”'}
                                         </p>
                                         <p className="text-slate-500 text-[10px]">Followers</p>
                                     </div>
                                     <div className="bg-slate-800/60 rounded-lg py-2">
                                         <p className="text-white font-bold text-sm">
-                                            {profile?.following_count ? (profile.following_count >= 1000 ? `${(profile.following_count / 1000).toFixed(1)}k` : profile.following_count) : '—'}
+                                            {profile?.following_count ? (profile.following_count >= 1000 ? `${(profile.following_count / 1000).toFixed(1)}k` : profile.following_count) : 'â€”'}
                                         </p>
                                         <p className="text-slate-500 text-[10px]">Following</p>
                                     </div>
@@ -516,7 +516,7 @@ export default function Upsell2Page() {
                                     {profile?.biography
                                         ? profile.biography
                                         : profile?.is_private
-                                            ? '?? Private account � bio hidden'
+                                            ? '?? Private account — bio hidden'
                                             : '?? Bio and last 4 locations extracted'
                                     }
                                 </div>
@@ -539,7 +539,7 @@ export default function Upsell2Page() {
                                 </div>
                             </div>
 
-                            {/* Intercepted Logs � 4 cards */}
+                            {/* Intercepted Logs — 4 cards */}
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
                                     <h3 className="font-bold text-slate-400 text-[10px] uppercase tracking-widest">Intercepted Logs</h3>

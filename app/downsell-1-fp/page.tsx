@@ -155,7 +155,7 @@ export default function Downsell1FPPage() {
                 </div>
 
                 <p className="text-center text-[10px] text-slate-600 font-mono uppercase">
-                    Secure Server Connection • ID: #8821-X
+                    Secure Server Connection â€¢ ID: #8821-X
                 </p>
 
             </main>

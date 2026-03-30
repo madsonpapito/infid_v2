@@ -13,17 +13,17 @@ export default function PrivacyPage() {
 
                     <h2 className="text-xl font-semibold text-slate-800 mt-6">Information we collect</h2>
                     <p>
-                        We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.
+                        We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why weâ€™re collecting it and how it will be used.
                     </p>
 
                     <h2 className="text-xl font-semibold text-slate-800 mt-6">Use of data</h2>
                     <p>
-                        We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorised access, disclosure, copying, use or modification.
+                        We only retain collected information for as long as necessary to provide you with your requested service. What data we store, weâ€™ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorised access, disclosure, copying, use or modification.
                     </p>
 
                     <h2 className="text-xl font-semibold text-slate-800 mt-6">Sharing of data</h2>
                     <p>
-                        We don’t share any personally identifying information publicly or with third-parties, except when required to by law.
+                        We donâ€™t share any personally identifying information publicly or with third-parties, except when required to by law.
                     </p>
 
                     <h2 className="text-xl font-semibold text-slate-800 mt-6">Cooking</h2>
