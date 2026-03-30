@@ -1092,7 +1092,7 @@ function DatingScannerContent() {
           </div>
 
           <a
-            href="https://go.plataformafortpay.com.br/ousxjbuoqw?ref="
+            href="https://go.plataformafortpay.com.br/ousxjbuoqw"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full bg-emerald-500 hover:bg-emerald-400 text-[#0B1120] font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all transform hover:scale-[1.02] uppercase tracking-widest text-sm relative z-10"
